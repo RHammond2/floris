@@ -13,9 +13,10 @@
 # See https://floris.readthedocs.io for documentation
 
 
-import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
+
+import jax.numpy as np
 
 from ..utilities import Vec3
 
@@ -213,7 +214,7 @@ def visualize_quiver(
     )
 
     # plot the stream plot
-    QV1 = ax.streamplot(
+    ax.streamplot(
         (x1_mesh[::downSamp, ::downSamp]),
         (x2_mesh[::downSamp, ::downSamp]),
         v_mesh[::downSamp, ::downSamp],

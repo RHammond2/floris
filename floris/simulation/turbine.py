@@ -15,10 +15,11 @@
 
 import math
 
-import numpy as np
 from scipy.stats import norm
 from scipy.spatial import distance_matrix
 from scipy.interpolate import interp1d
+
+import jax.numpy as np
 
 from ..utilities import cosd, sind, tand
 from ..logging_manager import LoggerBase
@@ -123,13 +124,19 @@ class Turbine(LoggerBase):
         # Initialize the turbine given saved parameter settings
 
         # Precompute interps
-        wind_speed = self.power_thrust_table["wind_speed"]
+        # jax change
+        # wind_speed = self.power_thrust_table["wind_speed"]
+        self.wind_speed = np.array(self.power_thrust_table["wind_speed"])
 
-        cp = self.power_thrust_table["power"]
-        self.fCpInterp = interp1d(wind_speed, cp, fill_value="extrapolate")
+        # jax change
+        # cp = self.power_thrust_table["power"]
+        # self.fCpInterp = interp1d(wind_speed, cp, fill_value="extrapolate")
+        self.cp = np.array(self.power_thrust_table["power"])
 
-        ct = self.power_thrust_table["thrust"]
-        self.fCtInterp = interp1d(wind_speed, ct, fill_value="extrapolate")
+        # jax change
+        # ct = self.power_thrust_table["thrust"]
+        # self.fCtInterp = interp1d(wind_speed, ct, fill_value="extrapolate")
+        self.ct = np.array(self.power_thrust_table["thrust"])
 
         # constants
         self.grid_point_count = self.ngrid * self.ngrid
@@ -142,8 +149,12 @@ class Turbine(LoggerBase):
         self.grid = self._create_swept_area_grid()
 
         # Compute list of inner powers
-        inner_power = np.array([self._power_inner_function(ws) for ws in wind_speed])
-        self.powInterp = interp1d(wind_speed, inner_power, fill_value="extrapolate")
+        # jax change
+        # inner_power = np.array([self._power_inner_function(ws) for ws in wind_speed])
+        # self.powInterp = interp1d(wind_speed, inner_power, fill_value="extrapolate")
+        self.inner_power = np.array(
+            [self._power_inner_function(ws) for ws in self.wind_speed]
+        )
 
     def _create_swept_area_grid(self):
         # TODO: add validity check:
@@ -210,28 +221,36 @@ class Turbine(LoggerBase):
         if at_wind_speed < min(wind_speed):
             return 0.0
         else:
-            _cp = self.fCpInterp(at_wind_speed)
+            # jax change
+            # _cp = self.fCpInterp(at_wind_speed)
+            _cp = np.interp(np.array(at_wind_speed), self.wind_speed, self.cp)
             if _cp.size > 1:
                 _cp = _cp[0]
             if _cp > 1.0:
                 _cp = 1.0
             if _cp < 0.0:
                 _cp = 0.0
-            return float(_cp)
+            # jax change
+            # return float(_cp)
+            return _cp.astype(np.float32)
 
     def _fCt(self, at_wind_speed):
         wind_speed = self.power_thrust_table["wind_speed"]
         if at_wind_speed < min(wind_speed):
             return 0.99
         else:
-            _ct = self.fCtInterp(at_wind_speed)
+            # jax change
+            # _ct = self.fCtInterp(at_wind_speed)
+            _ct = np.interp(at_wind_speed, self.wind_speed, self.ct)
             if _ct.size > 1:
                 _ct = _ct[0]
             if _ct > 1.0:
                 _ct = 0.9999
             if _ct <= 0.0:
                 _ct = 0.0001
-            return float(_ct)
+            # jax change
+            # return float(_ct)
+            return _ct.astype(np.float32)
 
     # Public methods
 
@@ -462,9 +481,16 @@ class Turbine(LoggerBase):
                 npdf = np.array(pdf) * (1 / np.sum(pdf))
 
                 # calculate turbulence parameter (ratio of corrected power to original power)
-                return np.sum([npdf[k] * self.powInterp(xp[k]) for k in range(100)]) / (
-                    self.powInterp(mu)
-                )
+                # jax change
+                # return np.sum([npdf[k] * self.powInterp(xp[k]) for k in range(100)]) / (
+                #     self.powInterp(mu)
+                # )
+                return np.sum(
+                    [
+                        npdf[k] * np.interp(xp[k], self.wind_speed, self.inner_power)
+                        for k in range(100)
+                    ]
+                ) / (np.interp(mu, self.wind_speed, self.inner_power))
 
     @property
     def current_turbulence_intensity(self):
@@ -667,9 +693,15 @@ class Turbine(LoggerBase):
         yaw_effective_velocity = self.average_velocity * cosd(self.yaw_angle) ** pW
 
         # Now compute the power
+        # jax change
+        # return (
+        #     self.air_density
+        #     * self.powInterp(yaw_effective_velocity)
+        #     * self.turbulence_parameter
+        # )
         return (
             self.air_density
-            * self.powInterp(yaw_effective_velocity)
+            * np.interp(yaw_effective_velocity, self.wind_speed, self.inner_power)
             * self.turbulence_parameter
         )
 

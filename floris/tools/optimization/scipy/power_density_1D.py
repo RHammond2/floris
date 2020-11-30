@@ -12,9 +12,10 @@
 
 # See https://floris.readthedocs.io for documentation
 
-import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
+
+import jax.numpy as np
 
 from .optimization import Optimization
 
@@ -113,7 +114,7 @@ class PowerDensityOptimization1D(Optimization):
             turbine.yaw_angle = turb_controls_unnorm[0][i]
 
         layout_dist = self._avg_dist(locs)
-        AEP_sum = self._AEP_single_wd(self.wd[0], self.ws[0])
+        # AEP_sum = self._AEP_single_wd(self.wd[0], self.ws[0])
         # print('AEP ratio: ', AEP_sum/self.AEP_initial)
 
         return layout_dist / self.layout_dist_initial

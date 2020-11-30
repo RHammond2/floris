@@ -12,8 +12,9 @@
 
 # See https://floris.readthedocs.io for documentation
 
-import numpy as np
 import matplotlib.pyplot as plt
+
+import jax.numpy as np
 
 
 try:

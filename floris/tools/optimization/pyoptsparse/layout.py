@@ -13,8 +13,9 @@
 # See https://floris.readthedocs.io for documentation
 
 
-import numpy as np
 import matplotlib.pyplot as plt
+
+import jax.numpy as np
 
 
 class Layout:
@@ -128,9 +129,6 @@ class Layout:
         return dist
 
     def distance_from_boundaries(self):
-        x = self.x
-        y = self.y
-
         dist_out = []
 
         for k in range(self.nturbs):

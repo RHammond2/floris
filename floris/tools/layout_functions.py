@@ -18,11 +18,11 @@
 
 import math
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import pdist, squareform
 
+import jax.numpy as np
 from floris.utilities import wrap_360
 
 

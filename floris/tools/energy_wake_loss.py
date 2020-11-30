@@ -12,10 +12,11 @@
 
 # See https://floris.readthedocs.io for documentation
 
-import numpy as np
 import pandas as pd
 import scipy.stats
 import matplotlib.pyplot as plt
+
+import jax.numpy as np
 
 
 def _convert_to_numpy_array(series):
@@ -50,7 +51,7 @@ def ci(data, confidence=0.95):
     """
     a = 1.0 * np.array(data)
     n = len(a)
-    m, se = np.mean(a), scipy.stats.sem(a)
+    se = scipy.stats.sem(a)
     h = se * scipy.stats.t.ppf((1 + confidence) / 2.0, n - 1)
     return h
 

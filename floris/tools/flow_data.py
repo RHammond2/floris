@@ -15,8 +15,9 @@
 
 import os
 
-import numpy as np
 from sklearn import neighbors
+
+import jax.numpy as np
 
 from ..utilities import Vec3
 
@@ -156,10 +157,10 @@ class FlowData:
             np.array: Array of u-velocity at specified points.
         """
         # print(x_points,y_points,z_points)
-        X = np.column_stack([self.x, self.y, self.z])
+        # X = np.column_stack([self.x, self.y, self.z])
         n_neighbors = 1
         knn = neighbors.KNeighborsRegressor(n_neighbors)
-        y_ = knn.fit(X, self.u)  # .predict(T)
+        # y_ = knn.fit(X, self.u)  # .predict(T)
 
         # Predict new points
         T = np.column_stack([x_points, y_points, z_points])

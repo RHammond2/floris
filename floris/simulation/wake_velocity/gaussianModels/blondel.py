@@ -10,8 +10,9 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-import numpy as np
 from scipy.special import gamma
+
+import jax.numpy as np
 
 from ....utilities import cosd, sind, tand
 from .gaussian_model_base import GaussianModel

@@ -12,9 +12,10 @@
 
 # See https://floris.readthedocs.io for documentation
 
-import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
+
+import jax.numpy as np
 
 from .layout import LayoutOptimization
 from .base_COE import BaseCOE

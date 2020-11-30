@@ -13,7 +13,7 @@
 # See https://floris.readthedocs.io for documentation
 
 
-import numpy as np
+import jax.numpy as np
 
 from ..utilities import wrap_180, wrap_360
 
@@ -47,11 +47,7 @@ def determine_rews_weights(R, HH, heights_in):
     Returns:
         weights_return (list): list of weighting values for REWS.
     """
-    # Determine rotor area
-    Area = np.pi * R ** 2
-
     # Remove any heights not in range of the rotor
-    num_heights_in = len(heights_in)
     heights = [h for h in heights_in if ((h >= HH - R) and (h <= HH + R))]
     num_heights = len(heights)
 

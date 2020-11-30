@@ -15,10 +15,11 @@
 
 import copy
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
+
+import jax.numpy as np
 
 
 def nudge_outward(x):

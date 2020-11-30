@@ -5,10 +5,10 @@ import copy
 import pickle
 from os import path
 
-import numpy as np
 import matplotlib.pyplot as plt
 from scipy import interpolate
 
+import jax.numpy as np
 import floris.tools as wfct
 
 from ..logging_manager import LoggerBase
@@ -32,6 +32,7 @@ degRad = np.pi / 180.0
 rpmRadSec = 2.0 * (np.pi) / 60.0
 base_R = 63.0  # Actual NREL 5MW radius
 
+
 # Function returns a scaled NREL 5MW rotor object from CC-Blade
 def CCrotor(
     Rtip=base_R,
@@ -42,7 +43,6 @@ def CCrotor(
     mu=1.81206e-5,
     path_to_af="5MW_AFFiles",
 ):
-
     r = (Rtip / base_R) * np.array(
         [
             2.8667,
@@ -249,7 +249,7 @@ def pitch_control(turbine_dict, rotSpeedF, pitch_prev, dt, intSpeedError):
     pitchP = GK * turbine_dict["PitchControlKP"] * speedError
     pitchI = GK * turbine_dict["PitchControlKI"] * intSpeedError
     # scalar pitchD = GK * PitchControlKD[j] * derivSpeedError;
-    pitchCommanded = pitchP + pitchI  #  + pitchD;
+    pitchCommanded = pitchP + pitchI  # + pitchD;
 
     # Saturate the pitch based on the pitch limits of the pitch
     # actuator.
@@ -347,7 +347,7 @@ def generate_base_lut(rotor, turbine_dict):
     ws_flat = ws_mesh.flatten()
     pitch_flat = pitch_mesh.flatten()
     omega_flat = np.ones_like(pitch_flat) * fixed_rpm
-    tsr_flat = (fixed_rpm * (np.pi / 30.0) * Rtip) / ws_flat
+    # tsr_flat = (fixed_rpm * (np.pi / 30.0) * Rtip) / ws_flat
 
     # Get values from cc-blade
     outputs, derivs = rotor.evaluate(
@@ -479,7 +479,7 @@ def get_steady_state(
     cp_dict, ct_dict, cq_dict = pickle.load(open("cp_ct_cq_lut.p", "rb"))
 
     # Select the 0-yaw LUT
-    cq_lut = cq_dict[0]
+    # cq_lut = cq_dict[0]
 
     # Now loop through and get the values
     re_run = True
@@ -502,12 +502,12 @@ def get_steady_state(
                     [pitch[i - 1]],
                     coefficients=True,
                 )
-                M = outputs["M"]
+                # M = outputs["M"]
                 Cp = outputs["CP"]
                 Ct = outputs["CT"]
                 cq = outputs["CQ"]
 
-            except:
+            except Exception:
                 print("CC BLADE PROBLEM")
                 if i > 0:
                     return gen_power[i - 1], cp_array[i - 1], ct_array[i - 1]

@@ -12,7 +12,7 @@
 
 # See https://floris.readthedocs.io for documentation
 
-import numpy as np
+import jax.numpy as np
 
 
 class Vec3:

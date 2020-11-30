@@ -10,8 +10,9 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-import numpy as np
 from scipy.ndimage.filters import gaussian_filter
+
+import jax.numpy as np
 
 from ...utilities import Vec3, sind
 from .base_velocity_deficit import VelocityDeficit
@@ -151,7 +152,7 @@ class Curl(VelocityDeficit):
         # of the vortexes
         dissipation = self.dissipation
         # parameter that defines the wind velocity of veer at 0 meters height
-        veer_linear = self.veer_linear
+        # veer_linear = self.veer_linear
 
         # setup x and y grid information
         x = np.linspace(

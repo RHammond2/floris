@@ -10,7 +10,8 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-import numpy as np
+import jax.ops as jops
+import jax.numpy as np
 
 from ....utilities import cosd, sind, tand
 from ..base_velocity_deficit import VelocityDeficit
@@ -370,9 +371,13 @@ class GaussianModel(VelocityDeficit):
         W = W1 + W2 + W3 + W4  # + W5 + W6
 
         # no spanwise and vertical velocity upstream of the turbine
-        V[x_locations < coord.x1] = 0.0
-        W[x_locations < coord.x1] = 0.0
-        W[W < 0] = 0
+        # jax change
+        # V[x_locations < coord.x1] = 0.0
+        # W[x_locations < coord.x1] = 0.0
+        # W[W < 0] = 0
+        V = jops.index_update(V, x_locations < coord.x1, 0.0)
+        W = jops.index_update(W, x_locations < coord.x1, 0.0)
+        W = jops.index_update(W, W < 0, 0.0)
 
         return V, W
 

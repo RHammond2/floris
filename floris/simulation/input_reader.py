@@ -14,7 +14,7 @@
 
 import json
 
-import numpy as np
+import jax.numpy as np
 
 
 class InputReader:

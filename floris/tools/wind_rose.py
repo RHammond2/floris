@@ -12,21 +12,21 @@
 
 # See https://floris.readthedocs.io for documentation
 
-## TODO
-## 1: reorganize into private and public methods
-## 2: Include smoothing?
+# TODO
+# 1: reorganize into private and public methods
+# 2: Include smoothing?
 
 import os
 import pickle
 
-import numpy as np
 import pandas as pd
 import dateutil
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
-from pyproj import Proj
 
+import jax.numpy as np
 import floris.utilities as geo
+from pyproj import Proj
 
 
 class WindRose:

@@ -15,8 +15,9 @@
 import os
 import re
 
-import numpy as np
 import pandas as pd
+
+import jax.numpy as np
 
 from .cut_plane import CutPlane, get_plane_from_flow_data
 from .flow_data import FlowData
@@ -443,17 +444,17 @@ def read_sowfa_df(folder_name, channels=[]):
     ]
 
     # Remove the harder input files for now (undo someday)
-    hardFiles = [
-        "Vtangential",
-        "Cl",
-        "Cd",
-        "Vradial",
-        "x",
-        "y",
-        "z",
-        "alpha",
-        "axialForce",
-    ]
+    # hardFiles = [
+    #     "Vtangential",
+    #     "Cl",
+    #     "Cd",
+    #     "Vradial",
+    #     "x",
+    #     "y",
+    #     "z",
+    #     "alpha",
+    #     "axialForce",
+    # ]
     simpleFiles = [
         "nacYaw",
         "rotSpeedFiltered",
@@ -527,7 +528,7 @@ def read_foam_file(filename):
     with open(filename, "r") as fid:
         raw = fid.readlines()
 
-    count = 0
+    # count = 0
     bloc_comment_test = False
     for i, line in enumerate(raw):
 
@@ -547,13 +548,13 @@ def read_foam_file(filename):
                 tmp = raw[i].strip().rstrip().split()
                 try:
                     data[tmp[0].replace('"', "")] = np.float(tmp[1][:-1])
-                except:
+                except Exception:
                     try:
                         data[tmp[0].replace('"', "")] = tmp[1][:-1]
-                    except:
+                    except Exception:
                         next
 
-        if raw[i][0:2] == "\*":
+        if raw[i][0:2] == "\\*":
             bloc_comment_test = False
 
     return data

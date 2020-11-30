@@ -12,7 +12,7 @@
 
 import copy
 
-import numpy as np
+import jax.numpy as np
 
 from .wind_map import WindMap
 from ..utilities import Vec3

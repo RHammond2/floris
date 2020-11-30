@@ -12,8 +12,9 @@
 
 # See https://floris.readthedocs.io for documentation
 
-import numpy as np
 import scipy as sp
+
+import jax.numpy as np
 
 from ..utilities import Vec3
 

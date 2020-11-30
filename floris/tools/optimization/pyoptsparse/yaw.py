@@ -13,9 +13,10 @@
 # See https://floris.readthedocs.io for documentation
 
 
-import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
+
+import jax.numpy as np
 
 from ...visualization import visualize_cut_plane
 
@@ -205,7 +206,7 @@ class Yaw:
             + str(self.wspd[0])
             + " m/s, Wind Direction = "
             + str(self.wdir[0])
-            + "$^\circ$"
+            + "$^\\circ$"
         )
 
         plt.show()

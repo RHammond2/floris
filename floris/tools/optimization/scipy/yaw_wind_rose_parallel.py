@@ -14,10 +14,10 @@
 
 from itertools import repeat
 
-import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
 
+import jax.numpy as np
 from floris.tools.optimization.scipy.yaw_wind_rose import YawOptimizationWindRose
 
 from ....logging_manager import LoggerBase
@@ -152,7 +152,7 @@ class YawOptimizationWindRoseParallel(YawOptimizationWindRose, LoggerBase):
             include_unc=include_unc,
             unc_pmfs=unc_pmfs,
             unc_options=unc_options,
-            calc_init_power=False
+            calc_init_power=False,
         )
 
     # Private methods

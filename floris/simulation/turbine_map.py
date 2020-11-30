@@ -13,7 +13,8 @@
 # See https://floris.readthedocs.io for documentation
 
 
-import numpy as np
+import jax.ops as jops
+import jax.numpy as np
 
 from .turbine import Turbine
 from ..utilities import Vec3, wrap_180
@@ -56,11 +57,11 @@ class TurbineMap(LoggerBase):
         """
         # check if the length of x and y coordinates are equal
         if len(layout_x) != len(layout_y):
-            err_msg = ('The number of turbine x locations ({0}) is ' + \
-                'not equal to the number of turbine y locations ' + \
-                '({1}). Please check your layout array.').format(
-                    len(layout_x), len(layout_y)
-                )
+            err_msg = (
+                "The number of turbine x locations ({0}) is "
+                + "not equal to the number of turbine y locations "
+                + "({1}). Please check your layout array."
+            ).format(len(layout_x), len(layout_y))
             self.logger.error(err_msg, stack_info=True)
             raise ValueError(err_msg)
 
@@ -100,8 +101,11 @@ class TurbineMap(LoggerBase):
         layout_y = np.zeros(len(self.coords))
         for i, coord in enumerate(self.coords):
             coord.rotate_on_x3(angles[i], center_of_rotation)
-            layout_x[i] = coord.x1prime
-            layout_y[i] = coord.x2prime
+            # jax change
+            # layout_x[i] = coord.x1prime
+            # layout_y[i] = coord.x2prime
+            layout_x = jops.index_update(layout_x, i, coord.x1prime)
+            layout_y = jops.index_update(layout_y, i, coord.x2prime)
         return TurbineMap(layout_x, layout_y, self.turbines)
 
     def sorted_in_x_as_list(self):

@@ -18,11 +18,11 @@ from itertools import repeat
 from multiprocessing import cpu_count
 from multiprocessing.pool import Pool
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
+import jax.numpy as np
 from floris.simulation import Floris, Turbine, WindMap, TurbineMap
 
 from .cut_plane import CutPlane, get_plane_from_flow_data
@@ -857,7 +857,9 @@ class FlorisInterface(LoggerBase):
             return mean_farm_power
         else:
             turb_powers = [turbine.power for turbine in self.floris.farm.turbines]
-            return np.sum(turb_powers)
+            # jax change
+            # return np.sum(turb_powers)
+            return np.sum(np.array(turb_powers))
 
     def get_turbine_layout(self, z=False):
         """
@@ -1597,7 +1599,7 @@ class FlorisInterface(LoggerBase):
 
         return model_params
 
-    def set_model_parameters(self, params, verbose=True):
+    def set_model_parameters(self, params, verbose=False):
         """
         Helper function to set current wake model parameters.
         Shortcut to :py:meth:`~.tools.interface_utilities.set_params`.

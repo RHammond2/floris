@@ -12,7 +12,8 @@
 
 import copy
 
-import numpy as np
+import jax.ops as jops
+import jax.numpy as np
 
 from ....utilities import cosd, sind, tand
 from .gaussian_model_base import GaussianModel
@@ -176,8 +177,11 @@ class LegacyGauss(GaussianModel):
         sigma_z = (((x0 - xR) - (x_locations - xR)) / (x0 - xR)) * 0.501 * D * np.sqrt(
             Ct / 2.0
         ) + ((x_locations - xR) / (x0 - xR)) * sigma_z0
-        sigma_y[x_locations < xR] = 0.5 * D
-        sigma_z[x_locations < xR] = 0.5 * D
+        # jax change
+        # sigma_y[x_locations < xR] = 0.5 * D
+        # sigma_z[x_locations < xR] = 0.5 * D
+        sigma_y = jops.index_update(sigma_y, x_locations < xR, 0.5 * D)
+        sigma_z = jops.index_update(sigma_z, x_locations < xR, 0.5 * D)
 
         a = cosd(veer) ** 2 / (2 * sigma_y ** 2) + sind(veer) ** 2 / (2 * sigma_z ** 2)
         b = -sind(2 * veer) / (4 * sigma_y ** 2) + sind(2 * veer) / (4 * sigma_z ** 2)
@@ -192,16 +196,26 @@ class LegacyGauss(GaussianModel):
         )
 
         velDef = GaussianModel.gaussian_function(U_local, C, r, 1, np.sqrt(0.5))
-        velDef[x_locations < xR] = 0
-        velDef[x_locations > x0] = 0
+        # jax change
+        # velDef[x_locations < xR] = 0
+        # velDef[x_locations > x0] = 0
+        velDef = jops.index_update(velDef, x_locations < xR, 0)
+        velDef = jops.index_update(velDef, x_locations > x0, 0)
 
         # wake expansion in the lateral (y) and the vertical (z)
         ky = self.ka * TI + self.kb  # wake expansion parameters
         kz = self.ka * TI + self.kb  # wake expansion parameters
         sigma_y = ky * (x_locations - x0) + sigma_y0
         sigma_z = kz * (x_locations - x0) + sigma_z0
-        sigma_y[x_locations < x0] = sigma_y0[x_locations < x0]
-        sigma_z[x_locations < x0] = sigma_z0[x_locations < x0]
+        # jax change
+        # sigma_y[x_locations < x0] = sigma_y0[x_locations < x0]
+        # sigma_z[x_locations < x0] = sigma_z0[x_locations < x0]
+        sigma_y = jops.index_update(
+            sigma_y, x_locations < x0, sigma_y0[x_locations < x0]
+        )
+        sigma_z = jops.index_update(
+            sigma_z, x_locations < x0, sigma_z0[x_locations < x0]
+        )
 
         # velocity deficit outside the near wake
         a = cosd(veer) ** 2 / (2 * sigma_y ** 2) + sind(veer) ** 2 / (2 * sigma_z ** 2)
@@ -218,7 +232,9 @@ class LegacyGauss(GaussianModel):
 
         # compute velocities in the far wake
         velDef1 = GaussianModel.gaussian_function(U_local, C, r, 1, np.sqrt(0.5))
-        velDef1[x_locations < x0] = 0
+        # jax change
+        # velDef1[x_locations < x0] = 0
+        velDef1 = jops.index_update(velDef1, x_locations < x0, 0)
 
         U = np.sqrt(velDef ** 2 + velDef1 ** 2)
 
