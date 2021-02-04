@@ -12,6 +12,8 @@
 
 # See https://floris.readthedocs.io for documentation
 
+from typing import Tuple
+
 import numpy as np
 
 
@@ -88,6 +90,14 @@ class Vec3:
             x2offset * cosd(theta) + x1offset * sind(theta) + center_of_rotation.x2
         )
         self.x3prime = self.x3
+
+    @property
+    def elements(self) -> Tuple[float, float, float]:
+        return self.x1, self.x2, self.x3
+
+    @property
+    def prime_elements(self) -> Tuple[float, float, float]:
+        return self.x1prime, self.x2prime, self.x3prime
 
     def __str__(self):
         template_string = "{} {} {}".format(

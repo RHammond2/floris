@@ -19,8 +19,10 @@ import floris.logging_manager as logging_manager
 
 from .farm import Farm
 from .wake import Wake
-from .turbine import Turbine
 from .input_reader import InputReader
+
+# from .turbine import Turbine
+from .refactor_turbine import Turbine
 
 
 class Floris(logging_manager.LoggerBase):

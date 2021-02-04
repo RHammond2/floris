@@ -15,9 +15,11 @@
 
 import numpy as np
 
-from .turbine import Turbine
 from ..utilities import Vec3, wrap_180
 from ..logging_manager import LoggerBase
+
+# from .turbine import Turbine
+from .refactor_turbine import Turbine
 
 
 class TurbineMap(LoggerBase):
@@ -56,11 +58,11 @@ class TurbineMap(LoggerBase):
         """
         # check if the length of x and y coordinates are equal
         if len(layout_x) != len(layout_y):
-            err_msg = ('The number of turbine x locations ({0}) is ' + \
-                'not equal to the number of turbine y locations ' + \
-                '({1}). Please check your layout array.').format(
-                    len(layout_x), len(layout_y)
-                )
+            err_msg = (
+                "The number of turbine x locations ({0}) is "
+                + "not equal to the number of turbine y locations "
+                + "({1}). Please check your layout array."
+            ).format(len(layout_x), len(layout_y))
             self.logger.error(err_msg, stack_info=True)
             raise ValueError(err_msg)
 

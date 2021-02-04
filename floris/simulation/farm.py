@@ -16,8 +16,11 @@ import numpy as np
 
 from .wind_map import WindMap
 from ..utilities import Vec3
-from .flow_field import FlowField
-from .turbine_map import TurbineMap
+
+# from .flow_field import FlowField
+# from .turbine_map import TurbineMap
+from .refactor_turbine import TurbineMap
+from .refactor_flow_field import FlowField
 
 
 class Farm:

@@ -40,8 +40,12 @@ from . import wake_velocity, wake_deflection, wake_turbulence, wake_combination
 from .farm import Farm
 from .wake import Wake
 from .floris import Floris
-from .turbine import Turbine
 from .wind_map import WindMap
-from .flow_field import FlowField
-from .turbine_map import TurbineMap
 from .input_reader import InputReader
+
+# from .turbine_map import TurbineMap
+# from .turbine import Turbine
+from .refactor_turbine import Turbine, TurbineMap
+
+# from .flow_field import FlowField
+from .refactor_flow_field import FlowField
