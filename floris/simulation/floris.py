@@ -21,6 +21,7 @@ from .farm import Farm
 from .wake import Wake
 from .input_reader import InputReader
 
+# isort:skip
 # from .turbine import Turbine
 from .refactor_turbine import Turbine
 
@@ -61,7 +62,8 @@ class Floris(logging_manager.LoggerBase):
         )
 
         # Initialize the simulation objects
-        turbine = Turbine(turbine_dict)
+        # TODO: redefine turbine dictionaries in the data?
+        turbine = Turbine.from_dict({**turbine_dict, **turbine_dict["properties"]})
         wake = Wake(wake_dict)
         self.farm = Farm(farm_dict, turbine, wake)
 

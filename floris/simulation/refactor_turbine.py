@@ -13,7 +13,7 @@ from scipy.stats import norm
 from scipy.spatial import distance_matrix
 from scipy.interpolate import interp1d
 
-from floris.utilities import Vec3, cosd, wrap_180
+from floris.utilities import Vec3, FromDictMixin, cosd, wrap_180
 from floris.logging_manager import LoggerBase
 
 
@@ -49,7 +49,7 @@ class PowerThrustTable:
 
 
 @attr.s(auto_attribs=True)
-class Turbine:
+class Turbine(FromDictMixin):
     description: str
     rotor_diameter: float
     hub_height: float
@@ -75,38 +75,25 @@ class Turbine:
 
     def __attrs_post_init__(self):
         """Creates the `power_thrust_table` to be `PowerThrustTable` object."""
-        object.__setattr__(
-            self, "power_thrust_table", PowerThrustTable(**self.power_thrust_table)
-        )
+        self.power_thrust_table = PowerThrustTable(**self.power_thrust_table)
         self._reinitialize()
 
     def _reinitialize(self):
         wind_speed = self.power_thrust_table.wind_speed
-        object.__setattr__(
-            self,
-            "fCpInterp",
-            interp_generator(wind_speed, self.power_thrust_table.power),
-        )
-        object.__setattr__(
-            self,
-            "fCtInterp",
-            interp_generator(wind_speed, self.power_thrust_table.thrust),
-        )
-        object.__setattr__(self, "grid_point_count", self.ngrid ** 2)
-        object.__setattr__(self, "velocities", np.zeros(self.grid_point_count))
-        object.__setattr__(self, "rotor_radius", self.rotor_diameter / 2.0)
+        self.fCpInterp = interp_generator(wind_speed, self.power_thrust_table.power)
+        self.fCtInterp = interp_generator(wind_speed, self.power_thrust_table.thrust)
+        self.grid_point_count = self.ngrid ** 2
+        self.velocities = np.zeros(self.grid_point_count)
+        self.rotor_radius = self.rotor_diameter / 2.0
 
         self.reset_velocities()
 
-        object.__setattr__(self, "grid", self._create_swept_area_grid())
-
+        self.grid = self._create_swept_area_grid()
         inner_power = np.array([self._power_inner_function(ws) for ws in wind_speed])
-        object.__setattr__(
-            self, "pow_interp", interp_generator(wind_speed, inner_power)
-        )
+        self.pow_interp = interp_generator(wind_speed, inner_power)
 
     def reset_velocities(self):
-        object.__setattr__(self, "velocities", np.zeros(self.grid_point_count))
+        self.velocities = np.zeros(self.grid_point_count)
 
     def change_turbine_parameters(self, update_dict):
         for param, val in update_dict.items():
@@ -271,80 +258,70 @@ class Turbine:
         return 0.5 / cos_yaw * (1 - np.sqrt(1 - self.Ct * cos_yaw))
 
 
-class TurbineMap(LoggerBase):
+class TurbineMap(LoggerBase, FromDictMixin):
     def __init__(
-        self,
-        layout_x: List[float],
-        layout_y: List[float],
-        layout_turbines: List[int],
-        turbines: List[dict],
+        self, layout_x: List[float], layout_y: List[float], turbines: List[dict],
     ):
-        if len(layout_x) != len(layout_y) != len(layout_turbines):
+        if len(layout_x) != len(layout_y):
             err_msg = (
-                f"The number of turbine x locations ({len(layout_x)}), the number of ",
-                f"turbine y locations ({len(layout_y)}), and the number of turbine ",
-                f"indices ({len(layout_turbines)}) is not equal. Please check your layout.",
+                f"The number of turbine x locations ({len(layout_x)}) and the number ",
+                f"of turbine y locations ({len(layout_y)}) is not equal. Please check",
+                "your layout.",
             )
             self.logger.error(err_msg, stack_info=True)
             raise ValueError(err_msg)
 
-        if not all(ix in turbines for ix in np.unique(layout_turbines)):
-            err_msg = f"Missing one or more turbine indices in `layout_turbines`."
-            self.logger.error(err_msg, stack_info=True)
-            raise ValueError(err_msg)
-
-        turbine_map = {k: Turbine(**v) for k, v in turbines.items()}
-        self._turbine_map = [
-            deepcopy(turbine_map[turb_ix]) for turb_ix in layout_turbines
-        ]
+        self._turbine_map = {i: deepcopy(turb) for i, turb in enumerate(turbines)}
         self._set_locations(layout_x, layout_y)
 
     @property
     def coords(self) -> List[Vec3]:
-        return [turb.coordinates for turb in self._turbine_map]
+        return [turb.coordinates for turb in self._turbine_map.values()]
 
     @property
     def coordinate_array(self) -> np.ndarray:
-        return np.array([t.coordinates.elements for t in self._turbine_map])
+        return np.array([t.coordinates.elements for t in self._turbine_map.values()])
 
     @property
     def coordinate_array_prime(self) -> np.ndarray:
-        return np.array([t.coordinates.prime_elements for t in self._turbine_map])
+        return np.array(
+            [t.coordinates.prime_elements for t in self._turbine_map.values()]
+        )
 
     @property
     def turbines(self) -> List[Turbine]:
-        return self._turbine_map
+        return list(self._turbine_map.values())
 
     @property
     def rotor_diameters(self) -> np.ndarray:
-        return np.array([t.rotor_diameter for t in self._turbine_map])
+        return np.array([t.rotor_diameter for t in self._turbine_map.values()])
 
     def _set_locations(self, layout_x: List[float], layout_y: List[float]) -> None:
-        for turbine, x, y in zip(self._turbine_map, layout_x, layout_y):
+        for turbine, x, y in zip(self._turbine_map.values(), layout_x, layout_y):
             turbine.coordinates = Vec3(x, y, turbine.hub_height)
 
     def rotate_coords(
-        self, angles: List[float], center_of_rotation: List[float]
+        self, angles: List[float], center_of_rotation: Vec3
     ) -> "TurbineMap":
-        layout = np.zeros(len(self.coords), 3)
-        for i, (angle, coord) in enumerate(zip(self.coords)):
+        [
             coord.rotate_on_x3(angle, center_of_rotation)
-            layout[i] = coord.prime_elements
-        return TurbineMap(layout[:, 0], layout[:, 1], self._turbine_map)
+            for angle, coord in zip(angles, self.coords)
+        ]
+        layout = self.coordinate_array_prime
+        return TurbineMap(layout[:, 0], layout[:, 1], list(self._turbine_map.values()))
 
     def sort_turbines(self, by="x") -> List[Tuple[Vec3, Turbine]]:
         by = by.strip().lower()
         if by == "x":
-            order = np.array([coord.x1 for coord in self.coords]).argsort()
+            order = self.coordinate_array[:, 0].argsort()
         elif by == "y":
-            order = np.array([coord.x2 for coord in self.coords])
+            order = self.coordinate_array[:, 1].argsort()
         coords = np.array(self.coords)[order].tolist()
         turbs = np.array(self.turbines)[order].tolist()
         return list(zip(coords, turbs))
 
     def number_of_wakes_iec(self, wd: float, return_turbines=True):
         x1, x2, _ = self.coordinate_array.T
-        turbines = self.turbines
         diffs = np.array(
             [
                 [np.delete(x1, i) - x1[i], np.delete(x2, i) - x2[i]]
@@ -367,11 +344,14 @@ class TurbineMap(LoggerBase):
         # to be used for flow_field.py:560 to move some of the turbine_map work out of flow field
         [
             t.update_turbulence_intensity(ti)
-            for t, ti in zip(self._turbine_map, turbulence_intensities)
+            for t, ti in zip(self._turbine_map.values(), turbulence_intensities)
         ]
 
     def update_air_density(self, air_density: float) -> None:
-        [turbine.update_air_density(air_density) for turbine in self._turbine_map]
+        [
+            turbine.update_air_density(air_density)
+            for turbine in self._turbine_map.values()
+        ]
 
 
 # if __name__ == "__main__":

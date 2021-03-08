@@ -14,6 +14,7 @@
 
 from typing import Tuple
 
+import attr
 import numpy as np
 
 
@@ -205,3 +206,29 @@ def wrap_360(x):
     x = np.where(x < 0.0, x + 360.0, x)
     x = np.where(x >= 360.0, x - 360.0, x)
     return x
+
+
+@attr.s
+class FromDictMixin:
+    """A Mixin class to allow for kwargs overloading when a data class doesn't
+    have a specific parameter definied. This allows passing of larger dictionaries
+    to a data class without throwing an error.
+    """
+
+    @classmethod
+    def from_dict(cls, data: dict):
+        """Maps a data dictionary to an `attr`-defined class.
+
+        Parameters
+        ----------
+        data : dict
+            The data dictionary to be mapped.
+
+        Returns
+        -------
+        cls
+            The `attr`-defined class.
+        """
+        return cls(
+            **{a.name: data[a.name] for a in cls.__attrs_attrs__ if a.name in data}
+        )
