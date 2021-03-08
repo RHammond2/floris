@@ -21,9 +21,7 @@ from .farm import Farm
 from .wake import Wake
 from .input_reader import InputReader
 
-# isort:skip
-# from .turbine import Turbine
-from .refactor_turbine import Turbine
+from .refactor_turbine import Turbine  # from .turbine import Turbine
 
 
 class Floris(logging_manager.LoggerBase):
