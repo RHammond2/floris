@@ -55,17 +55,29 @@ def _calculate_overlap_points(coord: Vec3, rx: np.ndarray, ry: np.ndarray) -> fl
     return idx
 
 
-@attr.s(auto_attribs=True)
-class FlowField(FromDictMixin):
-    wind_shear: Optional[float] = attr.ib(default=None)
-    wind_veer: Optional[float] = attr.ib(default=None)
-    air_density: Optional[float] = attr.ib(default=None)
-    wake: Optional[Wake] = attr.ib(default=None)
-    turbine_map: Optional[TurbineMap] = attr.ib(default=None)
-    wind_map: Optional[WindMap] = attr.ib(default=None)
-    with_resolution: Optional[Vec3] = attr.ib(default=None)
-    bounds_to_set: Optional[List[float]] = attr.ib(default=None)
-    specified_wind_height: Optional[float] = attr.ib(default=None)
+class FlowField:
+    def __init__(
+        self,
+        wind_shear: float,
+        wind_veer: float,
+        air_density: float,
+        wake: Wake,
+        turbine_map: TurbineMap,
+        wind_map: WindMap,
+        specified_wind_height: float,
+        with_resolution: Optional[Vec3] = None,
+        bounds_to_set: Optional[List[float]] = None,
+    ) -> None:
+        self.reinitialize_flow_field(
+            wind_shear=wind_shear,
+            wind_veer=wind_veer,
+            air_density=air_density,
+            wake=wake,
+            turbine_map=turbine_map,
+            wind_map=wind_map,
+            with_resolution=wake.velocity_model.model_grid_resolution,
+            specified_wind_height=specified_wind_height,
+        )
 
     def _update_grid(
         self,
@@ -148,8 +160,6 @@ class FlowField(FromDictMixin):
         self.wind_map.calculate_wind_direction(grid=True)
         self.wind_map.calculate_wind_speed(grid=True)
 
-        print((self.z / self.specified_wind_height))
-        print(self.wind_shear)
         self.u_initial = (
             self.wind_map.grid_wind_speed
             * (self.z / self.specified_wind_height) ** self.wind_shear
@@ -457,15 +467,15 @@ class FlowField(FromDictMixin):
         points: Optional[np.ndarray] = None,
         track_n_upstream_wakes: Optional[bool] = False,
     ) -> None:
+        self.wake_list = {
+            turbine: 0 for turbine in self.turbine_map._turbine_map.values()
+        }
+
         if points is not None:
             # add points to flow field grid points
             self._compute_initialized_domain(points=points)
 
         self.track_n_upstream_wakes = track_n_upstream_wakes
-        if track_n_upstream_wakes:
-            # keep track of the wakes upstream of each turbine
-            # TODO: WTF TO DO WITH THIS -- THINK
-            self.wake_list = {turbine: 0 for _, turbine in self.turbine_map.items}
 
         # reinitialize the turbines
         self.turbine_map.update_turbulence_intensities(

@@ -258,7 +258,7 @@ class Turbine(FromDictMixin):
         return 0.5 / cos_yaw * (1 - np.sqrt(1 - self.Ct * cos_yaw))
 
 
-class TurbineMap(LoggerBase, FromDictMixin):
+class TurbineMap(LoggerBase):
     def __init__(
         self, layout_x: List[float], layout_y: List[float], turbines: List[dict],
     ):
