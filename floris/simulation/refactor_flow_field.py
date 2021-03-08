@@ -467,15 +467,15 @@ class FlowField:
         points: Optional[np.ndarray] = None,
         track_n_upstream_wakes: Optional[bool] = False,
     ) -> None:
-        self.wake_list = {
-            turbine: 0 for turbine in self.turbine_map._turbine_map.values()
-        }
-
         if points is not None:
             # add points to flow field grid points
             self._compute_initialized_domain(points=points)
 
         self.track_n_upstream_wakes = track_n_upstream_wakes
+        if self.track_n_upstream_wakes:
+            self.wake_list = {
+                turbine: 0 for turbine in self.turbine_map._turbine_map.values()
+            }
 
         # reinitialize the turbines
         self.turbine_map.update_turbulence_intensities(
