@@ -169,6 +169,10 @@ class Turbine(FromDictMixin):
         else:
             ii = self.flow_field_point_indices
 
+        ##############
+        # TODO: NEED TO FIGURE OUT THE FLOW_FIELD_POINT_INDICES_DISCREPANCY
+        ##############
+
         if additional_wind_speed is None:
             return np.array(local_wind_speed.flatten()[ii])
 
