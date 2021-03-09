@@ -513,7 +513,6 @@ class FlowField:
         self.w = np.zeros(np.shape(self.u))
 
         rx, ry, _ = self.turbine_map.coordinate_array_prime.T
-        print(rx)
         rotate_once = np.unique(self.wind_map.grid_wind_direction).size == 1
 
         for coord, turbine in sorted_map:
