@@ -215,6 +215,7 @@ class Turbine(FromDictMixin):
     def u_prime(self) -> np.ndarray:
         return np.sqrt(2 * self.TI_to_TKE())
 
+    @property
     def turbulence_parameter(self) -> float:
         if not self.use_turbulence_correction:
             return 1.0

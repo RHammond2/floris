@@ -100,14 +100,16 @@ class FlowField:
         xt = self.turbine_map.coordinate_array[:, 0]
         ngrid = self.turbine_map.turbines[0].ngrid
         grid_point_count = self.turbine_map.turbines[0].grid_point_count
-        point_indices = grid_point_count * np.arange(grid_point_count)
+        point_indices = np.arange(grid_point_count)
         x_grid = np.zeros((len(xt), ngrid, ngrid))
         y_grid = np.zeros((len(xt), ngrid, ngrid))
         z_grid = np.zeros((len(xt), ngrid, ngrid))
 
         def inner(i, turbine: Turbine) -> None:
             x1, x2, x3 = turbine.coordinates.elements
-            turbine.update_flow_field_point_indices(i * point_indices)
+            turbine.update_flow_field_point_indices(
+                i * grid_point_count + point_indices
+            )
             pt = turbine.rloc * turbine.rotor_radius
             yt = np.linspace(x2 - pt, x2 + pt, ngrid)
             zt = np.linspace(x3 - pt, x3 + pt, ngrid)
@@ -348,8 +350,8 @@ class FlowField:
         self,
         coord: Vec3,
         center_of_rotation: Vec3,
-        rx: float,
-        ry: float,
+        rx: np.ndarray,
+        ry: np.ndarray,
         initial_rotated_x: np.ndarray,
         initial_rotated_y: np.ndarray,
         rotate_once: bool,
@@ -360,9 +362,9 @@ class FlowField:
         ----------
         coord : Vec3
             The focal coordinate
-        rx : float
+        rx : np.ndarray
             [description]
-        ry : float
+        ry : np.ndarray
             [description]
         rotated_x : np.ndarray
             initial_rotated_x
@@ -436,7 +438,7 @@ class FlowField:
             additional_wind_speed=self.u_initial - turb_u_wake,
         )
         area_overlap = self._calculate_area_overlap(
-            wake_velocities, freestream_velocities, turbine
+            wake_velocities, freestream_velocities, turbine.grid_point_count
         )
         if area_overlap <= 0:
             return
@@ -511,6 +513,7 @@ class FlowField:
         self.w = np.zeros(np.shape(self.u))
 
         rx, ry, _ = self.turbine_map.coordinate_array_prime.T
+        print(rx)
         rotate_once = np.unique(self.wind_map.grid_wind_direction).size == 1
 
         for coord, turbine in sorted_map:
