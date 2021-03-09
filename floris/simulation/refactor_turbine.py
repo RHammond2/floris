@@ -64,6 +64,7 @@ class Turbine(FromDictMixin):
     ngrid: int = attr.ib(default=5, converter=partial(float_eq_int, "ngrid"))
     rloc: float = attr.ib(default=0.5, validator=check_between_0_1)
     air_density: float = attr.ib(default=-1)
+    coordinates: Vec3 = attr.ib(default=Vec3(0, 0, 0))
     use_turbulence_correction: bool = attr.ib(default=False)
     flow_field_point_indices: Any = attr.ib(default=None)
     use_points_on_perimeter: bool = attr.ib(default=False)
@@ -187,12 +188,17 @@ class Turbine(FromDictMixin):
         )
 
     def update_turbulence_intensity(self, ti: float) -> None:
-        # Used for flow_field.py:560 in calculate to become list comprehension
         self.current_turbulence_intensity = ti
         self.reset_velocities()
 
     def update_air_density(self, air_density: float) -> None:
         self.air_density = air_density
+
+    def update_coordinates(self, x: float, y: float, z: float = None) -> None:
+        self.coordinates = Vec3(x, y, z)
+
+    def update_flow_field_point_indices(self, ix: int) -> None:
+        self.flow_field_point_indices = ix
 
     def TKE_to_TI(self, turbulence_kinetic_energy: np.ndarray) -> np.ndarray:
         return np.sqrt((2 / 3) * turbulence_kinetic_energy) / self.average_velocity
@@ -232,7 +238,7 @@ class Turbine(FromDictMixin):
     def average_velocity(self):
         velocities = self.velocities[np.where(~np.isnan(self.velocities))]
         avg_vel = np.cbrt(np.mean(velocities ** 3))
-        if np.isnan(avg_vel) or np.isninf(avg_vel):
+        if np.isnan(avg_vel) or np.isinf(avg_vel):
             return 0
         return avg_vel
 
@@ -297,8 +303,10 @@ class TurbineMap(LoggerBase):
         return np.array([t.rotor_diameter for t in self._turbine_map.values()])
 
     def _set_locations(self, layout_x: List[float], layout_y: List[float]) -> None:
-        for turbine, x, y in zip(self._turbine_map.values(), layout_x, layout_y):
-            turbine.coordinates = Vec3(x, y, turbine.hub_height)
+        [
+            turbine.update_coordinates(x, y, turbine.hub_height)
+            for turbine, x, y in zip(self._turbine_map.values(), layout_x, layout_y)
+        ]
 
     def rotate_coords(
         self, angles: List[float], center_of_rotation: Vec3
@@ -309,6 +317,10 @@ class TurbineMap(LoggerBase):
         ]
         layout = self.coordinate_array_prime
         return TurbineMap(layout[:, 0], layout[:, 1], list(self._turbine_map.values()))
+
+    def _get_turbine_ix(self, turbine: Turbine) -> int:
+        keys, values = self._turbine_map.items()
+        return list(keys)[list(values).index(turbine)]
 
     def sort_turbines(self, by="x") -> List[Tuple[Vec3, Turbine]]:
         by = by.strip().lower()

@@ -107,7 +107,7 @@ class FlowField:
 
         def inner(i, turbine: Turbine) -> None:
             x1, x2, x3 = turbine.coordinates.elements
-            turbine.flow_field_point_indices = i * point_indices
+            turbine.update_flow_field_point_indices(i * point_indices)
             pt = turbine.rloc * turbine.rotor_radius
             yt = np.linspace(x2 - pt, x2 + pt, ngrid)
             zt = np.linspace(x3 - pt, x3 + pt, ngrid)
@@ -459,7 +459,8 @@ class FlowField:
 
         if self.track_n_upstream_wakes:
             # increment by one for each upstream wake
-            self.wake_list[turbine_ti] += 1
+            ix = self.turbine_map._get_turbine_ix(turbine_ti)
+            self.wake_list[ix] += 1
 
     def calculate_wake(
         self,
@@ -473,9 +474,7 @@ class FlowField:
 
         self.track_n_upstream_wakes = track_n_upstream_wakes
         if self.track_n_upstream_wakes:
-            self.wake_list = {
-                turbine: 0 for turbine in self.turbine_map._turbine_map.values()
-            }
+            self.wake_list = {ix: 0 for ix in self.turbine_map._turbine_map}
 
         # reinitialize the turbines
         self.turbine_map.update_turbulence_intensities(
