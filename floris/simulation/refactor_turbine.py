@@ -76,6 +76,10 @@ class Turbine(FromDictMixin):
         self.power_thrust_table = PowerThrustTable(**self.power_thrust_table)
         self._reinitialize()
 
+    @property
+    def tsr(self) -> float:
+        return self.TSR
+
     def _reinitialize(self):
         wind_speed = self.power_thrust_table.wind_speed
         self.fCpInterp = interp_generator(wind_speed, self.power_thrust_table.power)
@@ -205,7 +209,7 @@ class Turbine(FromDictMixin):
         return np.sqrt((2 / 3) * turbulence_kinetic_energy) / self.average_velocity
 
     def TI_to_TKE(self) -> np.ndarray:
-        return (self.avererage_velocity * self.current_turbulence_intensity) ** 2 / (
+        return (self.average_velocity * self.current_turbulence_intensity) ** 2 / (
             2 / 3
         )
 
