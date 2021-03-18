@@ -17,9 +17,7 @@ import numpy as np
 
 from ..utilities import Vec3, wrap_180
 from ..logging_manager import LoggerBase
-
-# from .turbine import Turbine
-from .refactor_turbine import Turbine
+from .refactor_turbine import Turbine  # from .turbine import Turbine
 
 
 class TurbineMap(LoggerBase):
@@ -104,6 +102,7 @@ class TurbineMap(LoggerBase):
             coord.rotate_on_x3(angles[i], center_of_rotation)
             layout_x[i] = coord.x1prime
             layout_y[i] = coord.x2prime
+        print(layout_x)
         return TurbineMap(layout_x, layout_y, self.turbines)
 
     def sorted_in_x_as_list(self):

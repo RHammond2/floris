@@ -240,15 +240,6 @@ class FlorisInterface(LoggerBase):
             # redefine wind_map in Farm object
             self.floris.farm.wind_map = wind_map
 
-        print(
-            wind_shear,
-            wind_veer,
-            specified_wind_height,
-            air_density,
-            wake,
-            with_resolution,
-            self.floris.farm.wind_map,
-        )
         self.floris.farm.flow_field.reinitialize_flow_field(
             wind_shear=wind_shear,
             wind_veer=wind_veer,
@@ -1208,7 +1199,6 @@ class FlorisInterface(LoggerBase):
         use_prev_pow = {wdir: False for wdir in np.unique(wd)}
 
         for i in range(len(wd)):
-            print(f"wd: {i:>2} | {wd[i]:.2f}")
             if i > 1:
                 break
             # If not using wind speed limit or still below maximum power, then

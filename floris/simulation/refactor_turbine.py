@@ -17,9 +17,6 @@ from floris.utilities import Vec3, FromDictMixin, cosd, wrap_180
 from floris.logging_manager import LoggerBase
 
 
-# from .refactor_flow_field import FlowField
-
-
 def _circle_area(r):
     return np.pi * r ** 2
 

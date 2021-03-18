@@ -502,7 +502,7 @@ class FlowField:
         )
 
         # sort the turbine map by x-coordinates
-        sorted_map = self.turbine_map.sort_turbines(by="x")
+        sorted_map = rotated_map.sort_turbines(by="x")
 
         # calculate the wake velocity deficit adn deflection on the mesh
         u_wake = np.zeros(self.u.shape)
@@ -515,7 +515,7 @@ class FlowField:
         rx, ry, _ = self.turbine_map.coordinate_array_prime.T
         rotate_once = np.unique(self.wind_map.grid_wind_direction).size == 1
 
-        for coord, turbine in sorted_map:
+        for i, (coord, turbine) in enumerate(sorted_map):
             rotated_x, rotated_y = self._rotate_grid(
                 coord,
                 center_of_rotation,
@@ -574,6 +574,7 @@ class FlowField:
             self.x, self.y, self.z = self._rotated_grid(
                 -1 * self.wind_map.grid_wind_direction, center_of_rotation
             )
+        print(self.u)
 
     @property
     def specified_wind_height(self):
