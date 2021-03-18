@@ -595,11 +595,6 @@ class FlowField:
         ry = np.array([coord.x2prime for coord in self.turbine_map.coords])
 
         for i, (coord, turbine) in enumerate(sorted_map):
-            print(
-                i,
-                (coord.x1, coord.x2, coord.x3),
-                (center_of_rotation.x1, center_of_rotation.x2, center_of_rotation.x3),
-            )
             xloc, yloc = np.array(rx == coord.x1), np.array(ry == coord.x2)
             idx = int(np.where(np.logical_and(yloc, xloc))[0])
 

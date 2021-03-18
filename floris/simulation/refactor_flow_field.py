@@ -574,7 +574,6 @@ class FlowField:
             self.x, self.y, self.z = self._rotated_grid(
                 -1 * self.wind_map.grid_wind_direction, center_of_rotation
             )
-        print(self.u)
 
     @property
     def specified_wind_height(self):
