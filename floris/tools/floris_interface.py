@@ -1199,8 +1199,6 @@ class FlorisInterface(LoggerBase):
         use_prev_pow = {wdir: False for wdir in np.unique(wd)}
 
         for i in range(len(wd)):
-            if i > 1:
-                break
             # If not using wind speed limit or still below maximum power, then
             # calculate farm power
             if not (limit_ws & use_prev_pow[wd[i]]):
