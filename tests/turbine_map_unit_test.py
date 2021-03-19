@@ -24,7 +24,15 @@ def turbine_map_fixture(sample_inputs_fixture):
     return TurbineMap(
         sample_inputs_fixture.farm["properties"]["layout_x"],
         sample_inputs_fixture.farm["properties"]["layout_y"],
-        3 * [Turbine(sample_inputs_fixture.turbine)],
+        3
+        * [
+            Turbine.from_dict(
+                {
+                    **sample_inputs_fixture.turbine,
+                    **sample_inputs_fixture.turbine["properties"],
+                }
+            )
+        ],
     )
 
 
@@ -45,7 +53,9 @@ def test_rotated(turbine_map_fixture):
     """
     first = turbine_map_fixture.coords[0]
     third = turbine_map_fixture.coords[2]
-    rotated_map = turbine_map_fixture.rotated([180, 180, 180], (first + third) / 2.0)
+    rotated_map = turbine_map_fixture.rotate_coords(
+        [180, 180, 180], (first + third) / 2.0
+    )
     fixture_coordinates = turbine_map_fixture.coords
     rotated_coordinates = rotated_map.coords
     assert rotated_coordinates[0] == fixture_coordinates[2]
@@ -61,7 +71,7 @@ def test_sorted_in_x_as_list(turbine_map_fixture):
     The resulting list should be ordered as [(0.0, 0.0, 0.0), (100.0, 0.0, 0.0)]
     when the sample data is sorted.
     """
-    sorted_list = turbine_map_fixture.sorted_in_x_as_list()
+    sorted_list = turbine_map_fixture.sort_turbines(by="x")
 
     # Verify that each element of the returned list is a tuple (Vec3, Turbine)
     for coordinate, turbine in sorted_list:

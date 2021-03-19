@@ -23,7 +23,9 @@ from floris.simulation import Wake, Turbine, WindMap, FlowField, TurbineMap
 @pytest.fixture
 def flow_field_fixture(sample_inputs_fixture):
     wake = Wake(sample_inputs_fixture.wake)
-    turbine = Turbine(sample_inputs_fixture.turbine)
+    turbine = Turbine.from_dict(
+        {**sample_inputs_fixture.turbine, **sample_inputs_fixture.turbine["properties"]}
+    )
     turbine_map = TurbineMap(
         [0.0, 100.0], [0.0, 0.0], [copy.deepcopy(turbine), copy.deepcopy(turbine)]
     )
