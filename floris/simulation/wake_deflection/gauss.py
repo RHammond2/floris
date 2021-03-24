@@ -162,6 +162,7 @@ class Gauss(VelocityDeflection):
             / (2.0 * (1 - np.sqrt(1 - (Ct * cosd(tilt) * cosd(yaw)))))
         )
         u0 = U_local * np.sqrt(1 - Ct)
+        print(u0)
 
         # length of near wake
         x0 = (
@@ -178,7 +179,6 @@ class Gauss(VelocityDeflection):
         C0 = 1 - u0 / wind_speed
         M0 = C0 * (2 - C0)
         E0 = C0 ** 2 - 3 * np.exp(1.0 / 12.0) * C0 + 3 * np.exp(1.0 / 3.0)
-        # print(M0)
 
         # initial Gaussian wake expansion
         sigma_z0 = D * 0.5 * np.sqrt(uR / (U_local + u0))
@@ -209,22 +209,25 @@ class Gauss(VelocityDeflection):
         sigma_y[x_locations < x0] = sigma_y0[x_locations < x0]
         sigma_z[x_locations < x0] = sigma_z0[x_locations < x0]
 
-        with warnings.catch_warnings():
-            warnings.filterwarnings("error")
-            try:
-                ln_deltaNum = (1.6 + np.sqrt(M0)) * (
-                    1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0))
-                    - np.sqrt(M0)
-                )
-            except Warning:
-                print(U_local)
-                print(turbine.average_velocity, turbine._fCt(turbine.average_velocity))
-                print(turbine.yaw_angle, cosd(turbine.yaw_angle))
-                print(Ct)
-                print(u0)
-                print(wind_speed)
-                print(M0)
+        # with warnings.catch_warnings():
+        #     warnings.filterwarnings("error")
+        #     try:
+        #         ln_deltaNum = (1.6 + np.sqrt(M0)) * (
+        #             1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0))
+        #             - np.sqrt(M0)
+        #         )
+        #     except Warning:
+        #         print(U_local)
+        #         print(turbine.average_velocity, turbine._fCt(turbine.average_velocity))
+        #         print(turbine.yaw_angle, cosd(turbine.yaw_angle))
+        #         print(Ct)
+        #         print(u0)
+        #         print(wind_speed)
+        #         print(M0)
 
+        ln_deltaNum = (1.6 + np.sqrt(M0)) * (
+            1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0)) - np.sqrt(M0)
+        )
         ln_deltaDen = (1.6 - np.sqrt(M0)) * (
             1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0)) + np.sqrt(M0)
         )
