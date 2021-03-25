@@ -85,7 +85,6 @@ class Turbine(FromDictMixin):
         self.fCpInterp = interp_generator(wind_speed, self.power_thrust_table.power)
         self.fCtInterp = interp_generator(wind_speed, self.power_thrust_table.thrust)
         self.grid_point_count = self.ngrid ** 2
-        self.velocities = np.zeros(self.grid_point_count)
         self.rotor_radius = self.rotor_diameter / 2.0
 
         self.reset_velocities()
