@@ -1372,7 +1372,7 @@ class FlorisInterface(LoggerBase):
         """
         for turbine in self.floris.farm.turbines:
             turbine.use_points_on_perimeter = use_points_on_perimeter
-            turbine._initialize_turbine()
+            turbine._reinitialize()
 
     def set_gch(self, enable=True):
         """
