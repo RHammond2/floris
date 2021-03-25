@@ -101,6 +101,7 @@ class Turbine(FromDictMixin):
         for param, val in update_dict.items():
             self.logger.info(f"Setting {param} to {val}.")
             object.__setattr__(self, param, val)
+        self._reinitialize()
 
     def _create_swept_area_grid(self):
         point = self.rloc * self.rotor_diameter / 2

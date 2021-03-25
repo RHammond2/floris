@@ -563,6 +563,17 @@ class FlowField:
                     self._calculate_wake_added_turbulence(coord_ti, turbine_ti, *_args)
                     for coord_ti, turbine_ti in sorted_map
                 ]
+            # combine this turbine's wake into the full wake field
+            if not no_wake:
+                u_wake = self.wake.combination_function(u_wake, turb_u_wake)
+
+                if self.wake.velocity_model.model_string == "curl":
+                    self.v = turb_v_wake
+                    self.w = turb_w_wake
+                else:
+                    self.v = self.v + turb_v_wake
+                    self.w = self.w + turb_w_wake
+
         # apply the velocity deficit field to the freestream
         if not no_wake:
             self.u = self.u_initial - u_wake
