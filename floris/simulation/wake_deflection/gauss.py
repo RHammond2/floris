@@ -162,7 +162,6 @@ class Gauss(VelocityDeflection):
             / (2.0 * (1 - np.sqrt(1 - (Ct * cosd(tilt) * cosd(yaw)))))
         )
         u0 = U_local * np.sqrt(1 - Ct)
-        print(u0)
 
         # length of near wake
         x0 = (
