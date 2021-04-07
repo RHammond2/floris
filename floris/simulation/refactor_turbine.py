@@ -9,6 +9,7 @@ from itertools import product
 
 import attr
 import numpy as np
+import pysnooper
 from scipy.stats import norm
 from scipy.spatial import distance_matrix
 from scipy.interpolate import interp1d
