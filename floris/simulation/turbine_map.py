@@ -102,7 +102,6 @@ class TurbineMap(LoggerBase):
             coord.rotate_on_x3(angles[i], center_of_rotation)
             layout_x[i] = coord.x1prime
             layout_y[i] = coord.x2prime
-        print(layout_x)
         return TurbineMap(layout_x, layout_y, self.turbines)
 
     def sorted_in_x_as_list(self):

@@ -273,7 +273,11 @@ class Turbine(FromDictMixin):
 
 class TurbineMap(LoggerBase):
     def __init__(
-        self, layout_x: List[float], layout_y: List[float], turbines: List[dict],
+        self,
+        layout_x: List[float],
+        layout_y: List[float],
+        turbines: List[Turbine],
+        create_coords: bool = True,
     ):
         if len(layout_x) != len(layout_y):
             err_msg = (
@@ -283,9 +287,9 @@ class TurbineMap(LoggerBase):
             )
             self.logger.error(err_msg, stack_info=True)
             raise ValueError(err_msg)
-
         self._turbine_map = {i: deepcopy(turb) for i, turb in enumerate(turbines)}
-        self._set_locations(layout_x, layout_y)
+        if create_coords:
+            self._set_locations(layout_x, layout_y)
 
     @property
     def coords(self) -> List[Vec3]:
@@ -309,6 +313,10 @@ class TurbineMap(LoggerBase):
     def rotor_diameters(self) -> np.ndarray:
         return np.array([t.rotor_diameter for t in self._turbine_map.values()])
 
+    @property
+    def items(self) -> Dict[Vec3, Turbine]:
+        return list((turb.coordinates, turb) for turb in self.turbines)
+
     def _set_locations(self, layout_x: List[float], layout_y: List[float]) -> None:
         [
             turbine.update_coordinates(x, y, turbine.hub_height)
@@ -323,7 +331,7 @@ class TurbineMap(LoggerBase):
             for angle, coord in zip(angles, self.coords)
         ]
         layout = self.coordinate_array_prime
-        return TurbineMap(layout[:, 0], layout[:, 1], list(self._turbine_map.values()))
+        return TurbineMap(layout[:, 0], layout[:, 1], self.turbines)
 
     def _get_turbine_ix(self, turbine: Turbine) -> int:
         keys, values = self._turbine_map.items()

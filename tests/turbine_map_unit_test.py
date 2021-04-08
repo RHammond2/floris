@@ -21,7 +21,7 @@ from floris.simulation import Turbine, TurbineMap
 
 @pytest.fixture
 def turbine_map_fixture(sample_inputs_fixture):
-    return TurbineMap(
+    turb_map = TurbineMap(
         sample_inputs_fixture.farm["properties"]["layout_x"],
         sample_inputs_fixture.farm["properties"]["layout_y"],
         3
@@ -34,6 +34,7 @@ def turbine_map_fixture(sample_inputs_fixture):
             )
         ],
     )
+    return turb_map
 
 
 def test_instantiation(turbine_map_fixture):
