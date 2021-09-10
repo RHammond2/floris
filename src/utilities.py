@@ -15,8 +15,9 @@
 from typing import Any, Dict, List, Tuple, Union
 from functools import partial, update_wrapper
 
-import attr
 import numpy as np
+
+import attr
 from attr import validators
 
 
@@ -281,7 +282,10 @@ def attrs_array_converter(data: list) -> np.ndarray:
 
 # Avoids constant redefinition of the same attr.ib properties for float model attributes
 float_attrib = partial(
-    attr.ib, converter=float, on_setattr=attr.setters.convert, kw_only=True
+    attr.ib,
+    converter=float,
+    on_setattr=(attr.setters.convert, attr.setters.validate),
+    kw_only=True,
 )
 update_wrapper(float_attrib, attr.ib)
 
