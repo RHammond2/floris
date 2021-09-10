@@ -12,6 +12,7 @@
 
 # See https://floris.readthedocs.io for documentation
 
+import math
 from typing import Dict, List, Union
 from collections.abc import Iterable
 
@@ -110,8 +111,7 @@ def power(
         p = [_fCp(v) for _fCp, v in zip(power_interp, yaw_effective_velocity)]
     else:
         p = power_interp(yaw_effective_velocity)
-    p *= air_density
-    return p
+    return p * air_density
 
 
 def Ct(
@@ -139,10 +139,10 @@ def Ct(
         np.ndarray: [description]
     """
 
-    if isinstance(fCt, list):
-        fCt = np.array(fCt)
     if isinstance(yaw_angle, list):
         yaw_angle = np.array(yaw_angle)
+    if isinstance(fCt, list):
+        fCt = np.array(fCt)
 
     ix_filter = _filter_convert(ix_filter, yaw_angle)
     if ix_filter is not None:
@@ -341,24 +341,19 @@ class Turbine(BaseClass):
         inner_power = np.array([self._power_inner_function(ws) for ws in wind_speeds])
         self.power_interp = interp1d(wind_speeds, inner_power, fill_value="extrapolate")
 
-    def _power_inner_function(self, yaw_effective_velocity: float) -> float:
+    def _power_inner_function(self, velocities: List[float]) -> List[float]:
         """
         This method calculates the power for an array of yaw effective wind
         speeds without the air density and turbulence correction parameters.
         This is used to initialize the power interpolation method used to
         compute turbine power.
         """
-
-        # Now compute the power
-        cptmp = self.fCp(
-            yaw_effective_velocity
-        )  # Note Cp is also now based on yaw effective velocity
         return (
             0.5
-            * (np.pi * self.rotor_radius ** 2)
-            * cptmp
+            * self.rotor_area
+            * self.fCp(velocities)
             * self.generator_efficiency
-            * yaw_effective_velocity ** 3
+            * velocities ** 3
         )
 
     def fCp(
@@ -420,3 +415,21 @@ class Turbine(BaseClass):
             float: The rotor radius of the turbine.
         """
         return self.rotor_diameter / 2.0
+
+    @rotor_radius.setter
+    def rotor_radius(self, value: float) -> None:
+        self.rotor_diameter = value * 2.0
+
+    @property
+    def rotor_area(self) -> float:
+        """
+        Rotor area of the turbine in meters squared.
+
+        Returns:
+            float: The rotor area of the turbine.
+        """
+        return np.pi * self.rotor_radius ** 2
+
+    @rotor_area.setter
+    def rotor_area(self, value: float) -> None:
+        self.rotor_radius = math.sqrt(value / np.pi)
