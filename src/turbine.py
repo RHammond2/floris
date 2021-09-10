@@ -108,7 +108,7 @@ def power(
     yaw_effective_velocity = average_velocity(velocities) * cosd(yaw_angle) ** pW
 
     if isinstance(power_interp, np.ndarray):
-        p = [_fCp(v) for _fCp, v in zip(power_interp, yaw_effective_velocity)]
+        p = np.array([_fCp(v) for _fCp, v in zip(power_interp, yaw_effective_velocity)])
     else:
         p = power_interp(yaw_effective_velocity)
     return p * air_density
@@ -151,7 +151,7 @@ def Ct(
         fCt = fCt[ix_filter]
 
     if isinstance(fCt, np.ndarray):
-        Ct = [_fCt(average_velocity(v)) for _fCt, v in zip(fCt, velocities)]
+        Ct = np.array([_fCt(average_velocity(v)) for _fCt, v in zip(fCt, velocities)])
     else:
         Ct = fCt(average_velocity(velocities))
 
@@ -293,7 +293,6 @@ class Turbine(BaseClass):
     """
 
     rotor_diameter: float = float_attrib()
-    rotor_radius: float = float_attrib(init=False)
     hub_height: float = float_attrib()
     pP: float = float_attrib()
     pT: float = float_attrib()
@@ -321,11 +320,6 @@ class Turbine(BaseClass):
     # # initialize to an invalid value until calculated
     # self.air_density = -1
     # self.use_turbulence_correction = False
-
-    @rotor_diameter.validator
-    def check(self, attribute, value) -> None:
-        """Updates `rotor_radius` when `rotor_diameter` is updated"""
-        self.rotor_radius = value / 2.0
 
     def __attrs_post_init__(self) -> None:
 
