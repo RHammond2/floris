@@ -12,13 +12,11 @@
 
 # See https://floris.readthedocs.io for documentation
 
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union, Callable
 from functools import partial, update_wrapper
 
-import numpy as np
-
 import attr
-from attr import validators
+import numpy as np
 
 
 class Vec3:
@@ -129,8 +127,8 @@ class Vec3:
     def x3(self):
         return self.components[2]
 
-    @x2.setter
-    def x2(self, value):
+    @x3.setter
+    def x3(self, value):
         self.components[2] = float(value)
 
     @property
@@ -238,7 +236,7 @@ class FromDictMixin:
                 The `attr`-defined class.
         """
         return cls(
-            **{a.name: data[a.name] for a in cls.__attrs_attrs__ if a.name in data}
+            **{a.name: data[a.name] for a in cls.__attrs_attrs__ if a.name in data}  # type: ignore
         )
 
 
@@ -247,9 +245,7 @@ def is_default(instance, attribute, value):
         raise ValueError(f"{attribute.name} should never be set manually!")
 
 
-def iter_validator(
-    iter_type, item_types: Union[Any, Tuple[Any]]
-) -> attr.validators.deep_iterable:
+def iter_validator(iter_type, item_types: Union[Any, Tuple[Any]]) -> Callable:
     """Helper function to generate iterable validators that will reduce the amount of
     boilerplate code.
 
@@ -262,8 +258,8 @@ def iter_validator(
 
     Returns
     -------
-    attr.validators.deep_iterable
-        The iterable and instance validator.
+    Callable
+        The attr.validators.deep_iterable iterable and instance validator.
     """
     validator = attr.validators.deep_iterable(
         member_validator=attr.validators.instance_of(item_types),
@@ -280,11 +276,11 @@ def attrs_array_converter(data: list) -> np.ndarray:
 float_attrib = partial(
     attr.ib,
     converter=float,
-    on_setattr=(attr.setters.convert, attr.setters.validate),
+    on_setattr=(attr.setters.convert, attr.setters.validate),  # type: ignore
     kw_only=True,
 )
 update_wrapper(float_attrib, attr.ib)
 
 
-model_attrib = partial(attr.ib, on_setattr=attr.setters.frozen, validator=is_default)
+model_attrib = partial(attr.ib, on_setattr=attr.setters.frozen, validator=is_default)  # type: ignore
 update_wrapper(model_attrib, attr.ib)
