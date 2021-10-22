@@ -13,7 +13,7 @@
 # See https://floris.readthedocs.io for documentation
 
 import math
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
 from collections.abc import Iterable
 
 import attr
@@ -157,11 +157,16 @@ def Ct(
         fCt = fCt[ix_filter]
 
     if isinstance(fCt, np.ndarray):
-        Ct = np.array([_fCt(average_velocity(v)) for _fCt, v in zip(fCt, velocities)])
+        Ct = np.array(
+            [
+                _fCt(average_velocity(v)) * cosd(yaw)
+                for _fCt, v, yaw in zip(fCt, velocities, yaw_angle)
+            ]
+        )
     else:
-        Ct = fCt(average_velocity(velocities))
+        turbine_velocity = average_velocity(velocities)
+        Ct = fCt(turbine_velocity) * cosd(yaw_angle)
 
-    Ct *= cosd(yaw_angle)  # **self.pP
     return Ct
 
 
@@ -204,7 +209,8 @@ def axial_induction(
 
 
 def average_velocity(
-    velocities: np.ndarray, ix_filter: Union[List[Union[int, bool]], np.ndarray] = None,
+    velocities: np.ndarray,
+    ix_filter: Union[List[Union[int, bool]], np.ndarray] = None,
 ) -> Union[float, np.ndarray]:
     """This property calculates and returns the cube root of the
     mean cubed velocity in the turbine's rotor swept area (m/s).
@@ -226,7 +232,7 @@ def average_velocity(
     if velocities.ndim == 3:
         velocities = velocities[ix_filter, :, :]
     else:
-        velocities[ix_filter, :]
+        velocities[:, :]
 
     axis = (1, 2) if velocities.ndim == 3 else (0, 1)
     return np.cbrt(np.mean(velocities ** 3, axis=axis))
@@ -304,7 +310,8 @@ class Turbine(BaseClass):
     pT: float = float_attrib()
     generator_efficiency: float = float_attrib()
     power_thrust_table: Dict[str, List[float]] = attr.ib(
-        converter=PowerThrustTable.from_dict, kw_only=True,
+        converter=PowerThrustTable.from_dict,
+        kw_only=True,
     )
     model_string: str = model_attrib(default="turbine")
     # ngrid: float = float_attrib()  # TODO: goes here or on the Grid?
@@ -339,10 +346,14 @@ class Turbine(BaseClass):
         # Post-init initialization for the power curve interpolation functions
         wind_speeds = self.power_thrust_table.wind_speed
         self.fCp_interp = interp1d(
-            wind_speeds, self.power_thrust_table.power, fill_value="extrapolate",
+            wind_speeds,
+            self.power_thrust_table.power,
+            fill_value="extrapolate",
         )
         self.fCt_interp = interp1d(
-            wind_speeds, self.power_thrust_table.thrust, fill_value="extrapolate",
+            wind_speeds,
+            self.power_thrust_table.thrust,
+            fill_value="extrapolate",
         )
 
         inner_power = np.array([self._power_inner_function(ws) for ws in wind_speeds])
@@ -415,8 +426,7 @@ class Turbine(BaseClass):
 
     @rotor_diameter.validator
     def reset_rotor_diameter_dependencies(self, instance: str, value: float) -> None:
-        """Resets the `rotor_radius` and `rotor_area` attributes.
-        """
+        """Resets the `rotor_radius` and `rotor_area` attributes."""
         # Temporarily turn off validators to avoid infinite recursion
         attr.set_run_validators(False)
 
