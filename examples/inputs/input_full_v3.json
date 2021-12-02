@@ -48,8 +48,6 @@
 
   "turbine": {
     "nrel_5mw": {
-      "blade_count": 3,
-      "blade_pitch": 0.0,
       "generator_efficiency": 1.0,
       "hub_height": 90.0,
       "power_thrust_table": {
@@ -206,10 +204,7 @@
       },
       "pP": 1.88,
       "pT": 1.88,
-      "rotor_diameter": 126.0,
-      "tilt_angle": 0.0,
-      "TSR": 8.0,
-      "use_points_on_perimeter": false
+      "rotor_diameter": 126.0
     }
   },
 
