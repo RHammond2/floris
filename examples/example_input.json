@@ -1,4 +1,8 @@
 {
+  "name": "example_floris_input_file",
+  "description": "Single turbine with Jensen / Jimenez wake models",
+  "floris_version": "v3.0.0",
+
   "logging": {
     "console": {
       "enable": true,
