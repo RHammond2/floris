@@ -25,28 +25,28 @@ try:
         # Simualtion Core
         Extension("floris.simulation.base", ["floris/simulation/base.py"]),
         Extension("floris.simulation.farm", ["floris/simulation/farm.py"]),
-        # Extension("floris.simulation.grid", ["floris/simulation/grid.py"]),
+        Extension("floris.simulation.grid", ["floris/simulation/grid.py"]),
         Extension("floris.simulation.wake", ["floris/simulation/wake.py"]),
-        # Extension("floris.simulation.floris", ["floris/simulation/floris.py"]),
+        Extension("floris.simulation.floris", ["floris/simulation/floris.py"]),
         Extension("floris.simulation.solver", ["floris/simulation/solver.py"]),
-        # Extension("floris.simulation.turbine", ["floris/simulation/turbine.py"]),
-        # Extension("floris.simulation.flow_field", ["floris/simulation/flow_field.py"]),
-        
+        Extension("floris.simulation.turbine", ["floris/simulation/turbine.py"]),
+        Extension("floris.simulation.flow_field", ["floris/simulation/flow_field.py"]),
+
         # Velocity Models
         Extension("floris.simulation.wake_velocity.gauss", ["floris/simulation/wake_velocity/gauss.py"]),
         Extension("floris.simulation.wake_velocity.turbopark", ["floris/simulation/wake_velocity/turbopark.py"]),
         Extension("floris.simulation.wake_velocity.cumulative_gauss_curl", ["floris/simulation/wake_velocity/cumulative_gauss_curl.py"]),
-        
+
         # Deflection Models
         Extension("floris.simulation.wake_deflection.curl", ["floris/simulation/wake_deflection/curl.py"]),
         Extension("floris.simulation.wake_deflection.gauss", ["floris/simulation/wake_deflection/gauss.py"]),
         Extension("floris.simulation.wake_deflection.jimenez", ["floris/simulation/wake_deflection/jimenez.py"]),
-        
+
         # Combination Models
         Extension("floris.simulation.wake_combination.fls", ["floris/simulation/wake_combination/fls.py"]),
         Extension("floris.simulation.wake_combination.max", ["floris/simulation/wake_combination/max.py"]),
         Extension("floris.simulation.wake_combination.sosfs", ["floris/simulation/wake_combination/sosfs.py"]),
-        
+
         # Turbulence Models
         Extension("floris.simulation.wake_turbulence.crespo_hernandez", ["floris/simulation/wake_turbulence/crespo_hernandez.py"]),
 
@@ -57,14 +57,14 @@ try:
         Extension("floris.tools.flow_data", ["floris/tools/flow_data.py"]),
         Extension("floris.tools.wind_rose", ["floris/tools/wind_rose.py"]),
         Extension("floris.tools.power_rose", ["floris/tools/power_rose.py"]),
-        # Extension("floris.tools.visualization", ["floris/tools/visualization.py"]),
+        Extension("floris.tools.visualization", ["floris/tools/visualization.py"]),
         Extension("floris.tools.sowfa_utilities", ["floris/tools/sowfa_utilities.py"]),
-        # Extension("floris.tools.floris_interface", ["floris/tools/floris_interface.py"]),
+        Extension("floris.tools.floris_interface", ["floris/tools/floris_interface.py"]),
         Extension("floris.tools.layout_functions", ["floris/tools/layout_functions.py"]),
         Extension("floris.tools.cc_blade_utilities", ["floris/tools/cc_blade_utilities.py"]),
-        # Extension("floris.tools.interface_utilities", ["floris/tools/interface_utilities.py"]),
+        Extension("floris.tools.interface_utilities", ["floris/tools/interface_utilities.py"]),
         Extension("floris.tools.uncertainty_interface", ["floris/tools/uncertainty_interface.py"]),
-        # Extension("floris.tools.floris_interface_legacy_reader", ["floris/tools/floris_interface_legacy_reader.py"]),
+        Extension("floris.tools.floris_interface_legacy_reader", ["floris/tools/floris_interface_legacy_reader.py"]),
     ])
 except ImportError:
     ext_modules = None
@@ -86,6 +86,7 @@ REQUIRED = [
     "numexpr",
     "numpy>=1.20",
     "scipy>=1.1",
+    "cython",
 
     # tools
     "matplotlib>=3",

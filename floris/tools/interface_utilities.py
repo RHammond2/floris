@@ -237,10 +237,10 @@ def get_props_subset(params, props):
     return props_subset
 
 
-# def get_props(obj, fi):
-#     return inspect.getmembers(
-#         eval(obj + ".__class__"), lambda obj: isinstance(obj, property)
-#     )
+def get_props(obj, fi):
+    return inspect.getmembers(
+        eval(obj + ".__class__"), lambda obj: isinstance(obj, property)
+    )
 
 
 def get_prop_values(obj, fi, props):
