@@ -14,7 +14,22 @@
 
 
 from pathlib import Path
-from setuptools import setup, find_packages
+
+from setuptools import Extension, setup, find_packages
+
+
+try:
+    from Cython.Build import cythonize
+
+    ext_modules = cythonize([
+        Extension("floris.simulation.solver", ["floris/simulation/solver.py"]),
+        Extension("floris.simulation.wake_velocity.gauss", ["floris/simulation/wake_velocity/gauss.py"]),
+        Extension("floris.simulation.wake_deflection.gauss", ["floris/simulation/wake_deflection/gauss.py"]),
+        Extension("floris.simulation.wake_combination.sosfs", ["floris/simulation/wake_combination/sosfs.py"]),
+        Extension("floris.simulation.wake_turbulence.crespo_hernandez", ["floris/simulation/wake_turbulence/crespo_hernandez.py"]),
+    ])
+except ImportError:
+    ext_modules = None
 
 
 # Package meta-data.
@@ -81,4 +96,5 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy"
     ],
+    ext_modules=ext_modules,
 )
