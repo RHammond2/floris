@@ -59,7 +59,7 @@ class GaussVelocityDeficit(BaseModel):
         yaw_angle_i: np.ndarray,
         turbulence_intensity_i: np.ndarray,
         ct_i: np.ndarray,
-        hub_height_i: float,
+        hub_height_i: np.ndarray,
         rotor_diameter_i: np.ndarray,
         # enforces the use of the below as keyword arguments and adherence to the
         # unpacking of the results from prepare_function()

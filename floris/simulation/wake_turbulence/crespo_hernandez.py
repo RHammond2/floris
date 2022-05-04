@@ -67,7 +67,7 @@ class CrespoHernandez(BaseModel):
         ambient_TI: float,
         x: np.ndarray,
         x_i: np.ndarray,
-        rotor_diameter: float,
+        rotor_diameter: np.ndarray,
         axial_induction: np.ndarray,
     ) -> None:
         # Replace zeros and negatives with 1 to prevent nans/infs

@@ -104,7 +104,7 @@ class GaussVelocityDeflection(BaseModel):
         yaw_i: np.ndarray,
         turbulence_intensity_i: np.ndarray,
         ct_i: np.ndarray,
-        rotor_diameter_i: float,
+        rotor_diameter_i: np.ndarray,
         *,
         x: np.ndarray,
         y: np.ndarray,
