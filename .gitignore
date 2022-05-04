@@ -4,6 +4,10 @@ __pycache__/
 .cache
 *.ipynb
 *.pyc
+*.pyo
+__pycache__
+*.so
+*.o
 *.egg-info
 dist
 build
@@ -29,3 +33,36 @@ examples/SLSQP.out
 
 # Log files
 *.log
+
+# Cython
+Cython/Compiler/*.c
+Cython/Plex/*.c
+Cython/Runtime/refnanny.c
+Cython/Tempita/*.c
+Cython/*.c
+Cython/*.html
+Cython/*/*.html
+
+Tools/*.elc
+Demos/*.html
+Demos/*/*.html
+
+/TEST_TMP/
+/build/
+/cython_build/
+cython_debug/
+/wheelhouse*/
+!tests/build/
+/dist/
+.gitrev
+.coverage
+*.patch
+*.diff
+*.orig
+*.prof
+*.rej
+*.log
+*.dep
+*.swp
+*~
+callgrind.out.*
