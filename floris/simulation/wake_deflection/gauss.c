@@ -1801,7 +1801,7 @@ static PyObject *__pyx_codeobj__22;
 
 /* "floris/simulation/wake_deflection/gauss.py":84
  *     model_string = "gauss"
- *
+ * 
  *     def prepare_function(             # <<<<<<<<<<<<<<
  *         self,
  *         grid: Grid,
@@ -1895,7 +1895,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __Pyx_RefNannySetupContext("prepare_function", 0);
 
   /* "floris/simulation/wake_deflection/gauss.py":91
- *
+ * 
  *         kwargs = dict(
  *             x=grid.x_sorted,             # <<<<<<<<<<<<<<
  *             y=grid.y_sorted,
@@ -1962,7 +1962,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *             wind_veer=flow_field.wind_veer,
  *         )
  *         return kwargs             # <<<<<<<<<<<<<<
- *
+ * 
  *     # @profile
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1972,7 +1972,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
   /* "floris/simulation/wake_deflection/gauss.py":84
  *     model_string = "gauss"
- *
+ * 
  *     def prepare_function(             # <<<<<<<<<<<<<<
  *         self,
  *         grid: Grid,
@@ -1992,7 +1992,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 }
 
 /* "floris/simulation/wake_deflection/gauss.py":100
- *
+ * 
  *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
@@ -2186,10 +2186,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __Pyx_INCREF(__pyx_v_yaw_i);
 
   /* "floris/simulation/wake_deflection/gauss.py":143
- *
+ * 
  *         # Opposite sign convention in this model
  *         yaw_i = -1 * yaw_i             # <<<<<<<<<<<<<<
- *
+ * 
  *         # TODO: connect support for tilt
  */
   __pyx_t_1 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_v_yaw_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
@@ -2198,10 +2198,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_1 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":146
- *
+ * 
  *         # TODO: connect support for tilt
  *         tilt = 0.0 #turbine.tilt_angle             # <<<<<<<<<<<<<<
- *
+ * 
  *         # initial velocity deficits
  */
   __pyx_v_tilt = 0.0;
@@ -2369,7 +2369,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *           / (2.0 * (1 - np.sqrt(1 - (ct_i * cosd(tilt) * cosd(yaw_i)))))
  *         )
  *         u0 = freestream_velocity * np.sqrt(1 - ct_i)             # <<<<<<<<<<<<<<
- *
+ * 
  *         # length of near wake
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
@@ -2568,7 +2568,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *             / (np.sqrt(2) * (4 * self.alpha * turbulence_intensity_i + 2 * self.beta * (1 - np.sqrt(1 - ct_i))))
  *             + x_i             # <<<<<<<<<<<<<<
  *         )
- *
+ * 
  */
   __pyx_t_1 = PyNumber_Add(__pyx_t_7, __pyx_v_x_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2577,11 +2577,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_1 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":167
- *
+ * 
  *         # wake expansion parameters
  *         ky = self.ka * turbulence_intensity_i + self.kb             # <<<<<<<<<<<<<<
  *         kz = self.ka * turbulence_intensity_i + self.kb
- *
+ * 
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ka); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2601,7 +2601,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         # wake expansion parameters
  *         ky = self.ka * turbulence_intensity_i + self.kb
  *         kz = self.ka * turbulence_intensity_i + self.kb             # <<<<<<<<<<<<<<
- *
+ * 
  *         C0 = 1 - u0 / freestream_velocity
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ka); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 168, __pyx_L1_error)
@@ -2620,7 +2620,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
   /* "floris/simulation/wake_deflection/gauss.py":170
  *         kz = self.ka * turbulence_intensity_i + self.kb
- *
+ * 
  *         C0 = 1 - u0 / freestream_velocity             # <<<<<<<<<<<<<<
  *         M0 = C0 * (2 - C0)
  *         E0 = C0 ** 2 - 3 * np.exp(1.0 / 12.0) * C0 + 3 * np.exp(1.0 / 3.0)
@@ -2634,11 +2634,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":171
- *
+ * 
  *         C0 = 1 - u0 / freestream_velocity
  *         M0 = C0 * (2 - C0)             # <<<<<<<<<<<<<<
  *         E0 = C0 ** 2 - 3 * np.exp(1.0 / 12.0) * C0 + 3 * np.exp(1.0 / 3.0)
- *
+ * 
  */
   __pyx_t_3 = __Pyx_PyInt_SubtractCObj(__pyx_int_2, __pyx_v_C0, 2, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -2652,7 +2652,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         C0 = 1 - u0 / freestream_velocity
  *         M0 = C0 * (2 - C0)
  *         E0 = C0 ** 2 - 3 * np.exp(1.0 / 12.0) * C0 + 3 * np.exp(1.0 / 3.0)             # <<<<<<<<<<<<<<
- *
+ * 
  *         # initial Gaussian wake expansion
  */
   __pyx_t_7 = PyNumber_Power(__pyx_v_C0, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 172, __pyx_L1_error)
@@ -2724,11 +2724,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":175
- *
+ * 
  *         # initial Gaussian wake expansion
  *         sigma_z0 = rotor_diameter_i * 0.5 * np.sqrt(uR / (freestream_velocity + u0))             # <<<<<<<<<<<<<<
  *         sigma_y0 = sigma_z0 * cosd(yaw_i) * cosd(wind_veer)
- *
+ * 
  */
   __pyx_t_3 = PyNumber_Multiply(__pyx_v_rotor_diameter_i, __pyx_float_0_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -2769,7 +2769,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         # initial Gaussian wake expansion
  *         sigma_z0 = rotor_diameter_i * 0.5 * np.sqrt(uR / (freestream_velocity + u0))
  *         sigma_y0 = sigma_z0 * cosd(yaw_i) * cosd(wind_veer)             # <<<<<<<<<<<<<<
- *
+ * 
  *         yR = y - y_i
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_cosd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
@@ -2821,10 +2821,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
   /* "floris/simulation/wake_deflection/gauss.py":178
  *         sigma_y0 = sigma_z0 * cosd(yaw_i) * cosd(wind_veer)
- *
+ * 
  *         yR = y - y_i             # <<<<<<<<<<<<<<
  *         xR = x_i # yR * tand(yaw) + x_i
- *
+ * 
  */
   __pyx_t_3 = PyNumber_Subtract(__pyx_v_y, __pyx_v_y_i); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -2832,10 +2832,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":179
- *
+ * 
  *         yR = y - y_i
  *         xR = x_i # yR * tand(yaw) + x_i             # <<<<<<<<<<<<<<
- *
+ * 
  *         # yaw parameters (skew angle and distance from centerline)
  */
   __Pyx_INCREF(__pyx_v_x_i);
@@ -2957,7 +2957,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         theta_c0 = self.dm * (0.3 * np.radians(yaw_i) / cosd(yaw_i)) * (1 - np.sqrt(1 - ct_i * cosd(yaw_i)))
  *         delta0 = np.tan(theta_c0) * (x0 - x_i)  # initial wake deflection;             # <<<<<<<<<<<<<<
  *         # NOTE: use np.tan here since theta_c0 is radians
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2989,7 +2989,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":188
- *
+ * 
  *         # deflection in the near wake
  *         delta_near_wake = ((x - xR) / (x0 - xR)) * delta0 + (self.ad + self.bd * (x - x_i))             # <<<<<<<<<<<<<<
  *         delta_near_wake = delta_near_wake * np.array(x >= xR)
@@ -3032,7 +3032,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         delta_near_wake = ((x - xR) / (x0 - xR)) * delta0 + (self.ad + self.bd * (x - x_i))
  *         delta_near_wake = delta_near_wake * np.array(x >= xR)             # <<<<<<<<<<<<<<
  *         delta_near_wake = delta_near_wake * np.array(x <= x0)
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -3066,7 +3066,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         delta_near_wake = ((x - xR) / (x0 - xR)) * delta0 + (self.ad + self.bd * (x - x_i))
  *         delta_near_wake = delta_near_wake * np.array(x >= xR)
  *         delta_near_wake = delta_near_wake * np.array(x <= x0)             # <<<<<<<<<<<<<<
- *
+ * 
  *         # deflection in the far wake
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
@@ -3098,7 +3098,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":193
- *
+ * 
  *         # deflection in the far wake
  *         sigma_y = ky * (x - x0) + sigma_y0             # <<<<<<<<<<<<<<
  *         sigma_z = kz * (x - x0) + sigma_z0
@@ -3138,7 +3138,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         sigma_z = kz * (x - x0) + sigma_z0
  *         sigma_y = sigma_y * np.array(x >= x0) + sigma_y0 * np.array(x < x0)             # <<<<<<<<<<<<<<
  *         sigma_z = sigma_z * np.array(x >= x0) + sigma_z0 * np.array(x < x0)
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -3201,7 +3201,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         sigma_z = kz * (x - x0) + sigma_z0
  *         sigma_y = sigma_y * np.array(x >= x0) + sigma_y0 * np.array(x < x0)
  *         sigma_z = sigma_z * np.array(x >= x0) + sigma_z0 * np.array(x < x0)             # <<<<<<<<<<<<<<
- *
+ * 
  *         ln_deltaNum = (1.6 + np.sqrt(M0)) * (
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
@@ -3263,7 +3263,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
   /* "floris/simulation/wake_deflection/gauss.py":198
  *         sigma_z = sigma_z * np.array(x >= x0) + sigma_z0 * np.array(x < x0)
- *
+ * 
  *         ln_deltaNum = (1.6 + np.sqrt(M0)) * (             # <<<<<<<<<<<<<<
  *             1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0)) - np.sqrt(M0)
  *         )
@@ -3293,7 +3293,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":199
- *
+ * 
  *         ln_deltaNum = (1.6 + np.sqrt(M0)) * (
  *             1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0)) - np.sqrt(M0)             # <<<<<<<<<<<<<<
  *         )
@@ -3358,7 +3358,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
   /* "floris/simulation/wake_deflection/gauss.py":198
  *         sigma_z = sigma_z * np.array(x >= x0) + sigma_z0 * np.array(x < x0)
- *
+ * 
  *         ln_deltaNum = (1.6 + np.sqrt(M0)) * (             # <<<<<<<<<<<<<<
  *             1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0)) - np.sqrt(M0)
  *         )
@@ -3406,7 +3406,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *         ln_deltaDen = (1.6 - np.sqrt(M0)) * (
  *             1.6 * np.sqrt(sigma_y * sigma_z / (sigma_y0 * sigma_z0)) + np.sqrt(M0)             # <<<<<<<<<<<<<<
  *         )
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3587,7 +3587,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
  *           * np.log(ln_deltaNum / ln_deltaDen)
  *           + (self.ad + self.bd * (x - x_i))             # <<<<<<<<<<<<<<
  *         )
- *
+ * 
  */
   __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ad); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -3612,10 +3612,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
   /* "floris/simulation/wake_deflection/gauss.py":213
  *         )
- *
+ * 
  *         delta_far_wake = delta_far_wake * np.array(x > x0)             # <<<<<<<<<<<<<<
  *         deflection = delta_near_wake + delta_far_wake
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -3646,10 +3646,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":214
- *
+ * 
  *         delta_far_wake = delta_far_wake * np.array(x > x0)
  *         deflection = delta_near_wake + delta_far_wake             # <<<<<<<<<<<<<<
- *
+ * 
  *         return deflection
  */
   __pyx_t_3 = PyNumber_Add(__pyx_v_delta_near_wake, __pyx_v_delta_far_wake); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
@@ -3659,10 +3659,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
   /* "floris/simulation/wake_deflection/gauss.py":216
  *         deflection = delta_near_wake + delta_far_wake
- *
+ * 
  *         return deflection             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_deflection);
@@ -3670,7 +3670,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
   goto __pyx_L0;
 
   /* "floris/simulation/wake_deflection/gauss.py":100
- *
+ * 
  *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
@@ -3719,7 +3719,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_23GaussV
 
 /* "floris/simulation/wake_deflection/gauss.py":221
  * ## GCH components
- *
+ * 
  * def gamma(             # <<<<<<<<<<<<<<
  *     D,
  *     velocity,
@@ -3842,8 +3842,8 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_gamma(CY
  *         [type]: [description]
  *     """
  *     return scale * (np.pi / 8) * D * velocity * Uinf * Ct # * cosd(yaw)  <- the cos is included in Ct             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
@@ -3875,7 +3875,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_gamma(CY
 
   /* "floris/simulation/wake_deflection/gauss.py":221
  * ## GCH components
- *
+ * 
  * def gamma(             # <<<<<<<<<<<<<<
  *     D,
  *     velocity,
@@ -3894,7 +3894,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_gamma(CY
 }
 
 /* "floris/simulation/wake_deflection/gauss.py":244
- *
+ * 
  * # def calculate_effective_yaw(
  * def wake_added_yaw(             # <<<<<<<<<<<<<<
  *     u_i,
@@ -4114,7 +4114,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __Pyx_RefNannySetupContext("wake_added_yaw", 0);
 
   /* "floris/simulation/wake_deflection/gauss.py":267
- *
+ * 
  *     # turbine parameters
  *     D = rotor_diameter              # scalar             # <<<<<<<<<<<<<<
  *     HH = hub_height                 # scalar
@@ -4158,7 +4158,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     TSR = tip_speed_ratio           # scalar
  *     aI = axial_induction_i          # (wd, ws, 1, 1, 1) for the current turbine             # <<<<<<<<<<<<<<
  *     avg_v = np.mean(v_i, axis=(3,4))  # (wd, ws, 1, grid, grid)
- *
+ * 
  */
   __Pyx_INCREF(__pyx_v_axial_induction_i);
   __pyx_v_aI = __pyx_v_axial_induction_i;
@@ -4167,7 +4167,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     TSR = tip_speed_ratio           # scalar
  *     aI = axial_induction_i          # (wd, ws, 1, 1, 1) for the current turbine
  *     avg_v = np.mean(v_i, axis=(3,4))  # (wd, ws, 1, grid, grid)             # <<<<<<<<<<<<<<
- *
+ * 
  *     # flow parameters
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
@@ -4192,11 +4192,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_4 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":275
- *
+ * 
  *     # flow parameters
  *     Uinf = np.mean(u_initial, axis=(2,3,4))             # <<<<<<<<<<<<<<
  *     Uinf = Uinf[:,:,None,None,None]
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -4223,7 +4223,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     # flow parameters
  *     Uinf = np.mean(u_initial, axis=(2,3,4))
  *     Uinf = Uinf[:,:,None,None,None]             # <<<<<<<<<<<<<<
- *
+ * 
  *     # TODO: Allow user input for eps gain
  */
   __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_v_Uinf, __pyx_tuple__4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 276, __pyx_L1_error)
@@ -4232,11 +4232,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":279
- *
+ * 
  *     # TODO: Allow user input for eps gain
  *     eps_gain = 0.2             # <<<<<<<<<<<<<<
  *     eps = eps_gain * D  # Use set value
- *
+ * 
  */
   __pyx_v_eps_gain = 0.2;
 
@@ -4244,7 +4244,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     # TODO: Allow user input for eps gain
  *     eps_gain = 0.2
  *     eps = eps_gain * D  # Use set value             # <<<<<<<<<<<<<<
- *
+ * 
  *     vel_top = ((HH + D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))
  */
   __pyx_t_2 = PyFloat_FromDouble(__pyx_v_eps_gain); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
@@ -4257,7 +4257,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
 
   /* "floris/simulation/wake_deflection/gauss.py":282
  *     eps = eps_gain * D  # Use set value
- *
+ * 
  *     vel_top = ((HH + D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))             # <<<<<<<<<<<<<<
  *     Gamma_top = gamma(
  *         D,
@@ -4301,7 +4301,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":283
- *
+ * 
  *     vel_top = ((HH + D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))
  *     Gamma_top = gamma(             # <<<<<<<<<<<<<<
  *         D,
@@ -4315,7 +4315,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *         Ct,
  *         scale,             # <<<<<<<<<<<<<<
  *     )
- *
+ * 
  */
   __pyx_t_2 = NULL;
   __pyx_t_5 = 0;
@@ -4376,7 +4376,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
 
   /* "floris/simulation/wake_deflection/gauss.py":291
  *     )
- *
+ * 
  *     vel_bottom = ((HH - D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))             # <<<<<<<<<<<<<<
  *     Gamma_bottom = -1 * gamma(
  *         D,
@@ -4420,7 +4420,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":292
- *
+ * 
  *     vel_bottom = ((HH - D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))
  *     Gamma_bottom = -1 * gamma(             # <<<<<<<<<<<<<<
  *         D,
@@ -4434,7 +4434,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *         Ct,
  *         scale,             # <<<<<<<<<<<<<<
  *     )
- *
+ * 
  */
   __pyx_t_1 = NULL;
   __pyx_t_5 = 0;
@@ -4492,7 +4492,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":292
- *
+ * 
  *     vel_bottom = ((HH - D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))
  *     Gamma_bottom = -1 * gamma(             # <<<<<<<<<<<<<<
  *         D,
@@ -4506,7 +4506,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
 
   /* "floris/simulation/wake_deflection/gauss.py":300
  *     )
- *
+ * 
  *     turbine_average_velocity = np.cbrt(np.mean(u_i ** 3, axis=(3,4)))             # <<<<<<<<<<<<<<
  *     turbine_average_velocity = turbine_average_velocity[:,:,:,None,None]
  *     Gamma_wake_rotation = 0.25 * 2 * np.pi * D * (aI - aI ** 2) * turbine_average_velocity / TSR
@@ -4556,11 +4556,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":301
- *
+ * 
  *     turbine_average_velocity = np.cbrt(np.mean(u_i ** 3, axis=(3,4)))
  *     turbine_average_velocity = turbine_average_velocity[:,:,:,None,None]             # <<<<<<<<<<<<<<
  *     Gamma_wake_rotation = 0.25 * 2 * np.pi * D * (aI - aI ** 2) * turbine_average_velocity / TSR
- *
+ * 
  */
   __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_v_turbine_average_velocity, __pyx_tuple__6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -4571,7 +4571,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     turbine_average_velocity = np.cbrt(np.mean(u_i ** 3, axis=(3,4)))
  *     turbine_average_velocity = turbine_average_velocity[:,:,:,None,None]
  *     Gamma_wake_rotation = 0.25 * 2 * np.pi * D * (aI - aI ** 2) * turbine_average_velocity / TSR             # <<<<<<<<<<<<<<
- *
+ * 
  *     ### compute the spanwise and vertical velocities induced by yaw
  */
   __pyx_t_3 = PyFloat_FromDouble((0.25 * 2.0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
@@ -4607,10 +4607,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_4 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":307
- *
+ * 
  *     # decay = eps ** 2 / (4 * nu * delta_x / Uinf + eps ** 2)   # This is the decay downstream
  *     yLocs = delta_y + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
- *
+ * 
  *     # top vortex
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_BaseModel); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 307, __pyx_L1_error)
@@ -4746,7 +4746,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     v_top = (Gamma_top * zT) / (2 * np.pi * rT) * core_shape
  *     v_top = np.mean( v_top, axis=(3,4) )             # <<<<<<<<<<<<<<
  *     # w_top = (-1 * Gamma_top * yLocs) / (2 * np.pi * rT) * core_shape * decay
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -4770,7 +4770,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":319
- *
+ * 
  *     # bottom vortex
  *     zB = z_i - (HH - D / 2) + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rB = yLocs ** 2 + zB ** 2
@@ -4891,7 +4891,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     v_bottom = (Gamma_bottom * zB) / (2 * np.pi * rB) * core_shape
  *     v_bottom = np.mean( v_bottom, axis=(3,4) )             # <<<<<<<<<<<<<<
  *     # w_bottom = (-1 * Gamma_bottom * yLocs) / (2 * np.pi * rB) * core_shape * decay
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -4915,7 +4915,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_4 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":327
- *
+ * 
  *     # wake rotation vortex
  *     zC = z_i - HH + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rC = yLocs ** 2 + zC ** 2
@@ -5030,7 +5030,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     v_core = (Gamma_wake_rotation * zC) / (2 * np.pi * rC) * core_shape
  *     v_core = np.mean( v_core, axis=(3,4) )             # <<<<<<<<<<<<<<
  *     # w_core = (-1 * Gamma_wake_rotation * yLocs) / (2 * np.pi * rC) * core_shape * decay
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -5054,7 +5054,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":335
- *
+ * 
  *     # Cap the effective yaw values between -45 and 45 degrees
  *     val = 2 * (avg_v - v_core) / (v_top + v_bottom)             # <<<<<<<<<<<<<<
  *     val = np.where(val < -1.0, -1.0, val)
@@ -5145,7 +5145,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     val = np.where(val < -1.0, -1.0, val)
  *     val = np.where(val > 1.0, 1.0, val)             # <<<<<<<<<<<<<<
  *     y = np.degrees( 0.5 * np.arcsin( val ) )
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -5210,7 +5210,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
  *     val = np.where(val < -1.0, -1.0, val)
  *     val = np.where(val > 1.0, 1.0, val)
  *     y = np.degrees( 0.5 * np.arcsin( val ) )             # <<<<<<<<<<<<<<
- *
+ * 
  *     return y[:,:,:,None,None]
  */
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 338, __pyx_L1_error)
@@ -5262,10 +5262,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
 
   /* "floris/simulation/wake_deflection/gauss.py":340
  *     y = np.degrees( 0.5 * np.arcsin( val ) )
- *
+ * 
  *     return y[:,:,:,None,None]             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_v_y, __pyx_tuple__6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 340, __pyx_L1_error)
@@ -5275,7 +5275,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
   goto __pyx_L0;
 
   /* "floris/simulation/wake_deflection/gauss.py":244
- *
+ * 
  * # def calculate_effective_yaw(
  * def wake_added_yaw(             # <<<<<<<<<<<<<<
  *     u_i,
@@ -5326,8 +5326,8 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_2wake_ad
 }
 
 /* "floris/simulation/wake_deflection/gauss.py":343
- *
- *
+ * 
+ * 
  * def calculate_transverse_velocity(             # <<<<<<<<<<<<<<
  *     u_i,
  *     u_initial,
@@ -5579,7 +5579,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __Pyx_RefNannySetupContext("calculate_transverse_velocity", 0);
 
   /* "floris/simulation/wake_deflection/gauss.py":363
- *
+ * 
  *     # turbine parameters
  *     D = rotor_diameter             # <<<<<<<<<<<<<<
  *     HH = hub_height
@@ -5613,7 +5613,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     Ct = ct_i
  *     TSR = tsr_i             # <<<<<<<<<<<<<<
  *     aI = axial_induction_i
- *
+ * 
  */
   __Pyx_INCREF(__pyx_v_tsr_i);
   __pyx_v_TSR = __pyx_v_tsr_i;
@@ -5622,18 +5622,18 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     Ct = ct_i
  *     TSR = tsr_i
  *     aI = axial_induction_i             # <<<<<<<<<<<<<<
- *
+ * 
  *     # flow parameters
  */
   __Pyx_INCREF(__pyx_v_axial_induction_i);
   __pyx_v_aI = __pyx_v_axial_induction_i;
 
   /* "floris/simulation/wake_deflection/gauss.py":370
- *
+ * 
  *     # flow parameters
  *     Uinf = np.mean(u_initial, axis=(2,3,4))             # <<<<<<<<<<<<<<
  *     Uinf = Uinf[:,:,None,None,None]
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5660,7 +5660,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     # flow parameters
  *     Uinf = np.mean(u_initial, axis=(2,3,4))
  *     Uinf = Uinf[:,:,None,None,None]             # <<<<<<<<<<<<<<
- *
+ * 
  *     eps_gain = 0.2
  */
   __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_Uinf, __pyx_tuple__4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 371, __pyx_L1_error)
@@ -5670,18 +5670,18 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
 
   /* "floris/simulation/wake_deflection/gauss.py":373
  *     Uinf = Uinf[:,:,None,None,None]
- *
+ * 
  *     eps_gain = 0.2             # <<<<<<<<<<<<<<
  *     eps = eps_gain * D  # Use set value
- *
+ * 
  */
   __pyx_v_eps_gain = 0.2;
 
   /* "floris/simulation/wake_deflection/gauss.py":374
- *
+ * 
  *     eps_gain = 0.2
  *     eps = eps_gain * D  # Use set value             # <<<<<<<<<<<<<<
- *
+ * 
  *     # TODO: wind sheer is hard-coded here but should be connected to the input
  */
   __pyx_t_4 = PyFloat_FromDouble(__pyx_v_eps_gain); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 374, __pyx_L1_error)
@@ -5693,7 +5693,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":377
- *
+ * 
  *     # TODO: wind sheer is hard-coded here but should be connected to the input
  *     vel_top = ((HH + D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))             # <<<<<<<<<<<<<<
  *     Gamma_top = sind(yaw) * cosd(yaw) * gamma(
@@ -5790,7 +5790,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *         Ct,
  *         scale,             # <<<<<<<<<<<<<<
  *     )
- *
+ * 
  */
   __pyx_t_1 = NULL;
   __pyx_t_5 = 0;
@@ -5863,7 +5863,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
 
   /* "floris/simulation/wake_deflection/gauss.py":386
  *     )
- *
+ * 
  *     vel_bottom = ((HH - D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))             # <<<<<<<<<<<<<<
  *     Gamma_bottom = -1 * sind(yaw) * cosd(yaw) * gamma(
  *         D,
@@ -5907,7 +5907,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_6 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":387
- *
+ * 
  *     vel_bottom = ((HH - D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))
  *     Gamma_bottom = -1 * sind(yaw) * cosd(yaw) * gamma(             # <<<<<<<<<<<<<<
  *         D,
@@ -5962,7 +5962,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *         Ct,
  *         scale,             # <<<<<<<<<<<<<<
  *     )
- *
+ * 
  */
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -6020,7 +6020,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":387
- *
+ * 
  *     vel_bottom = ((HH - D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))
  *     Gamma_bottom = -1 * sind(yaw) * cosd(yaw) * gamma(             # <<<<<<<<<<<<<<
  *         D,
@@ -6035,7 +6035,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
 
   /* "floris/simulation/wake_deflection/gauss.py":395
  *     )
- *
+ * 
  *     turbine_average_velocity = np.cbrt(np.mean(u_i ** 3, axis=(3,4)))             # <<<<<<<<<<<<<<
  *     turbine_average_velocity = turbine_average_velocity[:,:,:,None,None]
  *     Gamma_wake_rotation = 0.25 * 2 * np.pi * D * (aI - aI ** 2) * turbine_average_velocity / TSR
@@ -6085,11 +6085,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":396
- *
+ * 
  *     turbine_average_velocity = np.cbrt(np.mean(u_i ** 3, axis=(3,4)))
  *     turbine_average_velocity = turbine_average_velocity[:,:,:,None,None]             # <<<<<<<<<<<<<<
  *     Gamma_wake_rotation = 0.25 * 2 * np.pi * D * (aI - aI ** 2) * turbine_average_velocity / TSR
- *
+ * 
  */
   __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_v_turbine_average_velocity, __pyx_tuple__6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -6100,7 +6100,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     turbine_average_velocity = np.cbrt(np.mean(u_i ** 3, axis=(3,4)))
  *     turbine_average_velocity = turbine_average_velocity[:,:,:,None,None]
  *     Gamma_wake_rotation = 0.25 * 2 * np.pi * D * (aI - aI ** 2) * turbine_average_velocity / TSR             # <<<<<<<<<<<<<<
- *
+ * 
  *     ### compute the spanwise and vertical velocities induced by yaw
  */
   __pyx_t_2 = PyFloat_FromDouble((0.25 * 2.0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 397, __pyx_L1_error)
@@ -6136,7 +6136,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":402
- *
+ * 
  *     # decay the vortices as they move downstream - using mixing length
  *     lmda = D / 8             # <<<<<<<<<<<<<<
  *     kappa = 0.41
@@ -6323,7 +6323,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     z_basis = np.linspace(np.min(z), np.max(z), np.shape(u_initial)[4])
  *     dudz_initial = np.gradient(u_initial, z_basis, axis=4)             # <<<<<<<<<<<<<<
  *     nu = lm ** 2 * np.abs(dudz_initial)
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -6353,7 +6353,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     z_basis = np.linspace(np.min(z), np.max(z), np.shape(u_initial)[4])
  *     dudz_initial = np.gradient(u_initial, z_basis, axis=4)
  *     nu = lm ** 2 * np.abs(dudz_initial)             # <<<<<<<<<<<<<<
- *
+ * 
  *     decay = eps ** 2 / (4 * nu * delta_x / Uinf + eps ** 2)   # This is the decay downstream
  */
   __pyx_t_8 = PyNumber_Power(__pyx_v_lm, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 408, __pyx_L1_error)
@@ -6387,10 +6387,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
 
   /* "floris/simulation/wake_deflection/gauss.py":410
  *     nu = lm ** 2 * np.abs(dudz_initial)
- *
+ * 
  *     decay = eps ** 2 / (4 * nu * delta_x / Uinf + eps ** 2)   # This is the decay downstream             # <<<<<<<<<<<<<<
  *     yLocs = delta_y + BaseModel.NUM_EPS
- *
+ * 
  */
   __pyx_t_2 = PyNumber_Power(__pyx_v_eps, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -6416,10 +6416,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_8 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":411
- *
+ * 
  *     decay = eps ** 2 / (4 * nu * delta_x / Uinf + eps ** 2)   # This is the decay downstream
  *     yLocs = delta_y + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
- *
+ * 
  *     # top vortex
  */
   __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_BaseModel); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 411, __pyx_L1_error)
@@ -6434,7 +6434,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_8 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":414
- *
+ * 
  *     # top vortex
  *     zT = z - (HH + D / 2) + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rT = yLocs ** 2 + zT ** 2  # TODO: This is - in the paper
@@ -6525,7 +6525,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rT / (eps ** 2))  # This looks like spanwise decay - it defines the vortex profile in the spanwise directions
  *     V1 = (Gamma_top * zT) / (2 * np.pi * rT) * core_shape * decay             # <<<<<<<<<<<<<<
  *     W1 = (-1 * Gamma_top * yLocs) / (2 * np.pi * rT) * core_shape * decay
- *
+ * 
  */
   __pyx_t_3 = PyNumber_Multiply(__pyx_v_Gamma_top, __pyx_v_zT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -6557,7 +6557,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rT / (eps ** 2))  # This looks like spanwise decay - it defines the vortex profile in the spanwise directions
  *     V1 = (Gamma_top * zT) / (2 * np.pi * rT) * core_shape * decay
  *     W1 = (-1 * Gamma_top * yLocs) / (2 * np.pi * rT) * core_shape * decay             # <<<<<<<<<<<<<<
- *
+ * 
  *     # bottom vortex
  */
   __pyx_t_8 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_v_Gamma_top); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 418, __pyx_L1_error)
@@ -6590,7 +6590,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_8 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":421
- *
+ * 
  *     # bottom vortex
  *     zB = z - (HH - D / 2) + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rB = yLocs ** 2 + zB ** 2
@@ -6681,7 +6681,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rB / (eps ** 2))
  *     V2 = (Gamma_bottom * zB) / (2 * np.pi * rB) * core_shape * decay             # <<<<<<<<<<<<<<
  *     W2 = (-1 * Gamma_bottom * yLocs) / (2 * np.pi * rB) * core_shape * decay
- *
+ * 
  */
   __pyx_t_3 = PyNumber_Multiply(__pyx_v_Gamma_bottom, __pyx_v_zB); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -6713,7 +6713,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rB / (eps ** 2))
  *     V2 = (Gamma_bottom * zB) / (2 * np.pi * rB) * core_shape * decay
  *     W2 = (-1 * Gamma_bottom * yLocs) / (2 * np.pi * rB) * core_shape * decay             # <<<<<<<<<<<<<<
- *
+ * 
  *     # wake rotation vortex
  */
   __pyx_t_8 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_v_Gamma_bottom); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 425, __pyx_L1_error)
@@ -6746,7 +6746,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_8 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":428
- *
+ * 
  *     # wake rotation vortex
  *     zC = z - HH + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rC = yLocs ** 2 + zC ** 2
@@ -6831,7 +6831,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rC / (eps ** 2))
  *     V5 = (Gamma_wake_rotation * zC) / (2 * np.pi * rC) * core_shape * decay             # <<<<<<<<<<<<<<
  *     W5 = (-1 * Gamma_wake_rotation * yLocs) / (2 * np.pi * rC) * core_shape * decay
- *
+ * 
  */
   __pyx_t_3 = PyNumber_Multiply(__pyx_v_Gamma_wake_rotation, __pyx_v_zC); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 431, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -6863,8 +6863,8 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rC / (eps ** 2))
  *     V5 = (Gamma_wake_rotation * zC) / (2 * np.pi * rC) * core_shape * decay
  *     W5 = (-1 * Gamma_wake_rotation * yLocs) / (2 * np.pi * rC) * core_shape * decay             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_8 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_v_Gamma_wake_rotation); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 432, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -6896,7 +6896,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_8 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":438
- *
+ * 
  *     # top vortex - ground
  *     zTb = z + (HH + D / 2) + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rTb = yLocs ** 2 + zTb ** 2
@@ -6987,7 +6987,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rTb / (eps ** 2))  # This looks like spanwise decay - it defines the vortex profile in the spanwise directions
  *     V3 = (-1 * Gamma_top * zTb) / (2 * np.pi * rTb) * core_shape * decay             # <<<<<<<<<<<<<<
  *     W3 = (Gamma_top * yLocs) / (2 * np.pi * rTb) * core_shape * decay
- *
+ * 
  */
   __pyx_t_3 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_v_Gamma_top); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 441, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -7022,7 +7022,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rTb / (eps ** 2))  # This looks like spanwise decay - it defines the vortex profile in the spanwise directions
  *     V3 = (-1 * Gamma_top * zTb) / (2 * np.pi * rTb) * core_shape * decay
  *     W3 = (Gamma_top * yLocs) / (2 * np.pi * rTb) * core_shape * decay             # <<<<<<<<<<<<<<
- *
+ * 
  *     # bottom vortex - ground
  */
   __pyx_t_3 = PyNumber_Multiply(__pyx_v_Gamma_top, __pyx_v_yLocs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 442, __pyx_L1_error)
@@ -7052,7 +7052,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":445
- *
+ * 
  *     # bottom vortex - ground
  *     zBb = z + (HH - D / 2) + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rBb = yLocs ** 2 + zBb ** 2
@@ -7143,7 +7143,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rBb / (eps ** 2))
  *     V4 = (-1 * Gamma_bottom * zBb) / (2 * np.pi * rBb) * core_shape * decay             # <<<<<<<<<<<<<<
  *     W4 = (Gamma_bottom * yLocs) / (2 * np.pi * rBb) * core_shape * decay
- *
+ * 
  */
   __pyx_t_8 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_v_Gamma_bottom); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 448, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -7178,7 +7178,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rBb / (eps ** 2))
  *     V4 = (-1 * Gamma_bottom * zBb) / (2 * np.pi * rBb) * core_shape * decay
  *     W4 = (Gamma_bottom * yLocs) / (2 * np.pi * rBb) * core_shape * decay             # <<<<<<<<<<<<<<
- *
+ * 
  *     # wake rotation vortex - ground effect
  */
   __pyx_t_8 = PyNumber_Multiply(__pyx_v_Gamma_bottom, __pyx_v_yLocs); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 449, __pyx_L1_error)
@@ -7208,7 +7208,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_4 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":452
- *
+ * 
  *     # wake rotation vortex - ground effect
  *     zCb = z + HH + BaseModel.NUM_EPS             # <<<<<<<<<<<<<<
  *     rCb = yLocs ** 2 + zCb ** 2
@@ -7293,7 +7293,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rCb / (eps ** 2))
  *     V6 = (-1 * Gamma_wake_rotation * zCb) / (2 * np.pi * rCb) * core_shape * decay             # <<<<<<<<<<<<<<
  *     W6 = (Gamma_wake_rotation * yLocs) / (2 * np.pi * rCb) * core_shape * decay
- *
+ * 
  */
   __pyx_t_2 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_v_Gamma_wake_rotation); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -7328,7 +7328,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     core_shape = 1 - np.exp(-rCb / (eps ** 2))
  *     V6 = (-1 * Gamma_wake_rotation * zCb) / (2 * np.pi * rCb) * core_shape * decay
  *     W6 = (Gamma_wake_rotation * yLocs) / (2 * np.pi * rCb) * core_shape * decay             # <<<<<<<<<<<<<<
- *
+ * 
  *     # total spanwise velocity
  */
   __pyx_t_2 = PyNumber_Multiply(__pyx_v_Gamma_wake_rotation, __pyx_v_yLocs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L1_error)
@@ -7358,11 +7358,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":459
- *
+ * 
  *     # total spanwise velocity
  *     V = V1 + V2 + V3 + V4 + V5 + V6             # <<<<<<<<<<<<<<
  *     W = W1 + W2 + W3 + W4 + W5 + W6
- *
+ * 
  */
   __pyx_t_3 = PyNumber_Add(__pyx_v_V1, __pyx_v_V2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -7385,7 +7385,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     # total spanwise velocity
  *     V = V1 + V2 + V3 + V4 + V5 + V6
  *     W = W1 + W2 + W3 + W4 + W5 + W6             # <<<<<<<<<<<<<<
- *
+ * 
  *     # no spanwise and vertical velocity upstream of the turbine
  */
   __pyx_t_3 = PyNumber_Add(__pyx_v_W1, __pyx_v_W2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 460, __pyx_L1_error)
@@ -7410,7 +7410,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     # TODO Should this be <= ? Shouldn't be adding V and W on the current turbine?
  *     V[delta_x < 0.0] = 0.0  # Subtract by 1 to avoid numerical issues on rotation             # <<<<<<<<<<<<<<
  *     W[delta_x < 0.0] = 0.0  # Subtract by 1 to avoid numerical issues on rotation
- *
+ * 
  */
   __pyx_t_3 = PyObject_RichCompare(__pyx_v_delta_x, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 466, __pyx_L1_error)
   if (unlikely(PyObject_SetItem(__pyx_v_V, __pyx_t_3, __pyx_float_0_0) < 0)) __PYX_ERR(0, 466, __pyx_L1_error)
@@ -7420,7 +7420,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
  *     # TODO Should this be <= ? Shouldn't be adding V and W on the current turbine?
  *     V[delta_x < 0.0] = 0.0  # Subtract by 1 to avoid numerical issues on rotation
  *     W[delta_x < 0.0] = 0.0  # Subtract by 1 to avoid numerical issues on rotation             # <<<<<<<<<<<<<<
- *
+ * 
  *     # TODO: Why would the say W cannot be negative?
  */
   __pyx_t_3 = PyObject_RichCompare(__pyx_v_delta_x, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 467, __pyx_L1_error)
@@ -7428,10 +7428,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":470
- *
+ * 
  *     # TODO: Why would the say W cannot be negative?
  *     W[W < 0] = 0             # <<<<<<<<<<<<<<
- *
+ * 
  *     return V, W
  */
   __pyx_t_3 = PyObject_RichCompare(__pyx_v_W, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 470, __pyx_L1_error)
@@ -7440,10 +7440,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
 
   /* "floris/simulation/wake_deflection/gauss.py":472
  *     W[W < 0] = 0
- *
+ * 
  *     return V, W             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 472, __pyx_L1_error)
@@ -7459,8 +7459,8 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
   goto __pyx_L0;
 
   /* "floris/simulation/wake_deflection/gauss.py":343
- *
- *
+ * 
+ * 
  * def calculate_transverse_velocity(             # <<<<<<<<<<<<<<
  *     u_i,
  *     u_initial,
@@ -7531,8 +7531,8 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_4calcula
 }
 
 /* "floris/simulation/wake_deflection/gauss.py":475
- *
- *
+ * 
+ * 
  * def yaw_added_turbulence_mixing(             # <<<<<<<<<<<<<<
  *     u_i,
  *     I_i,
@@ -7672,9 +7672,9 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
 
   /* "floris/simulation/wake_deflection/gauss.py":487
  *     # before returning. Dimensions are (wd, ws).
- *
+ * 
  *     I_i = I_i[:,:,0,0,0]             # <<<<<<<<<<<<<<
- *
+ * 
  *     average_u_i = np.cbrt(np.mean(u_i ** 3, axis=(2,3,4)))
  */
   __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_I_i, __pyx_tuple__7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 487, __pyx_L1_error)
@@ -7684,9 +7684,9 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
 
   /* "floris/simulation/wake_deflection/gauss.py":489
  *     I_i = I_i[:,:,0,0,0]
- *
+ * 
  *     average_u_i = np.cbrt(np.mean(u_i ** 3, axis=(2,3,4)))             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Convert ambient turbulence intensity to TKE (eq 24)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 489, __pyx_L1_error)
@@ -7734,10 +7734,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
   __pyx_t_1 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":492
- *
+ * 
  *     # Convert ambient turbulence intensity to TKE (eq 24)
  *     k = (average_u_i * I_i) ** 2 / (2 / 3)             # <<<<<<<<<<<<<<
- *
+ * 
  *     u_term = np.sqrt(2 * k)
  */
   __pyx_t_1 = PyNumber_Multiply(__pyx_v_average_u_i, __pyx_v_I_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 492, __pyx_L1_error)
@@ -7753,7 +7753,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
 
   /* "floris/simulation/wake_deflection/gauss.py":494
  *     k = (average_u_i * I_i) ** 2 / (2 / 3)
- *
+ * 
  *     u_term = np.sqrt(2 * k)             # <<<<<<<<<<<<<<
  *     v_term = np.mean(v_i + turb_v_i, axis=(2,3,4))
  *     w_term = np.mean(w_i + turb_w_i, axis=(2,3,4))
@@ -7785,11 +7785,11 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
   __pyx_t_1 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":495
- *
+ * 
  *     u_term = np.sqrt(2 * k)
  *     v_term = np.mean(v_i + turb_v_i, axis=(2,3,4))             # <<<<<<<<<<<<<<
  *     w_term = np.mean(w_i + turb_w_i, axis=(2,3,4))
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 495, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -7818,7 +7818,7 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
  *     u_term = np.sqrt(2 * k)
  *     v_term = np.mean(v_i + turb_v_i, axis=(2,3,4))
  *     w_term = np.mean(w_i + turb_w_i, axis=(2,3,4))             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Compute the new TKE (eq 23)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 496, __pyx_L1_error)
@@ -7845,10 +7845,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
   __pyx_t_6 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":499
- *
+ * 
  *     # Compute the new TKE (eq 23)
  *     k_total = 0.5 * ( u_term ** 2 + v_term ** 2 + w_term ** 2 )             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Convert TKE back to TI
  */
   __pyx_t_6 = PyNumber_Power(__pyx_v_u_term, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 499, __pyx_L1_error)
@@ -7872,10 +7872,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
   __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":502
- *
+ * 
  *     # Convert TKE back to TI
  *     I_total = np.sqrt( (2 / 3) * k_total ) / average_u_i             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Remove ambient from total TI leaving only the TI due to mixing
  */
   __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 502, __pyx_L1_error)
@@ -7908,10 +7908,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
   __pyx_t_3 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":505
- *
+ * 
  *     # Remove ambient from total TI leaving only the TI due to mixing
  *     I_mixing = I_total - I_i             # <<<<<<<<<<<<<<
- *
+ * 
  *     return I_mixing[:,:,None,None,None]
  */
   __pyx_t_3 = PyNumber_Subtract(__pyx_v_I_total, __pyx_v_I_i); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 505, __pyx_L1_error)
@@ -7921,10 +7921,10 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
 
   /* "floris/simulation/wake_deflection/gauss.py":507
  *     I_mixing = I_total - I_i
- *
+ * 
  *     return I_mixing[:,:,None,None,None]             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_v_I_mixing, __pyx_tuple__4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 507, __pyx_L1_error)
@@ -7934,8 +7934,8 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_5gauss_6yaw_add
   goto __pyx_L0;
 
   /* "floris/simulation/wake_deflection/gauss.py":475
- *
- *
+ * 
+ * 
  * def yaw_added_turbulence_mixing(             # <<<<<<<<<<<<<<
  *     u_i,
  *     I_i,
@@ -8223,7 +8223,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     TSR = tip_speed_ratio           # scalar
  *     aI = axial_induction_i          # (wd, ws, 1, 1, 1) for the current turbine
  *     avg_v = np.mean(v_i, axis=(3,4))  # (wd, ws, 1, grid, grid)             # <<<<<<<<<<<<<<
- *
+ * 
  *     # flow parameters
  */
   __pyx_tuple_ = PyTuple_Pack(2, __pyx_int_3, __pyx_int_4); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 272, __pyx_L1_error)
@@ -8231,11 +8231,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple_);
 
   /* "floris/simulation/wake_deflection/gauss.py":275
- *
+ * 
  *     # flow parameters
  *     Uinf = np.mean(u_initial, axis=(2,3,4))             # <<<<<<<<<<<<<<
  *     Uinf = Uinf[:,:,None,None,None]
- *
+ * 
  */
   __pyx_tuple__2 = PyTuple_Pack(3, __pyx_int_2, __pyx_int_3, __pyx_int_4); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
@@ -8245,7 +8245,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     # flow parameters
  *     Uinf = np.mean(u_initial, axis=(2,3,4))
  *     Uinf = Uinf[:,:,None,None,None]             # <<<<<<<<<<<<<<
- *
+ * 
  *     # TODO: Allow user input for eps gain
  */
   __pyx_slice__3 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(0, 276, __pyx_L1_error)
@@ -8257,7 +8257,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "floris/simulation/wake_deflection/gauss.py":282
  *     eps = eps_gain * D  # Use set value
- *
+ * 
  *     vel_top = ((HH + D / 2) / HH) ** 0.12 * np.ones((1, 1, 1, 1, 1))             # <<<<<<<<<<<<<<
  *     Gamma_top = gamma(
  *         D,
@@ -8267,11 +8267,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "floris/simulation/wake_deflection/gauss.py":301
- *
+ * 
  *     turbine_average_velocity = np.cbrt(np.mean(u_i ** 3, axis=(3,4)))
  *     turbine_average_velocity = turbine_average_velocity[:,:,:,None,None]             # <<<<<<<<<<<<<<
  *     Gamma_wake_rotation = 0.25 * 2 * np.pi * D * (aI - aI ** 2) * turbine_average_velocity / TSR
- *
+ * 
  */
   __pyx_tuple__6 = PyTuple_Pack(5, __pyx_slice__3, __pyx_slice__3, __pyx_slice__3, Py_None, Py_None); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
@@ -8279,9 +8279,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "floris/simulation/wake_deflection/gauss.py":487
  *     # before returning. Dimensions are (wd, ws).
- *
+ * 
  *     I_i = I_i[:,:,0,0,0]             # <<<<<<<<<<<<<<
- *
+ * 
  *     average_u_i = np.cbrt(np.mean(u_i ** 3, axis=(2,3,4)))
  */
   __pyx_tuple__7 = PyTuple_Pack(5, __pyx_slice__3, __pyx_slice__3, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 487, __pyx_L1_error)
@@ -8290,7 +8290,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "floris/simulation/wake_deflection/gauss.py":84
  *     model_string = "gauss"
- *
+ * 
  *     def prepare_function(             # <<<<<<<<<<<<<<
  *         self,
  *         grid: Grid,
@@ -8301,7 +8301,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_floris_simulation_wake_deflectio_2, __pyx_n_s_prepare_function, 84, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 84, __pyx_L1_error)
 
   /* "floris/simulation/wake_deflection/gauss.py":100
- *
+ * 
  *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
@@ -8314,7 +8314,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "floris/simulation/wake_deflection/gauss.py":221
  * ## GCH components
- *
+ * 
  * def gamma(             # <<<<<<<<<<<<<<
  *     D,
  *     velocity,
@@ -8328,7 +8328,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "floris/simulation/wake_deflection/gauss.py":244
- *
+ * 
  * # def calculate_effective_yaw(
  * def wake_added_yaw(             # <<<<<<<<<<<<<<
  *     u_i,
@@ -8343,8 +8343,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__17);
 
   /* "floris/simulation/wake_deflection/gauss.py":343
- *
- *
+ * 
+ * 
  * def calculate_transverse_velocity(             # <<<<<<<<<<<<<<
  *     u_i,
  *     u_initial,
@@ -8358,8 +8358,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__20);
 
   /* "floris/simulation/wake_deflection/gauss.py":475
- *
- *
+ * 
+ * 
  * def yaw_added_turbulence_mixing(             # <<<<<<<<<<<<<<
  *     u_i,
  *     I_i,
@@ -8675,9 +8675,9 @@ if (!__Pyx_RefNanny) {
 
   /* "floris/simulation/wake_deflection/gauss.py":13
  * # the License.
- *
+ * 
  * from typing import Any, Dict             # <<<<<<<<<<<<<<
- *
+ * 
  * from attrs import define, field
  */
   __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
@@ -8703,10 +8703,10 @@ if (!__Pyx_RefNanny) {
 
   /* "floris/simulation/wake_deflection/gauss.py":15
  * from typing import Any, Dict
- *
+ * 
  * from attrs import define, field             # <<<<<<<<<<<<<<
  * import numpy as np
- *
+ * 
  */
   __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -8730,10 +8730,10 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":16
- *
+ * 
  * from attrs import define, field
  * import numpy as np             # <<<<<<<<<<<<<<
- *
+ * 
  * from floris.simulation import BaseModel
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
@@ -8743,7 +8743,7 @@ if (!__Pyx_RefNanny) {
 
   /* "floris/simulation/wake_deflection/gauss.py":18
  * import numpy as np
- *
+ * 
  * from floris.simulation import BaseModel             # <<<<<<<<<<<<<<
  * from floris.simulation import Farm
  * from floris.simulation import FlowField
@@ -8763,7 +8763,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":19
- *
+ * 
  * from floris.simulation import BaseModel
  * from floris.simulation import Farm             # <<<<<<<<<<<<<<
  * from floris.simulation import FlowField
@@ -8830,7 +8830,7 @@ if (!__Pyx_RefNanny) {
  * from floris.simulation import Grid
  * from floris.simulation import Turbine             # <<<<<<<<<<<<<<
  * from floris.utilities import cosd, sind, tand
- *
+ * 
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -8850,8 +8850,8 @@ if (!__Pyx_RefNanny) {
  * from floris.simulation import Grid
  * from floris.simulation import Turbine
  * from floris.utilities import cosd, sind, tand             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_2 = PyList_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -8882,7 +8882,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":27
- *
+ * 
  * @define
  * class GaussVelocityDeflection(BaseModel):             # <<<<<<<<<<<<<<
  *     """
@@ -9065,7 +9065,7 @@ if (!__Pyx_RefNanny) {
  *     eps_gain: float = field(converter=float, default=0.2)
  *     use_secondary_steering: bool = field(converter=bool, default=True)             # <<<<<<<<<<<<<<
  *     model_string = "gauss"
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_field); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -9084,14 +9084,14 @@ if (!__Pyx_RefNanny) {
  *     eps_gain: float = field(converter=float, default=0.2)
  *     use_secondary_steering: bool = field(converter=bool, default=True)
  *     model_string = "gauss"             # <<<<<<<<<<<<<<
- *
+ * 
  *     def prepare_function(
  */
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_model_string, __pyx_n_s_gauss) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
 
   /* "floris/simulation/wake_deflection/gauss.py":84
  *     model_string = "gauss"
- *
+ * 
  *     def prepare_function(             # <<<<<<<<<<<<<<
  *         self,
  *         grid: Grid,
@@ -9116,7 +9116,7 @@ if (!__Pyx_RefNanny) {
  *         grid: Grid,
  *         flow_field: FlowField,             # <<<<<<<<<<<<<<
  *     ) -> Dict[str, Any]:
- *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_FlowField); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -9127,7 +9127,7 @@ if (!__Pyx_RefNanny) {
  *         grid: Grid,
  *         flow_field: FlowField,
  *     ) -> Dict[str, Any]:             # <<<<<<<<<<<<<<
- *
+ * 
  *         kwargs = dict(
  */
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Dict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
@@ -9151,7 +9151,7 @@ if (!__Pyx_RefNanny) {
 
   /* "floris/simulation/wake_deflection/gauss.py":84
  *     model_string = "gauss"
- *
+ * 
  *     def prepare_function(             # <<<<<<<<<<<<<<
  *         self,
  *         grid: Grid,
@@ -9164,7 +9164,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":100
- *
+ * 
  *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
@@ -9325,7 +9325,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_wind_veer, __pyx_n_u_float) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
 
   /* "floris/simulation/wake_deflection/gauss.py":100
- *
+ * 
  *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
@@ -9339,8 +9339,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":26
- *
- *
+ * 
+ * 
  * @define             # <<<<<<<<<<<<<<
  * class GaussVelocityDeflection(BaseModel):
  *     """
@@ -9349,7 +9349,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_GOTREF(__pyx_t_4);
 
   /* "floris/simulation/wake_deflection/gauss.py":27
- *
+ * 
  * @define
  * class GaussVelocityDeflection(BaseModel):             # <<<<<<<<<<<<<<
  *     """
@@ -9381,7 +9381,7 @@ if (!__Pyx_RefNanny) {
 
   /* "floris/simulation/wake_deflection/gauss.py":221
  * ## GCH components
- *
+ * 
  * def gamma(             # <<<<<<<<<<<<<<
  *     D,
  *     velocity,
@@ -9393,7 +9393,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":244
- *
+ * 
  * # def calculate_effective_yaw(
  * def wake_added_yaw(             # <<<<<<<<<<<<<<
  *     u_i,
@@ -9406,8 +9406,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":343
- *
- *
+ * 
+ * 
  * def calculate_transverse_velocity(             # <<<<<<<<<<<<<<
  *     u_i,
  *     u_initial,
@@ -9419,8 +9419,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "floris/simulation/wake_deflection/gauss.py":475
- *
- *
+ * 
+ * 
  * def yaw_added_turbulence_mixing(             # <<<<<<<<<<<<<<
  *     u_i,
  *     I_i,
@@ -9432,7 +9432,7 @@ if (!__Pyx_RefNanny) {
 
   /* "floris/simulation/wake_deflection/gauss.py":1
  * # Copyright 2021 NREL             # <<<<<<<<<<<<<<
- *
+ * 
  * # Licensed under the Apache License, Version 2.0 (the "License"); you may not
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -10088,8 +10088,8 @@ static PyObject* __Pyx_PyInt_SubtractCObj(PyObject *op1, PyObject *op2, CYTHON_U
                 llx = lla - llb;
             return PyLong_FromLongLong(llx);
 #endif
-
-
+        
+        
     }
     #endif
     if (PyFloat_CheckExact(op2)) {
@@ -10212,8 +10212,8 @@ static PyObject* __Pyx_PyInt_AddCObj(PyObject *op1, PyObject *op2, CYTHON_UNUSED
                 llx = lla + llb;
             return PyLong_FromLongLong(llx);
 #endif
-
-
+        
+        
     }
     #endif
     if (PyFloat_CheckExact(op2)) {
@@ -10238,12 +10238,12 @@ static PyObject* __Pyx_PyFloat_AddCObj(PyObject *op1, PyObject *op2, double floa
     (void)zerodivision_check;
     if (likely(PyFloat_CheckExact(op2))) {
         b = PyFloat_AS_DOUBLE(op2);
-
+        
     } else
     #if PY_MAJOR_VERSION < 3
     if (likely(PyInt_CheckExact(op2))) {
         b = (double) PyInt_AS_LONG(op2);
-
+        
     } else
     #endif
     if (likely(PyLong_CheckExact(op2))) {
@@ -10293,12 +10293,12 @@ static PyObject* __Pyx_PyFloat_AddCObj(PyObject *op1, PyObject *op2, double floa
         #endif
             b = PyLong_AsDouble(op2);
             if (unlikely(b == -1.0 && PyErr_Occurred())) return NULL;
-
+            
         }
     } else {
         return (inplace ? PyNumber_InPlaceAdd : PyNumber_Add)(op1, op2);
     }
-
+        
         PyFPE_START_PROTECT("add", return NULL)
         result = a + b;
         PyFPE_END_PROTECT(result)
@@ -10315,12 +10315,12 @@ static PyObject* __Pyx_PyFloat_SubtractCObj(PyObject *op1, PyObject *op2, double
     (void)zerodivision_check;
     if (likely(PyFloat_CheckExact(op2))) {
         b = PyFloat_AS_DOUBLE(op2);
-
+        
     } else
     #if PY_MAJOR_VERSION < 3
     if (likely(PyInt_CheckExact(op2))) {
         b = (double) PyInt_AS_LONG(op2);
-
+        
     } else
     #endif
     if (likely(PyLong_CheckExact(op2))) {
@@ -10370,12 +10370,12 @@ static PyObject* __Pyx_PyFloat_SubtractCObj(PyObject *op1, PyObject *op2, double
         #endif
             b = PyLong_AsDouble(op2);
             if (unlikely(b == -1.0 && PyErr_Occurred())) return NULL;
-
+            
         }
     } else {
         return (inplace ? PyNumber_InPlaceSubtract : PyNumber_Subtract)(op1, op2);
     }
-
+        
         PyFPE_START_PROTECT("subtract", return NULL)
         result = a - b;
         PyFPE_END_PROTECT(result)
@@ -10392,12 +10392,12 @@ static PyObject* __Pyx_PyFloat_DivideObjC(PyObject *op1, PyObject *op2, double f
     (void)zerodivision_check;
     if (likely(PyFloat_CheckExact(op1))) {
         a = PyFloat_AS_DOUBLE(op1);
-
+        
     } else
     #if PY_MAJOR_VERSION < 3
     if (likely(PyInt_CheckExact(op1))) {
         a = (double) PyInt_AS_LONG(op1);
-
+        
     } else
     #endif
     if (likely(PyLong_CheckExact(op1))) {
@@ -10447,12 +10447,12 @@ static PyObject* __Pyx_PyFloat_DivideObjC(PyObject *op1, PyObject *op2, double f
         #endif
             a = PyLong_AsDouble(op1);
             if (unlikely(a == -1.0 && PyErr_Occurred())) return NULL;
-
+            
         }
     } else {
         return (inplace ? __Pyx_PyNumber_InPlaceDivide(op1, op2) : __Pyx_PyNumber_Divide(op1, op2));
     }
-
+        
         PyFPE_START_PROTECT("divide", return NULL)
         result = a / b;
         PyFPE_END_PROTECT(result)

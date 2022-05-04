@@ -3,12 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "floris.simulation.wake_turbulence.crespo_hernandez",
+        "name": "floris.simulation.wake_deflection.jimenez",
         "sources": [
-            "floris/simulation/wake_turbulence/crespo_hernandez.py"
+            "floris/simulation/wake_deflection/jimenez.py"
         ]
     },
-    "module_name": "floris.simulation.wake_turbulence.crespo_hernandez"
+    "module_name": "floris.simulation.wake_deflection.jimenez"
 }
 END: Cython Metadata */
 
@@ -691,8 +691,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__floris__simulation__wake_turbulence__crespo_hernandez
-#define __PYX_HAVE_API__floris__simulation__wake_turbulence__crespo_hernandez
+#define __PYX_HAVE__floris__simulation__wake_deflection__jimenez
+#define __PYX_HAVE_API__floris__simulation__wake_deflection__jimenez
 /* Early includes */
 #ifdef _OPENMP
 #include <omp.h>
@@ -903,7 +903,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "floris/simulation/wake_turbulence/crespo_hernandez.py",
+  "floris/simulation/wake_deflection/jimenez.py",
 };
 
 /*--- Type declarations ---*/
@@ -990,6 +990,17 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 #else
 #define __Pyx_PyObject_GetAttrStr(o,n) PyObject_GetAttr(o,n)
 #endif
+
+/* RaiseKeywordRequired.proto */
+static void __Pyx_RaiseKeywordRequired(const char* func_name, PyObject* kw_name);
+
+/* PyFloatBinop.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyFloat_DivideObjC(PyObject *op1, PyObject *op2, double floatval, int inplace, int zerodivision_check);
+#else
+#define __Pyx_PyFloat_DivideObjC(op1, op2, floatval, inplace, zerodivision_check)\
+    ((inplace ? __Pyx_PyNumber_InPlaceDivide(op1, op2) : __Pyx_PyNumber_Divide(op1, op2)))
+    #endif
 
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
@@ -1109,6 +1120,35 @@ static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bas
     (likely(PyDict_CheckExact(ns)) ? PyDict_SetItem(ns, name, value) : PyObject_SetItem(ns, name, value))
 #else
 #define __Pyx_SetNameInClass(ns, name, value)  PyObject_SetItem(ns, name, value)
+#endif
+
+/* GetItemInt.proto */
+#define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
+    __Pyx_GetItemInt_Fast(o, (Py_ssize_t)i, is_list, wraparound, boundscheck) :\
+    (is_list ? (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL) :\
+               __Pyx_GetItemInt_Generic(o, to_py_func(i))))
+#define __Pyx_GetItemInt_List(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
+    __Pyx_GetItemInt_List_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
+    (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL))
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck);
+#define __Pyx_GetItemInt_Tuple(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
+    __Pyx_GetItemInt_Tuple_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
+    (PyErr_SetString(PyExc_IndexError, "tuple index out of range"), (PyObject*)NULL))
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck);
+static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
+                                                     int is_list, int wraparound, int boundscheck);
+
+/* ObjectGetItem.proto */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
+#else
+#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
 #endif
 
 /* FetchCommonType.proto */
@@ -1276,197 +1316,334 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'floris.simulation.wake_turbulence.crespo_hernandez' */
-#define __Pyx_MODULE_NAME "floris.simulation.wake_turbulence.crespo_hernandez"
-extern int __pyx_module_is_main_floris__simulation__wake_turbulence__crespo_hernandez;
-int __pyx_module_is_main_floris__simulation__wake_turbulence__crespo_hernandez = 0;
+/* Module declarations from 'floris.simulation.wake_deflection.jimenez' */
+#define __Pyx_MODULE_NAME "floris.simulation.wake_deflection.jimenez"
+extern int __pyx_module_is_main_floris__simulation__wake_deflection__jimenez;
+int __pyx_module_is_main_floris__simulation__wake_deflection__jimenez = 0;
 
-/* Implementation of 'floris.simulation.wake_turbulence.crespo_hernandez' */
+/* Implementation of 'floris.simulation.wake_deflection.jimenez' */
+static const char __pyx_k_A[] = "A";
+static const char __pyx_k_B[] = "B";
+static const char __pyx_k_C[] = "C";
+static const char __pyx_k_D[] = "D";
 static const char __pyx_k_x[] = "x";
-static const char __pyx_k_ai[] = "ai";
+static const char __pyx_k_ad[] = "ad";
+static const char __pyx_k_bd[] = "bd";
+static const char __pyx_k_kd[] = "kd";
+static const char __pyx_k_ne[] = "ne";
 static const char __pyx_k_np[] = "np";
-static const char __pyx_k_ti[] = "ti";
 static const char __pyx_k_Any[] = "Any";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_x_i[] = "x_i";
+static const char __pyx_k_y_i[] = "y_i";
 static const char __pyx_k_Dict[] = "Dict";
 static const char __pyx_k_Farm[] = "Farm";
 static const char __pyx_k_Grid[] = "Grid";
 static const char __pyx_k_cosd[] = "cosd";
-static const char __pyx_k_dict[] = "dict";
+static const char __pyx_k_ct_i[] = "ct_i";
+static const char __pyx_k_grid[] = "grid";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_self[] = "self";
 static const char __pyx_k_sind[] = "sind";
-static const char __pyx_k_tand[] = "tand";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_array[] = "array";
+static const char __pyx_k_30_kd[] = "30 * kd";
 static const char __pyx_k_attrs[] = "attrs";
 static const char __pyx_k_field[] = "field";
-static const char __pyx_k_float[] = "float";
 static const char __pyx_k_numpy[] = "numpy";
+static const char __pyx_k_x_x_i[] = "x - x_i";
+static const char __pyx_k_yaw_i[] = "yaw_i";
 static const char __pyx_k_define[] = "define";
 static const char __pyx_k_import[] = "__import__";
+static const char __pyx_k_kwargs[] = "kwargs";
 static const char __pyx_k_module[] = "__module__";
 static const char __pyx_k_return[] = "return";
 static const char __pyx_k_typing[] = "typing";
 static const char __pyx_k_Turbine[] = "Turbine";
 static const char __pyx_k_default[] = "default";
 static const char __pyx_k_delta_x[] = "delta_x";
-static const char __pyx_k_initial[] = "initial";
+static const char __pyx_k_jimenez[] = "jimenez";
 static const char __pyx_k_ndarray[] = "ndarray";
+static const char __pyx_k_numexpr[] = "numexpr";
 static const char __pyx_k_prepare[] = "__prepare__";
-static const char __pyx_k_constant[] = "constant";
+static const char __pyx_k_xi_init[] = "xi_init";
+static const char __pyx_k_evaluate[] = "evaluate";
 static const char __pyx_k_function[] = "function";
 static const char __pyx_k_qualname[] = "__qualname__";
+static const char __pyx_k_x_sorted[] = "x_sorted";
 static const char __pyx_k_BaseModel[] = "BaseModel";
 static const char __pyx_k_FlowField[] = "FlowField";
-static const char __pyx_k_converter[] = "converter";
 static const char __pyx_k_metaclass[] = "__metaclass__";
-static const char __pyx_k_ones_like[] = "ones_like";
-static const char __pyx_k_ambient_TI[] = "ambient_TI";
-static const char __pyx_k_downstream[] = "downstream";
+static const char __pyx_k_yYaw_init[] = "yYaw_init";
+static const char __pyx_k_deflection[] = "deflection";
+static const char __pyx_k_flow_field[] = "flow_field";
 static const char __pyx_k_model_string[] = "model_string";
-static const char __pyx_k_upstream_mask[] = "upstream_mask";
-static const char __pyx_k_rotor_diameter[] = "rotor_diameter";
-static const char __pyx_k_CrespoHernandez[] = "CrespoHernandez";
-static const char __pyx_k_axial_induction[] = "axial_induction";
-static const char __pyx_k_downstream_mask[] = "downstream_mask";
-static const char __pyx_k_crespo_hernandez[] = "crespo_hernandez";
+static const char __pyx_k_xi_init_A_B_C_D[] = "(xi_init * A / B) - (C / D)";
 static const char __pyx_k_floris_utilities[] = "floris.utilities";
 static const char __pyx_k_prepare_function[] = "prepare_function";
+static const char __pyx_k_rotor_diameter_i[] = "rotor_diameter_i";
 static const char __pyx_k_floris_simulation[] = "floris.simulation";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_CrespoHernandez_function[] = "CrespoHernandez.function";
-static const char __pyx_k_CrespoHernandez_is_a_wake_turbu[] = "\n    CrespoHernandez is a wake-turbulence model that is used to compute\n    additional variability introduced to the flow field by operation of a wind\n    turbine. Implementation of the model follows the original formulation and\n    limitations outlined in :cite:`cht-crespo1996turbulence`.\n\n    Args:\n        parameter_dictionary (dict): Model-specific parameters.\n            Default values are used when a parameter is not included\n            in `parameter_dictionary`. Possible key-value pairs include:\n\n            -   **initial** (*float*): The initial ambient turbulence\n                intensity, expressed as a decimal fraction.\n            -   **constant** (*float*): The constant used to scale the\n                wake-added turbulence intensity.\n            -   **ai** (*float*): The axial induction factor exponent used\n                in in the calculation of wake-added turbulence.\n            -   **downstream** (*float*): The exponent applied to the\n                distance downstream of an upstream turbine normalized by\n                the rotor diameter used in the calculation of wake-added\n                turbulence.\n\n    References:\n        .. bibliography:: /source/zrefs.bib\n            :style: unsrt\n            :filter: docname in docnames\n            :keyprefix: cht-\n    ";
-static const char __pyx_k_CrespoHernandez_prepare_function[] = "CrespoHernandez.prepare_function";
-static const char __pyx_k_floris_simulation_wake_turbulenc[] = "floris.simulation.wake_turbulence.crespo_hernandez";
-static const char __pyx_k_floris_simulation_wake_turbulenc_2[] = "floris/simulation/wake_turbulence/crespo_hernandez.py";
+static const char __pyx_k_turbulence_intensity_i[] = "turbulence_intensity_i";
+static const char __pyx_k_yYaw_init_ad_bd_delta_x[] = "yYaw_init + ad + bd * delta_x";
+static const char __pyx_k_JimenezVelocityDeflection[] = "JimenezVelocityDeflection";
+static const char __pyx_k_30_kd_rotor_diameter_i_2_kd_del[] = "(30 * kd / rotor_diameter_i) * ( 2 * kd * delta_x / rotor_diameter_i + 1 ) ** 5.0";
+static const char __pyx_k_Jimnez_wake_deflection_model_de[] = "\n    Jim\303\251nez wake deflection model, dervied from\n    :cite:`jdm-jimenez2010application`.\n\n    References:\n        .. bibliography:: /source/zrefs.bib\n            :style: unsrt\n            :filter: docname in docnames\n            :keyprefix: jdm-\n    ";
+static const char __pyx_k_15_2_kd_delta_x_rotor_diameter_i[] = "15 * (2 * kd * delta_x / rotor_diameter_i + 1) ** 4.0 + xi_init ** 2.0";
+static const char __pyx_k_JimenezVelocityDeflection_functi[] = "JimenezVelocityDeflection.function";
+static const char __pyx_k_JimenezVelocityDeflection_prepar[] = "JimenezVelocityDeflection.prepare_function";
+static const char __pyx_k_floris_simulation_wake_deflectio[] = "floris.simulation.wake_deflection.jimenez";
+static const char __pyx_k_xi_init_rotor_diameter_i_15_xi_i[] = "xi_init * rotor_diameter_i * (15 + xi_init ** 2.0)";
+static const char __pyx_k_floris_simulation_wake_deflectio_2[] = "floris/simulation/wake_deflection/jimenez.py";
+static PyObject *__pyx_kp_s_15_2_kd_delta_x_rotor_diameter_i;
+static PyObject *__pyx_kp_s_30_kd;
+static PyObject *__pyx_kp_s_30_kd_rotor_diameter_i_2_kd_del;
+static PyObject *__pyx_n_s_A;
 static PyObject *__pyx_n_s_Any;
+static PyObject *__pyx_n_s_B;
 static PyObject *__pyx_n_s_BaseModel;
-static PyObject *__pyx_n_s_CrespoHernandez;
-static PyObject *__pyx_n_s_CrespoHernandez_function;
-static PyObject *__pyx_kp_s_CrespoHernandez_is_a_wake_turbu;
-static PyObject *__pyx_n_s_CrespoHernandez_prepare_function;
+static PyObject *__pyx_n_s_C;
+static PyObject *__pyx_n_s_D;
 static PyObject *__pyx_n_s_Dict;
 static PyObject *__pyx_n_s_Farm;
 static PyObject *__pyx_n_s_FlowField;
 static PyObject *__pyx_n_s_Grid;
+static PyObject *__pyx_n_s_JimenezVelocityDeflection;
+static PyObject *__pyx_n_s_JimenezVelocityDeflection_functi;
+static PyObject *__pyx_n_s_JimenezVelocityDeflection_prepar;
+static PyObject *__pyx_kp_s_Jimnez_wake_deflection_model_de;
 static PyObject *__pyx_n_s_Turbine;
-static PyObject *__pyx_n_s_ai;
-static PyObject *__pyx_n_s_ambient_TI;
-static PyObject *__pyx_n_s_array;
+static PyObject *__pyx_n_s_ad;
 static PyObject *__pyx_n_s_attrs;
-static PyObject *__pyx_n_s_axial_induction;
+static PyObject *__pyx_n_s_bd;
 static PyObject *__pyx_n_s_cline_in_traceback;
-static PyObject *__pyx_n_s_constant;
-static PyObject *__pyx_n_s_converter;
 static PyObject *__pyx_n_s_cosd;
-static PyObject *__pyx_n_s_crespo_hernandez;
+static PyObject *__pyx_n_s_ct_i;
 static PyObject *__pyx_n_s_default;
 static PyObject *__pyx_n_s_define;
+static PyObject *__pyx_n_s_deflection;
 static PyObject *__pyx_n_s_delta_x;
-static PyObject *__pyx_n_u_dict;
 static PyObject *__pyx_n_s_doc;
-static PyObject *__pyx_n_s_downstream;
-static PyObject *__pyx_n_s_downstream_mask;
+static PyObject *__pyx_n_s_evaluate;
 static PyObject *__pyx_n_s_field;
-static PyObject *__pyx_n_u_float;
 static PyObject *__pyx_n_s_floris_simulation;
-static PyObject *__pyx_n_s_floris_simulation_wake_turbulenc;
-static PyObject *__pyx_kp_s_floris_simulation_wake_turbulenc_2;
+static PyObject *__pyx_n_s_floris_simulation_wake_deflectio;
+static PyObject *__pyx_kp_s_floris_simulation_wake_deflectio_2;
 static PyObject *__pyx_n_s_floris_utilities;
+static PyObject *__pyx_n_s_flow_field;
 static PyObject *__pyx_n_s_function;
+static PyObject *__pyx_n_s_grid;
 static PyObject *__pyx_n_s_import;
-static PyObject *__pyx_n_s_initial;
+static PyObject *__pyx_n_s_jimenez;
+static PyObject *__pyx_n_s_kd;
+static PyObject *__pyx_n_s_kwargs;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_metaclass;
 static PyObject *__pyx_n_s_model_string;
 static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_ndarray;
+static PyObject *__pyx_n_s_ne;
 static PyObject *__pyx_n_s_np;
+static PyObject *__pyx_n_s_numexpr;
 static PyObject *__pyx_n_s_numpy;
-static PyObject *__pyx_n_s_ones_like;
 static PyObject *__pyx_n_s_prepare;
 static PyObject *__pyx_n_s_prepare_function;
 static PyObject *__pyx_n_s_qualname;
 static PyObject *__pyx_n_s_return;
-static PyObject *__pyx_n_s_rotor_diameter;
+static PyObject *__pyx_n_s_rotor_diameter_i;
 static PyObject *__pyx_n_s_self;
 static PyObject *__pyx_n_s_sind;
-static PyObject *__pyx_n_s_tand;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_ti;
+static PyObject *__pyx_n_s_turbulence_intensity_i;
 static PyObject *__pyx_n_s_typing;
-static PyObject *__pyx_n_s_upstream_mask;
 static PyObject *__pyx_n_s_x;
 static PyObject *__pyx_n_s_x_i;
-static PyObject *__pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_prepare_function(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_2function(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, double __pyx_v_ambient_TI, PyObject *__pyx_v_x, PyObject *__pyx_v_x_i, PyObject *__pyx_v_rotor_diameter, PyObject *__pyx_v_axial_induction); /* proto */
-static PyObject *__pyx_float_0_1;
-static PyObject *__pyx_float_0_8;
-static PyObject *__pyx_float_0_9;
-static PyObject *__pyx_float_neg_0_1;
-static PyObject *__pyx_float_neg_0_32;
+static PyObject *__pyx_n_s_x_sorted;
+static PyObject *__pyx_kp_s_x_x_i;
+static PyObject *__pyx_n_s_xi_init;
+static PyObject *__pyx_kp_s_xi_init_A_B_C_D;
+static PyObject *__pyx_kp_s_xi_init_rotor_diameter_i_15_xi_i;
+static PyObject *__pyx_n_s_yYaw_init;
+static PyObject *__pyx_kp_s_yYaw_init_ad_bd_delta_x;
+static PyObject *__pyx_n_s_y_i;
+static PyObject *__pyx_n_s_yaw_i;
+static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_prepare_function(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_grid, CYTHON_UNUSED PyObject *__pyx_v_flow_field); /* proto */
+static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_2function(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_x_i, CYTHON_UNUSED PyObject *__pyx_v_y_i, PyObject *__pyx_v_yaw_i, CYTHON_UNUSED PyObject *__pyx_v_turbulence_intensity_i, PyObject *__pyx_v_ct_i, CYTHON_UNUSED PyObject *__pyx_v_rotor_diameter_i, CYTHON_UNUSED PyObject *__pyx_v_x); /* proto */
+static PyObject *__pyx_float_0_0;
+static PyObject *__pyx_float_2_0;
+static PyObject *__pyx_float_0_05;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_codeobj__2;
 static PyObject *__pyx_codeobj__4;
 /* Late includes */
 
-/* "floris/simulation/wake_turbulence/crespo_hernandez.py":62
- *     model_string = "crespo_hernandez"
+/* "floris/simulation/wake_deflection/jimenez.py":45
+ *     model_string = "jimenez"
  * 
- *     def prepare_function(self) -> dict:             # <<<<<<<<<<<<<<
- *         pass
- * 
+ *     def prepare_function(             # <<<<<<<<<<<<<<
+ *         self,
+ *         grid: Grid,
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_1prepare_function(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_1prepare_function = {"prepare_function", (PyCFunction)__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_1prepare_function, METH_O, 0};
-static PyObject *__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_1prepare_function(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_1prepare_function(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_1prepare_function = {"prepare_function", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_1prepare_function, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_1prepare_function(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  CYTHON_UNUSED PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_grid = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_flow_field = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("prepare_function (wrapper)", 0);
-  __pyx_r = __pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_prepare_function(__pyx_self, ((PyObject *)__pyx_v_self));
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_grid,&__pyx_n_s_flow_field,0};
+    PyObject* values[3] = {0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_grid)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("prepare_function", 1, 3, 3, 1); __PYX_ERR(0, 45, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_flow_field)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("prepare_function", 1, 3, 3, 2); __PYX_ERR(0, 45, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "prepare_function") < 0)) __PYX_ERR(0, 45, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_grid = values[1];
+    __pyx_v_flow_field = values[2];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("prepare_function", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 45, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("floris.simulation.wake_deflection.jimenez.JimenezVelocityDeflection.prepare_function", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_prepare_function(__pyx_self, __pyx_v_self, __pyx_v_grid, __pyx_v_flow_field);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_prepare_function(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_prepare_function(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_grid, CYTHON_UNUSED PyObject *__pyx_v_flow_field) {
+  PyObject *__pyx_v_kwargs = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("prepare_function", 0);
 
+  /* "floris/simulation/wake_deflection/jimenez.py":52
+ * 
+ *         kwargs = dict(
+ *             x=grid.x_sorted,             # <<<<<<<<<<<<<<
+ *         )
+ *         return kwargs
+ */
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_grid, __pyx_n_s_x_sorted); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_x, __pyx_t_2) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_kwargs = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":54
+ *             x=grid.x_sorted,
+ *         )
+ *         return kwargs             # <<<<<<<<<<<<<<
+ * 
+ *     # @profile
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_kwargs);
+  __pyx_r = __pyx_v_kwargs;
+  goto __pyx_L0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":45
+ *     model_string = "jimenez"
+ * 
+ *     def prepare_function(             # <<<<<<<<<<<<<<
+ *         self,
+ *         grid: Grid,
+ */
+
   /* function exit code */
-  __pyx_r = ((PyObject*)Py_None); __Pyx_INCREF(Py_None);
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("floris.simulation.wake_deflection.jimenez.JimenezVelocityDeflection.prepare_function", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_kwargs);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "floris/simulation/wake_turbulence/crespo_hernandez.py":65
- *         pass
+/* "floris/simulation/wake_deflection/jimenez.py":57
  * 
+ *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
- *         ambient_TI: float,
+ *         x_i: np.ndarray,
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_3function(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_3function = {"function", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_3function, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_3function(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_3function(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_2function[] = "\n        Calcualtes the deflection field of the wake in relation to the yaw of\n        the turbine. This is coded as defined in [1].\n\n        Args:\n            x_locations (np.array): streamwise locations in wake\n            y_locations (np.array): spanwise locations in wake\n            z_locations (np.array): vertical locations in wake\n                (not used in Jim\303\251nez)\n            turbine (:py:class:`floris.simulation.turbine.Turbine`):\n                Turbine object\n            coord\n                (:py:meth:`floris.simulation.turbine_map.TurbineMap.coords`):\n                Spatial coordinates of wind turbine.\n            flow_field\n                (:py:class:`floris.simulation.flow_field.FlowField`):\n                Flow field object.\n\n        Returns:\n            deflection (np.array): Deflected wake centerline.\n\n\n        This function calculates the deflection of the entire flow field\n        given the yaw angle and Ct of the current turbine\n        ";
+static PyMethodDef __pyx_mdef_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_3function = {"function", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_3function, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_2function};
+static PyObject *__pyx_pw_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_3function(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
-  double __pyx_v_ambient_TI;
-  PyObject *__pyx_v_x = 0;
-  PyObject *__pyx_v_x_i = 0;
-  PyObject *__pyx_v_rotor_diameter = 0;
-  PyObject *__pyx_v_axial_induction = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_x_i = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_y_i = 0;
+  PyObject *__pyx_v_yaw_i = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_turbulence_intensity_i = 0;
+  PyObject *__pyx_v_ct_i = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_rotor_diameter_i = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_x = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -1474,12 +1651,14 @@ static PyObject *__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernan
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("function (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_ambient_TI,&__pyx_n_s_x,&__pyx_n_s_x_i,&__pyx_n_s_rotor_diameter,&__pyx_n_s_axial_induction,0};
-    PyObject* values[6] = {0,0,0,0,0,0};
-    if (unlikely(__pyx_kwds)) {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_x_i,&__pyx_n_s_y_i,&__pyx_n_s_yaw_i,&__pyx_n_s_turbulence_intensity_i,&__pyx_n_s_ct_i,&__pyx_n_s_rotor_diameter_i,&__pyx_n_s_x,0};
+    PyObject* values[8] = {0,0,0,0,0,0,0,0};
+    if (likely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        CYTHON_FALLTHROUGH;
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         CYTHON_FALLTHROUGH;
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -1502,165 +1681,128 @@ static PyObject *__pyx_pw_6floris_10simulation_15wake_turbulence_16crespo_hernan
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ambient_TI)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_x_i)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("function", 1, 6, 6, 1); __PYX_ERR(0, 65, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("function", 1, 7, 7, 1); __PYX_ERR(0, 57, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_x)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y_i)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("function", 1, 6, 6, 2); __PYX_ERR(0, 65, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("function", 1, 7, 7, 2); __PYX_ERR(0, 57, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_x_i)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_yaw_i)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("function", 1, 6, 6, 3); __PYX_ERR(0, 65, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("function", 1, 7, 7, 3); __PYX_ERR(0, 57, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_rotor_diameter)) != 0)) kw_args--;
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_turbulence_intensity_i)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("function", 1, 6, 6, 4); __PYX_ERR(0, 65, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("function", 1, 7, 7, 4); __PYX_ERR(0, 57, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
-        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_axial_induction)) != 0)) kw_args--;
+        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ct_i)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("function", 1, 6, 6, 5); __PYX_ERR(0, 65, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("function", 1, 7, 7, 5); __PYX_ERR(0, 57, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  6:
+        if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_rotor_diameter_i)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("function", 1, 7, 7, 6); __PYX_ERR(0, 57, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  7:
+        if (likely((values[7] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_x)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseKeywordRequired("function", __pyx_n_s_x); __PYX_ERR(0, 57, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "function") < 0)) __PYX_ERR(0, 65, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "function") < 0)) __PYX_ERR(0, 57, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 7) {
       goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+      __Pyx_RaiseKeywordRequired("function", __pyx_n_s_x); __PYX_ERR(0, 57, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
-    __pyx_v_ambient_TI = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_ambient_TI == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 67, __pyx_L3_error)
-    __pyx_v_x = values[2];
-    __pyx_v_x_i = values[3];
-    __pyx_v_rotor_diameter = values[4];
-    __pyx_v_axial_induction = values[5];
+    __pyx_v_x_i = values[1];
+    __pyx_v_y_i = values[2];
+    __pyx_v_yaw_i = values[3];
+    __pyx_v_turbulence_intensity_i = values[4];
+    __pyx_v_ct_i = values[5];
+    __pyx_v_rotor_diameter_i = values[6];
+    __pyx_v_x = values[7];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("function", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 65, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("function", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 57, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("floris.simulation.wake_turbulence.crespo_hernandez.CrespoHernandez.function", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("floris.simulation.wake_deflection.jimenez.JimenezVelocityDeflection.function", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_2function(__pyx_self, __pyx_v_self, __pyx_v_ambient_TI, __pyx_v_x, __pyx_v_x_i, __pyx_v_rotor_diameter, __pyx_v_axial_induction);
+  __pyx_r = __pyx_pf_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_2function(__pyx_self, __pyx_v_self, __pyx_v_x_i, __pyx_v_y_i, __pyx_v_yaw_i, __pyx_v_turbulence_intensity_i, __pyx_v_ct_i, __pyx_v_rotor_diameter_i, __pyx_v_x);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_2function(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, double __pyx_v_ambient_TI, PyObject *__pyx_v_x, PyObject *__pyx_v_x_i, PyObject *__pyx_v_rotor_diameter, PyObject *__pyx_v_axial_induction) {
-  PyObject *__pyx_v_delta_x = NULL;
-  PyObject *__pyx_v_upstream_mask = NULL;
-  PyObject *__pyx_v_downstream_mask = NULL;
-  PyObject *__pyx_v_ti = NULL;
+static PyObject *__pyx_pf_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_2function(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_x_i, CYTHON_UNUSED PyObject *__pyx_v_y_i, PyObject *__pyx_v_yaw_i, CYTHON_UNUSED PyObject *__pyx_v_turbulence_intensity_i, PyObject *__pyx_v_ct_i, CYTHON_UNUSED PyObject *__pyx_v_rotor_diameter_i, CYTHON_UNUSED PyObject *__pyx_v_x) {
+  CYTHON_UNUSED PyObject *__pyx_v_xi_init = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_kd = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_ad = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_bd = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_delta_x = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_A = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_B = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_C = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_D = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_yYaw_init = NULL;
+  PyObject *__pyx_v_deflection = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("function", 0);
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":74
- *     ) -> None:
- *         # Replace zeros and negatives with 1 to prevent nans/infs
- *         delta_x = np.array(x - x_i)             # <<<<<<<<<<<<<<
+  /* "floris/simulation/wake_deflection/jimenez.py":105
  * 
- *         # TODO: ensure that these fudge factors are needed for different rotations
+ *         # angle of deflection
+ *         xi_init = cosd(yaw_i) * sind(yaw_i) * ct_i / 2.0             # <<<<<<<<<<<<<<
+ * 
+ *         """
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_cosd); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_v_x_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_delta_x = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":77
- * 
- *         # TODO: ensure that these fudge factors are needed for different rotations
- *         upstream_mask = np.array(delta_x <= 0.1)             # <<<<<<<<<<<<<<
- *         downstream_mask = np.array(delta_x > -0.1)
- * 
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_delta_x, __pyx_float_0_1, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __pyx_t_4 = NULL;
+  __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_yaw_i) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_yaw_i);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_upstream_mask = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":78
- *         # TODO: ensure that these fudge factors are needed for different rotations
- *         upstream_mask = np.array(delta_x <= 0.1)
- *         downstream_mask = np.array(delta_x > -0.1)             # <<<<<<<<<<<<<<
- * 
- *         #        Keep downstream components          Set upstream to 1.0
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sind); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_delta_x, __pyx_float_neg_0_1, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
     __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
@@ -1671,183 +1813,286 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernan
       __Pyx_DECREF_SET(__pyx_t_3, function);
     }
   }
-  __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_yaw_i) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_yaw_i);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_downstream_mask = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":81
- * 
- *         #        Keep downstream components          Set upstream to 1.0
- *         delta_x = delta_x * downstream_mask + np.ones_like(delta_x) * np.array(upstream_mask)             # <<<<<<<<<<<<<<
- * 
- *         # turbulence intensity calculation based on Crespo et. al.
- */
-  __pyx_t_1 = PyNumber_Multiply(__pyx_v_delta_x, __pyx_v_downstream_mask); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_ones_like); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_3, __pyx_v_ct_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyFloat_DivideObjC(__pyx_t_2, __pyx_float_2_0, 2.0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_xi_init = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":125
+ * 
+ *         # Numexpr - do not change below without corresponding changes above.
+ *         kd = self.kd             # <<<<<<<<<<<<<<
+ *         ad = self.ad
+ *         bd = self.bd
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_kd); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_kd = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":126
+ *         # Numexpr - do not change below without corresponding changes above.
+ *         kd = self.kd
+ *         ad = self.ad             # <<<<<<<<<<<<<<
+ *         bd = self.bd
+ * 
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ad); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_ad = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":127
+ *         kd = self.kd
+ *         ad = self.ad
+ *         bd = self.bd             # <<<<<<<<<<<<<<
+ * 
+ *         delta_x = ne.evaluate("x - x_i")
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_bd); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_bd = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":129
+ *         bd = self.bd
+ * 
+ *         delta_x = ne.evaluate("x - x_i")             # <<<<<<<<<<<<<<
+ *         A = ne.evaluate("15 * (2 * kd * delta_x / rotor_diameter_i + 1) ** 4.0 + xi_init ** 2.0")
+ *         B = ne.evaluate("(30 * kd / rotor_diameter_i) * ( 2 * kd * delta_x / rotor_diameter_i + 1 ) ** 5.0")
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ne); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_evaluate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
     }
   }
-  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_v_delta_x) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_delta_x);
+  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_kp_s_x_x_i) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_s_x_x_i);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_delta_x = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":130
+ * 
+ *         delta_x = ne.evaluate("x - x_i")
+ *         A = ne.evaluate("15 * (2 * kd * delta_x / rotor_diameter_i + 1) ** 4.0 + xi_init ** 2.0")             # <<<<<<<<<<<<<<
+ *         B = ne.evaluate("(30 * kd / rotor_diameter_i) * ( 2 * kd * delta_x / rotor_diameter_i + 1 ) ** 5.0")
+ *         C = ne.evaluate("xi_init * rotor_diameter_i * (15 + xi_init ** 2.0)")
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ne); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_evaluate); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
-    }
-  }
-  __pyx_t_4 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_2, __pyx_v_upstream_mask) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_upstream_mask);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF_SET(__pyx_v_delta_x, __pyx_t_4);
-  __pyx_t_4 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":85
- *         # turbulence intensity calculation based on Crespo et. al.
- *         ti = (
- *             self.constant             # <<<<<<<<<<<<<<
- *         * axial_induction ** self.ai
- *         * ambient_TI ** self.initial
- */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_constant); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":86
- *         ti = (
- *             self.constant
- *         * axial_induction ** self.ai             # <<<<<<<<<<<<<<
- *         * ambient_TI ** self.initial
- *         * ((delta_x) / rotor_diameter) ** self.downstream
- */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ai); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 86, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = PyNumber_Power(__pyx_v_axial_induction, __pyx_t_5, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 86, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":87
- *             self.constant
- *         * axial_induction ** self.ai
- *         * ambient_TI ** self.initial             # <<<<<<<<<<<<<<
- *         * ((delta_x) / rotor_diameter) ** self.downstream
- *         )
- */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_ambient_TI); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_initial); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyNumber_Power(__pyx_t_1, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":88
- *         * axial_induction ** self.ai
- *         * ambient_TI ** self.initial
- *         * ((delta_x) / rotor_diameter) ** self.downstream             # <<<<<<<<<<<<<<
- *         )
- *         # Mask the 1 values from above with zeros
- */
-  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_v_delta_x, __pyx_v_rotor_diameter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_downstream); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = PyNumber_Power(__pyx_t_3, __pyx_t_5, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_ti = __pyx_t_5;
-  __pyx_t_5 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":91
- *         )
- *         # Mask the 1 values from above with zeros
- *         return ti * np.array(downstream_mask)             # <<<<<<<<<<<<<<
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
     if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  __pyx_t_5 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_1, __pyx_v_downstream_mask) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_downstream_mask);
+  __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_kp_s_15_2_kd_delta_x_rotor_diameter_i) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_15_2_kd_delta_x_rotor_diameter_i);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_v_ti, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_r = __pyx_t_4;
-  __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_A = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":131
+ *         delta_x = ne.evaluate("x - x_i")
+ *         A = ne.evaluate("15 * (2 * kd * delta_x / rotor_diameter_i + 1) ** 4.0 + xi_init ** 2.0")
+ *         B = ne.evaluate("(30 * kd / rotor_diameter_i) * ( 2 * kd * delta_x / rotor_diameter_i + 1 ) ** 5.0")             # <<<<<<<<<<<<<<
+ *         C = ne.evaluate("xi_init * rotor_diameter_i * (15 + xi_init ** 2.0)")
+ *         D = ne.evaluate("30 * kd")
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ne); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_evaluate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_kp_s_30_kd_rotor_diameter_i_2_kd_del) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_s_30_kd_rotor_diameter_i_2_kd_del);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_B = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":132
+ *         A = ne.evaluate("15 * (2 * kd * delta_x / rotor_diameter_i + 1) ** 4.0 + xi_init ** 2.0")
+ *         B = ne.evaluate("(30 * kd / rotor_diameter_i) * ( 2 * kd * delta_x / rotor_diameter_i + 1 ) ** 5.0")
+ *         C = ne.evaluate("xi_init * rotor_diameter_i * (15 + xi_init ** 2.0)")             # <<<<<<<<<<<<<<
+ *         D = ne.evaluate("30 * kd")
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ne); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_evaluate); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_kp_s_xi_init_rotor_diameter_i_15_xi_i) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_xi_init_rotor_diameter_i_15_xi_i);
+  __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_C = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":133
+ *         B = ne.evaluate("(30 * kd / rotor_diameter_i) * ( 2 * kd * delta_x / rotor_diameter_i + 1 ) ** 5.0")
+ *         C = ne.evaluate("xi_init * rotor_diameter_i * (15 + xi_init ** 2.0)")
+ *         D = ne.evaluate("30 * kd")             # <<<<<<<<<<<<<<
+ * 
+ *         yYaw_init = ne.evaluate("(xi_init * A / B) - (C / D)")
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ne); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_evaluate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_kp_s_30_kd) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_s_30_kd);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_D = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":135
+ *         D = ne.evaluate("30 * kd")
+ * 
+ *         yYaw_init = ne.evaluate("(xi_init * A / B) - (C / D)")             # <<<<<<<<<<<<<<
+ *         deflection = ne.evaluate("yYaw_init + ad + bd * delta_x")
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ne); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_evaluate); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_kp_s_xi_init_A_B_C_D) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_xi_init_A_B_C_D);
+  __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_yYaw_init = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":136
+ * 
+ *         yYaw_init = ne.evaluate("(xi_init * A / B) - (C / D)")
+ *         deflection = ne.evaluate("yYaw_init + ad + bd * delta_x")             # <<<<<<<<<<<<<<
+ * 
+ *         return deflection
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ne); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_evaluate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_kp_s_yYaw_init_ad_bd_delta_x) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_s_yYaw_init_ad_bd_delta_x);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_deflection = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":138
+ *         deflection = ne.evaluate("yYaw_init + ad + bd * delta_x")
+ * 
+ *         return deflection             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_deflection);
+  __pyx_r = __pyx_v_deflection;
   goto __pyx_L0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":65
- *         pass
+  /* "floris/simulation/wake_deflection/jimenez.py":57
  * 
+ *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
- *         ambient_TI: float,
+ *         x_i: np.ndarray,
  */
 
   /* function exit code */
@@ -1856,14 +2101,20 @@ static PyObject *__pyx_pf_6floris_10simulation_15wake_turbulence_16crespo_hernan
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("floris.simulation.wake_turbulence.crespo_hernandez.CrespoHernandez.function", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("floris.simulation.wake_deflection.jimenez.JimenezVelocityDeflection.function", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_xi_init);
+  __Pyx_XDECREF(__pyx_v_kd);
+  __Pyx_XDECREF(__pyx_v_ad);
+  __Pyx_XDECREF(__pyx_v_bd);
   __Pyx_XDECREF(__pyx_v_delta_x);
-  __Pyx_XDECREF(__pyx_v_upstream_mask);
-  __Pyx_XDECREF(__pyx_v_downstream_mask);
-  __Pyx_XDECREF(__pyx_v_ti);
+  __Pyx_XDECREF(__pyx_v_A);
+  __Pyx_XDECREF(__pyx_v_B);
+  __Pyx_XDECREF(__pyx_v_C);
+  __Pyx_XDECREF(__pyx_v_D);
+  __Pyx_XDECREF(__pyx_v_yYaw_init);
+  __Pyx_XDECREF(__pyx_v_deflection);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -1876,17 +2127,17 @@ static PyMethodDef __pyx_methods[] = {
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_crespo_hernandez(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_jimenez(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_crespo_hernandez},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_jimenez},
   {0, NULL}
 };
 #endif
 
 static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
-    "crespo_hernandez",
+    "jimenez",
     0, /* m_doc */
   #if CYTHON_PEP489_MULTI_PHASE_INIT
     0, /* m_size */
@@ -1915,66 +2166,79 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
+  {&__pyx_kp_s_15_2_kd_delta_x_rotor_diameter_i, __pyx_k_15_2_kd_delta_x_rotor_diameter_i, sizeof(__pyx_k_15_2_kd_delta_x_rotor_diameter_i), 0, 0, 1, 0},
+  {&__pyx_kp_s_30_kd, __pyx_k_30_kd, sizeof(__pyx_k_30_kd), 0, 0, 1, 0},
+  {&__pyx_kp_s_30_kd_rotor_diameter_i_2_kd_del, __pyx_k_30_kd_rotor_diameter_i_2_kd_del, sizeof(__pyx_k_30_kd_rotor_diameter_i_2_kd_del), 0, 0, 1, 0},
+  {&__pyx_n_s_A, __pyx_k_A, sizeof(__pyx_k_A), 0, 0, 1, 1},
   {&__pyx_n_s_Any, __pyx_k_Any, sizeof(__pyx_k_Any), 0, 0, 1, 1},
+  {&__pyx_n_s_B, __pyx_k_B, sizeof(__pyx_k_B), 0, 0, 1, 1},
   {&__pyx_n_s_BaseModel, __pyx_k_BaseModel, sizeof(__pyx_k_BaseModel), 0, 0, 1, 1},
-  {&__pyx_n_s_CrespoHernandez, __pyx_k_CrespoHernandez, sizeof(__pyx_k_CrespoHernandez), 0, 0, 1, 1},
-  {&__pyx_n_s_CrespoHernandez_function, __pyx_k_CrespoHernandez_function, sizeof(__pyx_k_CrespoHernandez_function), 0, 0, 1, 1},
-  {&__pyx_kp_s_CrespoHernandez_is_a_wake_turbu, __pyx_k_CrespoHernandez_is_a_wake_turbu, sizeof(__pyx_k_CrespoHernandez_is_a_wake_turbu), 0, 0, 1, 0},
-  {&__pyx_n_s_CrespoHernandez_prepare_function, __pyx_k_CrespoHernandez_prepare_function, sizeof(__pyx_k_CrespoHernandez_prepare_function), 0, 0, 1, 1},
+  {&__pyx_n_s_C, __pyx_k_C, sizeof(__pyx_k_C), 0, 0, 1, 1},
+  {&__pyx_n_s_D, __pyx_k_D, sizeof(__pyx_k_D), 0, 0, 1, 1},
   {&__pyx_n_s_Dict, __pyx_k_Dict, sizeof(__pyx_k_Dict), 0, 0, 1, 1},
   {&__pyx_n_s_Farm, __pyx_k_Farm, sizeof(__pyx_k_Farm), 0, 0, 1, 1},
   {&__pyx_n_s_FlowField, __pyx_k_FlowField, sizeof(__pyx_k_FlowField), 0, 0, 1, 1},
   {&__pyx_n_s_Grid, __pyx_k_Grid, sizeof(__pyx_k_Grid), 0, 0, 1, 1},
+  {&__pyx_n_s_JimenezVelocityDeflection, __pyx_k_JimenezVelocityDeflection, sizeof(__pyx_k_JimenezVelocityDeflection), 0, 0, 1, 1},
+  {&__pyx_n_s_JimenezVelocityDeflection_functi, __pyx_k_JimenezVelocityDeflection_functi, sizeof(__pyx_k_JimenezVelocityDeflection_functi), 0, 0, 1, 1},
+  {&__pyx_n_s_JimenezVelocityDeflection_prepar, __pyx_k_JimenezVelocityDeflection_prepar, sizeof(__pyx_k_JimenezVelocityDeflection_prepar), 0, 0, 1, 1},
+  {&__pyx_kp_s_Jimnez_wake_deflection_model_de, __pyx_k_Jimnez_wake_deflection_model_de, sizeof(__pyx_k_Jimnez_wake_deflection_model_de), 0, 0, 1, 0},
   {&__pyx_n_s_Turbine, __pyx_k_Turbine, sizeof(__pyx_k_Turbine), 0, 0, 1, 1},
-  {&__pyx_n_s_ai, __pyx_k_ai, sizeof(__pyx_k_ai), 0, 0, 1, 1},
-  {&__pyx_n_s_ambient_TI, __pyx_k_ambient_TI, sizeof(__pyx_k_ambient_TI), 0, 0, 1, 1},
-  {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
+  {&__pyx_n_s_ad, __pyx_k_ad, sizeof(__pyx_k_ad), 0, 0, 1, 1},
   {&__pyx_n_s_attrs, __pyx_k_attrs, sizeof(__pyx_k_attrs), 0, 0, 1, 1},
-  {&__pyx_n_s_axial_induction, __pyx_k_axial_induction, sizeof(__pyx_k_axial_induction), 0, 0, 1, 1},
+  {&__pyx_n_s_bd, __pyx_k_bd, sizeof(__pyx_k_bd), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
-  {&__pyx_n_s_constant, __pyx_k_constant, sizeof(__pyx_k_constant), 0, 0, 1, 1},
-  {&__pyx_n_s_converter, __pyx_k_converter, sizeof(__pyx_k_converter), 0, 0, 1, 1},
   {&__pyx_n_s_cosd, __pyx_k_cosd, sizeof(__pyx_k_cosd), 0, 0, 1, 1},
-  {&__pyx_n_s_crespo_hernandez, __pyx_k_crespo_hernandez, sizeof(__pyx_k_crespo_hernandez), 0, 0, 1, 1},
+  {&__pyx_n_s_ct_i, __pyx_k_ct_i, sizeof(__pyx_k_ct_i), 0, 0, 1, 1},
   {&__pyx_n_s_default, __pyx_k_default, sizeof(__pyx_k_default), 0, 0, 1, 1},
   {&__pyx_n_s_define, __pyx_k_define, sizeof(__pyx_k_define), 0, 0, 1, 1},
+  {&__pyx_n_s_deflection, __pyx_k_deflection, sizeof(__pyx_k_deflection), 0, 0, 1, 1},
   {&__pyx_n_s_delta_x, __pyx_k_delta_x, sizeof(__pyx_k_delta_x), 0, 0, 1, 1},
-  {&__pyx_n_u_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 1, 0, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
-  {&__pyx_n_s_downstream, __pyx_k_downstream, sizeof(__pyx_k_downstream), 0, 0, 1, 1},
-  {&__pyx_n_s_downstream_mask, __pyx_k_downstream_mask, sizeof(__pyx_k_downstream_mask), 0, 0, 1, 1},
+  {&__pyx_n_s_evaluate, __pyx_k_evaluate, sizeof(__pyx_k_evaluate), 0, 0, 1, 1},
   {&__pyx_n_s_field, __pyx_k_field, sizeof(__pyx_k_field), 0, 0, 1, 1},
-  {&__pyx_n_u_float, __pyx_k_float, sizeof(__pyx_k_float), 0, 1, 0, 1},
   {&__pyx_n_s_floris_simulation, __pyx_k_floris_simulation, sizeof(__pyx_k_floris_simulation), 0, 0, 1, 1},
-  {&__pyx_n_s_floris_simulation_wake_turbulenc, __pyx_k_floris_simulation_wake_turbulenc, sizeof(__pyx_k_floris_simulation_wake_turbulenc), 0, 0, 1, 1},
-  {&__pyx_kp_s_floris_simulation_wake_turbulenc_2, __pyx_k_floris_simulation_wake_turbulenc_2, sizeof(__pyx_k_floris_simulation_wake_turbulenc_2), 0, 0, 1, 0},
+  {&__pyx_n_s_floris_simulation_wake_deflectio, __pyx_k_floris_simulation_wake_deflectio, sizeof(__pyx_k_floris_simulation_wake_deflectio), 0, 0, 1, 1},
+  {&__pyx_kp_s_floris_simulation_wake_deflectio_2, __pyx_k_floris_simulation_wake_deflectio_2, sizeof(__pyx_k_floris_simulation_wake_deflectio_2), 0, 0, 1, 0},
   {&__pyx_n_s_floris_utilities, __pyx_k_floris_utilities, sizeof(__pyx_k_floris_utilities), 0, 0, 1, 1},
+  {&__pyx_n_s_flow_field, __pyx_k_flow_field, sizeof(__pyx_k_flow_field), 0, 0, 1, 1},
   {&__pyx_n_s_function, __pyx_k_function, sizeof(__pyx_k_function), 0, 0, 1, 1},
+  {&__pyx_n_s_grid, __pyx_k_grid, sizeof(__pyx_k_grid), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
-  {&__pyx_n_s_initial, __pyx_k_initial, sizeof(__pyx_k_initial), 0, 0, 1, 1},
+  {&__pyx_n_s_jimenez, __pyx_k_jimenez, sizeof(__pyx_k_jimenez), 0, 0, 1, 1},
+  {&__pyx_n_s_kd, __pyx_k_kd, sizeof(__pyx_k_kd), 0, 0, 1, 1},
+  {&__pyx_n_s_kwargs, __pyx_k_kwargs, sizeof(__pyx_k_kwargs), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_metaclass, __pyx_k_metaclass, sizeof(__pyx_k_metaclass), 0, 0, 1, 1},
   {&__pyx_n_s_model_string, __pyx_k_model_string, sizeof(__pyx_k_model_string), 0, 0, 1, 1},
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_ndarray, __pyx_k_ndarray, sizeof(__pyx_k_ndarray), 0, 0, 1, 1},
+  {&__pyx_n_s_ne, __pyx_k_ne, sizeof(__pyx_k_ne), 0, 0, 1, 1},
   {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},
+  {&__pyx_n_s_numexpr, __pyx_k_numexpr, sizeof(__pyx_k_numexpr), 0, 0, 1, 1},
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
-  {&__pyx_n_s_ones_like, __pyx_k_ones_like, sizeof(__pyx_k_ones_like), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
   {&__pyx_n_s_prepare_function, __pyx_k_prepare_function, sizeof(__pyx_k_prepare_function), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
   {&__pyx_n_s_return, __pyx_k_return, sizeof(__pyx_k_return), 0, 0, 1, 1},
-  {&__pyx_n_s_rotor_diameter, __pyx_k_rotor_diameter, sizeof(__pyx_k_rotor_diameter), 0, 0, 1, 1},
+  {&__pyx_n_s_rotor_diameter_i, __pyx_k_rotor_diameter_i, sizeof(__pyx_k_rotor_diameter_i), 0, 0, 1, 1},
   {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
   {&__pyx_n_s_sind, __pyx_k_sind, sizeof(__pyx_k_sind), 0, 0, 1, 1},
-  {&__pyx_n_s_tand, __pyx_k_tand, sizeof(__pyx_k_tand), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_ti, __pyx_k_ti, sizeof(__pyx_k_ti), 0, 0, 1, 1},
+  {&__pyx_n_s_turbulence_intensity_i, __pyx_k_turbulence_intensity_i, sizeof(__pyx_k_turbulence_intensity_i), 0, 0, 1, 1},
   {&__pyx_n_s_typing, __pyx_k_typing, sizeof(__pyx_k_typing), 0, 0, 1, 1},
-  {&__pyx_n_s_upstream_mask, __pyx_k_upstream_mask, sizeof(__pyx_k_upstream_mask), 0, 0, 1, 1},
   {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
   {&__pyx_n_s_x_i, __pyx_k_x_i, sizeof(__pyx_k_x_i), 0, 0, 1, 1},
+  {&__pyx_n_s_x_sorted, __pyx_k_x_sorted, sizeof(__pyx_k_x_sorted), 0, 0, 1, 1},
+  {&__pyx_kp_s_x_x_i, __pyx_k_x_x_i, sizeof(__pyx_k_x_x_i), 0, 0, 1, 0},
+  {&__pyx_n_s_xi_init, __pyx_k_xi_init, sizeof(__pyx_k_xi_init), 0, 0, 1, 1},
+  {&__pyx_kp_s_xi_init_A_B_C_D, __pyx_k_xi_init_A_B_C_D, sizeof(__pyx_k_xi_init_A_B_C_D), 0, 0, 1, 0},
+  {&__pyx_kp_s_xi_init_rotor_diameter_i_15_xi_i, __pyx_k_xi_init_rotor_diameter_i_15_xi_i, sizeof(__pyx_k_xi_init_rotor_diameter_i_15_xi_i), 0, 0, 1, 0},
+  {&__pyx_n_s_yYaw_init, __pyx_k_yYaw_init, sizeof(__pyx_k_yYaw_init), 0, 0, 1, 1},
+  {&__pyx_kp_s_yYaw_init_ad_bd_delta_x, __pyx_k_yYaw_init_ad_bd_delta_x, sizeof(__pyx_k_yYaw_init_ad_bd_delta_x), 0, 0, 1, 0},
+  {&__pyx_n_s_y_i, __pyx_k_y_i, sizeof(__pyx_k_y_i), 0, 0, 1, 1},
+  {&__pyx_n_s_yaw_i, __pyx_k_yaw_i, sizeof(__pyx_k_yaw_i), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
@@ -1985,29 +2249,29 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":62
- *     model_string = "crespo_hernandez"
+  /* "floris/simulation/wake_deflection/jimenez.py":45
+ *     model_string = "jimenez"
  * 
- *     def prepare_function(self) -> dict:             # <<<<<<<<<<<<<<
- *         pass
- * 
+ *     def prepare_function(             # <<<<<<<<<<<<<<
+ *         self,
+ *         grid: Grid,
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_grid, __pyx_n_s_flow_field, __pyx_n_s_kwargs); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_floris_simulation_wake_turbulenc_2, __pyx_n_s_prepare_function, 62, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_floris_simulation_wake_deflectio_2, __pyx_n_s_prepare_function, 45, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 45, __pyx_L1_error)
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":65
- *         pass
+  /* "floris/simulation/wake_deflection/jimenez.py":57
  * 
+ *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
- *         ambient_TI: float,
+ *         x_i: np.ndarray,
  */
-  __pyx_tuple__3 = PyTuple_Pack(10, __pyx_n_s_self, __pyx_n_s_ambient_TI, __pyx_n_s_x, __pyx_n_s_x_i, __pyx_n_s_rotor_diameter, __pyx_n_s_axial_induction, __pyx_n_s_delta_x, __pyx_n_s_upstream_mask, __pyx_n_s_downstream_mask, __pyx_n_s_ti); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(19, __pyx_n_s_self, __pyx_n_s_x_i, __pyx_n_s_y_i, __pyx_n_s_yaw_i, __pyx_n_s_turbulence_intensity_i, __pyx_n_s_ct_i, __pyx_n_s_rotor_diameter_i, __pyx_n_s_x, __pyx_n_s_xi_init, __pyx_n_s_kd, __pyx_n_s_ad, __pyx_n_s_bd, __pyx_n_s_delta_x, __pyx_n_s_A, __pyx_n_s_B, __pyx_n_s_C, __pyx_n_s_D, __pyx_n_s_yYaw_init, __pyx_n_s_deflection); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(6, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_floris_simulation_wake_turbulenc_2, __pyx_n_s_function, 65, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(7, 1, 19, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_floris_simulation_wake_deflectio_2, __pyx_n_s_function, 57, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -2017,11 +2281,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  __pyx_float_0_1 = PyFloat_FromDouble(0.1); if (unlikely(!__pyx_float_0_1)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_float_0_8 = PyFloat_FromDouble(0.8); if (unlikely(!__pyx_float_0_8)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_float_0_9 = PyFloat_FromDouble(0.9); if (unlikely(!__pyx_float_0_9)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_float_neg_0_1 = PyFloat_FromDouble(-0.1); if (unlikely(!__pyx_float_neg_0_1)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_float_neg_0_32 = PyFloat_FromDouble(-0.32); if (unlikely(!__pyx_float_neg_0_32)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_0_0 = PyFloat_FromDouble(0.0); if (unlikely(!__pyx_float_0_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_2_0 = PyFloat_FromDouble(2.0); if (unlikely(!__pyx_float_2_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_0_05 = PyFloat_FromDouble(0.05); if (unlikely(!__pyx_float_0_05)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2110,11 +2372,11 @@ static int __Pyx_modinit_function_import_code(void) {
 
 
 #if PY_MAJOR_VERSION < 3
-__Pyx_PyMODINIT_FUNC initcrespo_hernandez(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC initcrespo_hernandez(void)
+__Pyx_PyMODINIT_FUNC initjimenez(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC initjimenez(void)
 #else
-__Pyx_PyMODINIT_FUNC PyInit_crespo_hernandez(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_crespo_hernandez(void)
+__Pyx_PyMODINIT_FUNC PyInit_jimenez(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_jimenez(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -2181,7 +2443,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_crespo_hernandez(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_jimenez(PyObject *__pyx_pyinit_module)
 #endif
 #endif
 {
@@ -2199,7 +2461,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_crespo_hernandez(PyObject *__pyx_p
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'crespo_hernandez' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'jimenez' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #elif PY_MAJOR_VERSION >= 3
@@ -2214,7 +2476,7 @@ if (!__Pyx_RefNanny) {
       Py_FatalError("failed to import 'refnanny' module");
 }
 #endif
-  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_crespo_hernandez(void)", 0);
+  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_jimenez(void)", 0);
   if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
@@ -2251,7 +2513,7 @@ if (!__Pyx_RefNanny) {
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("crespo_hernandez", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("jimenez", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
@@ -2269,14 +2531,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_floris__simulation__wake_turbulence__crespo_hernandez) {
+  if (__pyx_module_is_main_floris__simulation__wake_deflection__jimenez) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "floris.simulation.wake_turbulence.crespo_hernandez")) {
-      if (unlikely(PyDict_SetItemString(modules, "floris.simulation.wake_turbulence.crespo_hernandez", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "floris.simulation.wake_deflection.jimenez")) {
+      if (unlikely(PyDict_SetItemString(modules, "floris.simulation.wake_deflection.jimenez", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -2297,7 +2559,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":13
+  /* "floris/simulation/wake_deflection/jimenez.py":13
  * # the License.
  * 
  * from typing import Any, Dict             # <<<<<<<<<<<<<<
@@ -2325,12 +2587,12 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":15
+  /* "floris/simulation/wake_deflection/jimenez.py":15
  * from typing import Any, Dict
  * 
  * from attrs import define, field             # <<<<<<<<<<<<<<
+ * import numexpr as ne
  * import numpy as np
- * 
  */
   __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2353,131 +2615,143 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":16
+  /* "floris/simulation/wake_deflection/jimenez.py":16
  * 
  * from attrs import define, field
+ * import numexpr as ne             # <<<<<<<<<<<<<<
+ * import numpy as np
+ * 
+ */
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_numexpr, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ne, __pyx_t_1) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":17
+ * from attrs import define, field
+ * import numexpr as ne
  * import numpy as np             # <<<<<<<<<<<<<<
  * 
  * from floris.simulation import BaseModel
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":18
+  /* "floris/simulation/wake_deflection/jimenez.py":19
  * import numpy as np
  * 
  * from floris.simulation import BaseModel             # <<<<<<<<<<<<<<
  * from floris.simulation import Farm
  * from floris.simulation import FlowField
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_BaseModel);
   __Pyx_GIVEREF(__pyx_n_s_BaseModel);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_BaseModel);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BaseModel); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BaseModel); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BaseModel, __pyx_t_1) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BaseModel, __pyx_t_1) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":19
+  /* "floris/simulation/wake_deflection/jimenez.py":20
  * 
  * from floris.simulation import BaseModel
  * from floris.simulation import Farm             # <<<<<<<<<<<<<<
  * from floris.simulation import FlowField
  * from floris.simulation import Grid
  */
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_Farm);
   __Pyx_GIVEREF(__pyx_n_s_Farm);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_Farm);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_Farm); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_Farm); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Farm, __pyx_t_2) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Farm, __pyx_t_2) < 0) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":20
+  /* "floris/simulation/wake_deflection/jimenez.py":21
  * from floris.simulation import BaseModel
  * from floris.simulation import Farm
  * from floris.simulation import FlowField             # <<<<<<<<<<<<<<
  * from floris.simulation import Grid
  * from floris.simulation import Turbine
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_FlowField);
   __Pyx_GIVEREF(__pyx_n_s_FlowField);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_FlowField);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_FlowField); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_FlowField); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_FlowField, __pyx_t_1) < 0) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_FlowField, __pyx_t_1) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":21
+  /* "floris/simulation/wake_deflection/jimenez.py":22
  * from floris.simulation import Farm
  * from floris.simulation import FlowField
  * from floris.simulation import Grid             # <<<<<<<<<<<<<<
  * from floris.simulation import Turbine
- * from floris.utilities import cosd, sind, tand
+ * from floris.utilities import cosd, sind
  */
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_Grid);
   __Pyx_GIVEREF(__pyx_n_s_Grid);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_Grid);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_Grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_Grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Grid, __pyx_t_2) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Grid, __pyx_t_2) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":22
+  /* "floris/simulation/wake_deflection/jimenez.py":23
  * from floris.simulation import FlowField
  * from floris.simulation import Grid
  * from floris.simulation import Turbine             # <<<<<<<<<<<<<<
- * from floris.utilities import cosd, sind, tand
+ * from floris.utilities import cosd, sind
  * 
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_Turbine);
   __Pyx_GIVEREF(__pyx_n_s_Turbine);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_Turbine);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_floris_simulation, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_Turbine); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_Turbine); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Turbine, __pyx_t_1) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Turbine, __pyx_t_1) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":23
+  /* "floris/simulation/wake_deflection/jimenez.py":24
  * from floris.simulation import Grid
  * from floris.simulation import Turbine
- * from floris.utilities import cosd, sind, tand             # <<<<<<<<<<<<<<
+ * from floris.utilities import cosd, sind             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = PyList_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_cosd);
   __Pyx_GIVEREF(__pyx_n_s_cosd);
@@ -2485,287 +2759,349 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_sind);
   __Pyx_GIVEREF(__pyx_n_s_sind);
   PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_sind);
-  __Pyx_INCREF(__pyx_n_s_tand);
-  __Pyx_GIVEREF(__pyx_n_s_tand);
-  PyList_SET_ITEM(__pyx_t_2, 2, __pyx_n_s_tand);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_floris_utilities, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_floris_utilities, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_cosd); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_cosd); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cosd, __pyx_t_2) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cosd, __pyx_t_2) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_sind); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_sind); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sind, __pyx_t_2) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_tand); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_tand, __pyx_t_2) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sind, __pyx_t_2) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":27
+  /* "floris/simulation/wake_deflection/jimenez.py":28
  * 
  * @define
- * class CrespoHernandez(BaseModel):             # <<<<<<<<<<<<<<
+ * class JimenezVelocityDeflection(BaseModel):             # <<<<<<<<<<<<<<
  *     """
- *     CrespoHernandez is a wake-turbulence model that is used to compute
+ *     Jimnez wake deflection model, dervied from
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_BaseModel); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_BaseModel); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_CrespoHernandez, __pyx_n_s_CrespoHernandez, (PyObject *) NULL, __pyx_n_s_floris_simulation_wake_turbulenc, __pyx_kp_s_CrespoHernandez_is_a_wake_turbu); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_JimenezVelocityDeflection, __pyx_n_s_JimenezVelocityDeflection, (PyObject *) NULL, __pyx_n_s_floris_simulation_wake_deflectio, __pyx_kp_s_Jimnez_wake_deflection_model_de); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":56
- *             :keyprefix: cht-
+  /* "floris/simulation/wake_deflection/jimenez.py":40
  *     """
- *     initial: float = field(converter=float, default=0.1)             # <<<<<<<<<<<<<<
- *     constant: float = field(converter=float, default=0.9)
- *     ai: float = field(converter=float, default=0.8)
+ * 
+ *     kd: float = field(default=0.05)             # <<<<<<<<<<<<<<
+ *     ad: float = field(default=0.0)
+ *     bd: float = field(default=0.0)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_field); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_field); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_converter, ((PyObject *)(&PyFloat_Type))) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_default, __pyx_float_0_1) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 56, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_default, __pyx_float_0_05) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_initial, __pyx_t_6) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_kd, __pyx_t_6) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":57
- *     """
- *     initial: float = field(converter=float, default=0.1)
- *     constant: float = field(converter=float, default=0.9)             # <<<<<<<<<<<<<<
- *     ai: float = field(converter=float, default=0.8)
- *     downstream: float = field(converter=float, default=-0.32)
+  /* "floris/simulation/wake_deflection/jimenez.py":41
+ * 
+ *     kd: float = field(default=0.05)
+ *     ad: float = field(default=0.0)             # <<<<<<<<<<<<<<
+ *     bd: float = field(default=0.0)
+ *     model_string = "jimenez"
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_field); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_field); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_converter, ((PyObject *)(&PyFloat_Type))) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_default, __pyx_float_0_9) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_default, __pyx_float_0_0) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_constant, __pyx_t_4) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ad, __pyx_t_4) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":58
- *     initial: float = field(converter=float, default=0.1)
- *     constant: float = field(converter=float, default=0.9)
- *     ai: float = field(converter=float, default=0.8)             # <<<<<<<<<<<<<<
- *     downstream: float = field(converter=float, default=-0.32)
- *     model_string = "crespo_hernandez"
+  /* "floris/simulation/wake_deflection/jimenez.py":42
+ *     kd: float = field(default=0.05)
+ *     ad: float = field(default=0.0)
+ *     bd: float = field(default=0.0)             # <<<<<<<<<<<<<<
+ *     model_string = "jimenez"
+ * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_field); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_field); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_converter, ((PyObject *)(&PyFloat_Type))) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_default, __pyx_float_0_8) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_default, __pyx_float_0_0) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ai, __pyx_t_6) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_bd, __pyx_t_6) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":59
- *     constant: float = field(converter=float, default=0.9)
- *     ai: float = field(converter=float, default=0.8)
- *     downstream: float = field(converter=float, default=-0.32)             # <<<<<<<<<<<<<<
- *     model_string = "crespo_hernandez"
+  /* "floris/simulation/wake_deflection/jimenez.py":43
+ *     ad: float = field(default=0.0)
+ *     bd: float = field(default=0.0)
+ *     model_string = "jimenez"             # <<<<<<<<<<<<<<
  * 
+ *     def prepare_function(
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_field); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_model_string, __pyx_n_s_jimenez) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+
+  /* "floris/simulation/wake_deflection/jimenez.py":45
+ *     model_string = "jimenez"
+ * 
+ *     def prepare_function(             # <<<<<<<<<<<<<<
+ *         self,
+ *         grid: Grid,
+ */
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 59, __pyx_L1_error)
+
+  /* "floris/simulation/wake_deflection/jimenez.py":47
+ *     def prepare_function(
+ *         self,
+ *         grid: Grid,             # <<<<<<<<<<<<<<
+ *         flow_field: FlowField,
+ *     ) -> Dict[str, Any]:
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Grid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_converter, ((PyObject *)(&PyFloat_Type))) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_default, __pyx_float_neg_0_32) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_grid, __pyx_t_5) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":48
+ *         self,
+ *         grid: Grid,
+ *         flow_field: FlowField,             # <<<<<<<<<<<<<<
+ *     ) -> Dict[str, Any]:
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_FlowField); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_flow_field, __pyx_t_5) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":49
+ *         grid: Grid,
+ *         flow_field: FlowField,
+ *     ) -> Dict[str, Any]:             # <<<<<<<<<<<<<<
+ * 
+ *         kwargs = dict(
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Dict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Any); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_INCREF(((PyObject *)(&PyString_Type)));
+  __Pyx_GIVEREF(((PyObject *)(&PyString_Type)));
+  PyTuple_SET_ITEM(__pyx_t_7, 0, ((PyObject *)(&PyString_Type)));
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_4);
+  __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_return, __pyx_t_4) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":45
+ *     model_string = "jimenez"
+ * 
+ *     def prepare_function(             # <<<<<<<<<<<<<<
+ *         self,
+ *         grid: Grid,
+ */
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_1prepare_function, 0, __pyx_n_s_JimenezVelocityDeflection_prepar, NULL, __pyx_n_s_floris_simulation_wake_deflectio, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_6);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_downstream, __pyx_t_4) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_prepare_function, __pyx_t_4) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":60
- *     ai: float = field(converter=float, default=0.8)
- *     downstream: float = field(converter=float, default=-0.32)
- *     model_string = "crespo_hernandez"             # <<<<<<<<<<<<<<
+  /* "floris/simulation/wake_deflection/jimenez.py":57
  * 
- *     def prepare_function(self) -> dict:
- */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_model_string, __pyx_n_s_crespo_hernandez) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":62
- *     model_string = "crespo_hernandez"
- * 
- *     def prepare_function(self) -> dict:             # <<<<<<<<<<<<<<
- *         pass
- * 
- */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, __pyx_n_u_dict) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_1prepare_function, 0, __pyx_n_s_CrespoHernandez_prepare_function, NULL, __pyx_n_s_floris_simulation_wake_turbulenc, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_4);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_prepare_function, __pyx_t_5) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":65
- *         pass
- * 
+ *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
- *         ambient_TI: float,
- */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_ambient_TI, __pyx_n_u_float) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":68
- *         self,
- *         ambient_TI: float,
- *         x: np.ndarray,             # <<<<<<<<<<<<<<
  *         x_i: np.ndarray,
- *         rotor_diameter: np.ndarray,
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_x, __pyx_t_6) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":69
- *         ambient_TI: float,
- *         x: np.ndarray,
+  /* "floris/simulation/wake_deflection/jimenez.py":59
+ *     def function(
+ *         self,
  *         x_i: np.ndarray,             # <<<<<<<<<<<<<<
- *         rotor_diameter: np.ndarray,
- *         axial_induction: np.ndarray,
+ *         y_i: np.ndarray,
+ *         yaw_i: np.ndarray,
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_x_i, __pyx_t_4) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_x_i, __pyx_t_7) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":70
+  /* "floris/simulation/wake_deflection/jimenez.py":60
+ *         self,
+ *         x_i: np.ndarray,
+ *         y_i: np.ndarray,             # <<<<<<<<<<<<<<
+ *         yaw_i: np.ndarray,
+ *         turbulence_intensity_i: np.ndarray,
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_y_i, __pyx_t_6) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":61
+ *         x_i: np.ndarray,
+ *         y_i: np.ndarray,
+ *         yaw_i: np.ndarray,             # <<<<<<<<<<<<<<
+ *         turbulence_intensity_i: np.ndarray,
+ *         ct_i: np.ndarray,
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_yaw_i, __pyx_t_7) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":62
+ *         y_i: np.ndarray,
+ *         yaw_i: np.ndarray,
+ *         turbulence_intensity_i: np.ndarray,             # <<<<<<<<<<<<<<
+ *         ct_i: np.ndarray,
+ *         rotor_diameter_i: np.ndarray,
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_turbulence_intensity_i, __pyx_t_6) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":63
+ *         yaw_i: np.ndarray,
+ *         turbulence_intensity_i: np.ndarray,
+ *         ct_i: np.ndarray,             # <<<<<<<<<<<<<<
+ *         rotor_diameter_i: np.ndarray,
+ *         *,
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_ct_i, __pyx_t_7) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "floris/simulation/wake_deflection/jimenez.py":64
+ *         turbulence_intensity_i: np.ndarray,
+ *         ct_i: np.ndarray,
+ *         rotor_diameter_i: np.ndarray,             # <<<<<<<<<<<<<<
+ *         *,
  *         x: np.ndarray,
- *         x_i: np.ndarray,
- *         rotor_diameter: np.ndarray,             # <<<<<<<<<<<<<<
- *         axial_induction: np.ndarray,
- *     ) -> None:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_rotor_diameter, __pyx_t_6) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_rotor_diameter_i, __pyx_t_6) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":71
- *         x_i: np.ndarray,
- *         rotor_diameter: np.ndarray,
- *         axial_induction: np.ndarray,             # <<<<<<<<<<<<<<
- *     ) -> None:
- *         # Replace zeros and negatives with 1 to prevent nans/infs
+  /* "floris/simulation/wake_deflection/jimenez.py":66
+ *         rotor_diameter_i: np.ndarray,
+ *         *,
+ *         x: np.ndarray,             # <<<<<<<<<<<<<<
+ *     ):
+ *         """
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_axial_induction, __pyx_t_4) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_x, __pyx_t_7) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":72
- *         rotor_diameter: np.ndarray,
- *         axial_induction: np.ndarray,
- *     ) -> None:             # <<<<<<<<<<<<<<
- *         # Replace zeros and negatives with 1 to prevent nans/infs
- *         delta_x = np.array(x - x_i)
- */
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_return, Py_None) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":65
- *         pass
+  /* "floris/simulation/wake_deflection/jimenez.py":57
  * 
+ *     # @profile
  *     def function(             # <<<<<<<<<<<<<<
  *         self,
- *         ambient_TI: float,
+ *         x_i: np.ndarray,
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6floris_10simulation_15wake_turbulence_16crespo_hernandez_15CrespoHernandez_3function, 0, __pyx_n_s_CrespoHernandez_function, NULL, __pyx_n_s_floris_simulation_wake_turbulenc, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_5);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_function, __pyx_t_4) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6floris_10simulation_15wake_deflection_7jimenez_25JimenezVelocityDeflection_3function, 0, __pyx_n_s_JimenezVelocityDeflection_functi, NULL, __pyx_n_s_floris_simulation_wake_deflectio, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_7, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_function, __pyx_t_7) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":26
+  /* "floris/simulation/wake_deflection/jimenez.py":27
  * 
  * 
  * @define             # <<<<<<<<<<<<<<
- * class CrespoHernandez(BaseModel):
+ * class JimenezVelocityDeflection(BaseModel):
  *     """
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_define); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_define); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":27
+  /* "floris/simulation/wake_deflection/jimenez.py":28
  * 
  * @define
- * class CrespoHernandez(BaseModel):             # <<<<<<<<<<<<<<
+ * class JimenezVelocityDeflection(BaseModel):             # <<<<<<<<<<<<<<
  *     """
- *     CrespoHernandez is a wake-turbulence model that is used to compute
+ *     Jimnez wake deflection model, dervied from
  */
-  __pyx_t_6 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_CrespoHernandez, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_JimenezVelocityDeflection, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_7);
+  __pyx_t_5 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  __pyx_t_4 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_7, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_CrespoHernandez, __pyx_t_4) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_JimenezVelocityDeflection, __pyx_t_7) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "floris/simulation/wake_turbulence/crespo_hernandez.py":1
+  /* "floris/simulation/wake_deflection/jimenez.py":1
  * # Copyright 2021 NREL             # <<<<<<<<<<<<<<
  * 
  * # Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -2788,11 +3124,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_7);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init floris.simulation.wake_turbulence.crespo_hernandez", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init floris.simulation.wake_deflection.jimenez", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init floris.simulation.wake_turbulence.crespo_hernandez");
+    PyErr_SetString(PyExc_ImportError, "init floris.simulation.wake_deflection.jimenez");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -2979,8 +3315,96 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 }
 #endif
 
+/* RaiseKeywordRequired */
+static void __Pyx_RaiseKeywordRequired(const char* func_name, PyObject* kw_name) {
+    PyErr_Format(PyExc_TypeError,
+        #if PY_MAJOR_VERSION >= 3
+        "%s() needs keyword-only argument %U", func_name, kw_name);
+        #else
+        "%s() needs keyword-only argument %s", func_name,
+        PyString_AS_STRING(kw_name));
+        #endif
+}
+
+/* PyFloatBinop */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyFloat_DivideObjC(PyObject *op1, PyObject *op2, double floatval, int inplace, int zerodivision_check) {
+    const double b = floatval;
+    double a, result;
+    (void)inplace;
+    (void)zerodivision_check;
+    if (likely(PyFloat_CheckExact(op1))) {
+        a = PyFloat_AS_DOUBLE(op1);
+        
+    } else
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        a = (double) PyInt_AS_LONG(op1);
+        
+    } else
+    #endif
+    if (likely(PyLong_CheckExact(op1))) {
+        #if CYTHON_USE_PYLONG_INTERNALS
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        const Py_ssize_t size = Py_SIZE(op1);
+        switch (size) {
+            case  0: a = 0.0; break;
+            case -1: a = -(double) digits[0]; break;
+            case  1: a = (double) digits[0]; break;
+            case -2:
+            case 2:
+                if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT && ((8 * sizeof(unsigned long) < 53) || (1 * PyLong_SHIFT < 53))) {
+                    a = (double) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                    if ((8 * sizeof(unsigned long) < 53) || (2 * PyLong_SHIFT < 53) || (a < (double) ((PY_LONG_LONG)1 << 53))) {
+                        if (size == -2)
+                            a = -a;
+                        break;
+                    }
+                }
+                CYTHON_FALLTHROUGH;
+            case -3:
+            case 3:
+                if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT && ((8 * sizeof(unsigned long) < 53) || (2 * PyLong_SHIFT < 53))) {
+                    a = (double) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                    if ((8 * sizeof(unsigned long) < 53) || (3 * PyLong_SHIFT < 53) || (a < (double) ((PY_LONG_LONG)1 << 53))) {
+                        if (size == -3)
+                            a = -a;
+                        break;
+                    }
+                }
+                CYTHON_FALLTHROUGH;
+            case -4:
+            case 4:
+                if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT && ((8 * sizeof(unsigned long) < 53) || (3 * PyLong_SHIFT < 53))) {
+                    a = (double) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                    if ((8 * sizeof(unsigned long) < 53) || (4 * PyLong_SHIFT < 53) || (a < (double) ((PY_LONG_LONG)1 << 53))) {
+                        if (size == -4)
+                            a = -a;
+                        break;
+                    }
+                }
+                CYTHON_FALLTHROUGH;
+            default:
+        #else
+        {
+        #endif
+            a = PyLong_AsDouble(op1);
+            if (unlikely(a == -1.0 && PyErr_Occurred())) return NULL;
+            
+        }
+    } else {
+        return (inplace ? __Pyx_PyNumber_InPlaceDivide(op1, op2) : __Pyx_PyNumber_Divide(op1, op2));
+    }
+        
+        PyFPE_START_PROTECT("divide", return NULL)
+        result = a / b;
+        PyFPE_END_PROTECT(result)
+        return PyFloat_FromDouble(result);
+}
+#endif
+
 /* GetBuiltinName */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
+  static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     PyObject* result = __Pyx_PyObject_GetAttrStr(__pyx_b, name);
     if (unlikely(!result)) {
         PyErr_Format(PyExc_NameError,
@@ -2994,7 +3418,7 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
 }
 
 /* PyDictVersioning */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+  #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
     PyObject *dict = Py_TYPE(obj)->tp_dict;
     return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
@@ -3020,7 +3444,7 @@ static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UIN
 #endif
 
 /* GetModuleGlobalName */
-#if CYTHON_USE_DICT_VERSIONS
+  #if CYTHON_USE_DICT_VERSIONS
 static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
 #else
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
@@ -3055,7 +3479,7 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
 }
 
 /* PyCFunctionFastCall */
-#if CYTHON_FAST_PYCCALL
+  #if CYTHON_FAST_PYCCALL
 static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
     PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
     PyCFunction meth = PyCFunction_GET_FUNCTION(func);
@@ -3078,7 +3502,7 @@ static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, P
 #endif
 
 /* PyFunctionFastCall */
-#if CYTHON_FAST_PYCALL
+  #if CYTHON_FAST_PYCALL
 static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
                                                PyObject *globals) {
     PyFrameObject *f;
@@ -3197,7 +3621,7 @@ done:
 #endif
 
 /* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
+  #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
     PyObject *result;
     ternaryfunc call = Py_TYPE(func)->tp_call;
@@ -3217,7 +3641,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg
 #endif
 
 /* PyObjectCall2Args */
-static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
+  static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
     PyObject *args, *result = NULL;
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(function)) {
@@ -3246,7 +3670,7 @@ done:
 }
 
 /* PyObjectCallMethO */
-#if CYTHON_COMPILING_IN_CPYTHON
+  #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
     PyObject *self, *result;
     PyCFunction cfunc;
@@ -3266,7 +3690,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject
 #endif
 
 /* PyObjectCallOneArg */
-#if CYTHON_COMPILING_IN_CPYTHON
+  #if CYTHON_COMPILING_IN_CPYTHON
 static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {
     PyObject *result;
     PyObject *args = PyTuple_New(1);
@@ -3306,7 +3730,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
 #endif
 
 /* Import */
-static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
+  static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
     PyObject *empty_list = 0;
     PyObject *module = 0;
     PyObject *global_dict = 0;
@@ -3371,7 +3795,7 @@ bad:
 }
 
 /* ImportFrom */
-static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
+  static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
     PyObject* value = __Pyx_PyObject_GetAttrStr(module, name);
     if (unlikely(!value) && PyErr_ExceptionMatches(PyExc_AttributeError)) {
         PyErr_Format(PyExc_ImportError,
@@ -3385,7 +3809,7 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
 }
 
 /* CalculateMetaclass */
-static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases) {
+  static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases) {
     Py_ssize_t i, nbases = PyTuple_GET_SIZE(bases);
     for (i=0; i < nbases; i++) {
         PyTypeObject *tmptype;
@@ -3423,8 +3847,124 @@ static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bas
     return (PyObject*) metaclass;
 }
 
+/* GetItemInt */
+  static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
+    PyObject *r;
+    if (!j) return NULL;
+    r = PyObject_GetItem(o, j);
+    Py_DECREF(j);
+    return r;
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
+                                                              CYTHON_NCP_UNUSED int wraparound,
+                                                              CYTHON_NCP_UNUSED int boundscheck) {
+#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    Py_ssize_t wrapped_i = i;
+    if (wraparound & unlikely(i < 0)) {
+        wrapped_i += PyList_GET_SIZE(o);
+    }
+    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyList_GET_SIZE(o)))) {
+        PyObject *r = PyList_GET_ITEM(o, wrapped_i);
+        Py_INCREF(r);
+        return r;
+    }
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+#else
+    return PySequence_GetItem(o, i);
+#endif
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
+                                                              CYTHON_NCP_UNUSED int wraparound,
+                                                              CYTHON_NCP_UNUSED int boundscheck) {
+#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    Py_ssize_t wrapped_i = i;
+    if (wraparound & unlikely(i < 0)) {
+        wrapped_i += PyTuple_GET_SIZE(o);
+    }
+    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyTuple_GET_SIZE(o)))) {
+        PyObject *r = PyTuple_GET_ITEM(o, wrapped_i);
+        Py_INCREF(r);
+        return r;
+    }
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+#else
+    return PySequence_GetItem(o, i);
+#endif
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, int is_list,
+                                                     CYTHON_NCP_UNUSED int wraparound,
+                                                     CYTHON_NCP_UNUSED int boundscheck) {
+#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS && CYTHON_USE_TYPE_SLOTS
+    if (is_list || PyList_CheckExact(o)) {
+        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyList_GET_SIZE(o);
+        if ((!boundscheck) || (likely(__Pyx_is_valid_index(n, PyList_GET_SIZE(o))))) {
+            PyObject *r = PyList_GET_ITEM(o, n);
+            Py_INCREF(r);
+            return r;
+        }
+    }
+    else if (PyTuple_CheckExact(o)) {
+        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyTuple_GET_SIZE(o);
+        if ((!boundscheck) || likely(__Pyx_is_valid_index(n, PyTuple_GET_SIZE(o)))) {
+            PyObject *r = PyTuple_GET_ITEM(o, n);
+            Py_INCREF(r);
+            return r;
+        }
+    } else {
+        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
+        if (likely(m && m->sq_item)) {
+            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
+                Py_ssize_t l = m->sq_length(o);
+                if (likely(l >= 0)) {
+                    i += l;
+                } else {
+                    if (!PyErr_ExceptionMatches(PyExc_OverflowError))
+                        return NULL;
+                    PyErr_Clear();
+                }
+            }
+            return m->sq_item(o, i);
+        }
+    }
+#else
+    if (is_list || PySequence_Check(o)) {
+        return PySequence_GetItem(o, i);
+    }
+#endif
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+}
+
+/* ObjectGetItem */
+  #if CYTHON_USE_TYPE_SLOTS
+static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
+    PyObject *runerr;
+    Py_ssize_t key_value;
+    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
+    if (unlikely(!(m && m->sq_item))) {
+        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
+        return NULL;
+    }
+    key_value = __Pyx_PyIndex_AsSsize_t(index);
+    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
+        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
+    }
+    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
+        PyErr_Clear();
+        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
+    }
+    return NULL;
+}
+static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
+    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(m && m->mp_subscript)) {
+        return m->mp_subscript(obj, key);
+    }
+    return __Pyx_PyObject_GetIndex(obj, key);
+}
+#endif
+
 /* FetchCommonType */
-static PyTypeObject* __Pyx_FetchCommonType(PyTypeObject* type) {
+  static PyTypeObject* __Pyx_FetchCommonType(PyTypeObject* type) {
     PyObject* fake_module;
     PyTypeObject* cached_type = NULL;
     fake_module = PyImport_AddModule((char*) "_cython_" CYTHON_ABI);
@@ -3463,7 +4003,7 @@ bad:
 }
 
 /* CythonFunctionShared */
-#include <structmember.h>
+  #include <structmember.h>
 static PyObject *
 __Pyx_CyFunction_get_doc(__pyx_CyFunctionObject *op, CYTHON_UNUSED void *closure)
 {
@@ -4071,7 +4611,7 @@ static CYTHON_INLINE void __Pyx_CyFunction_SetAnnotationsDict(PyObject *func, Py
 }
 
 /* CythonFunction */
-static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qualname,
+  static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qualname,
                                       PyObject *closure, PyObject *module, PyObject* globals, PyObject* code) {
     PyObject *op = __Pyx_CyFunction_Init(
         PyObject_GC_New(__pyx_CyFunctionObject, __pyx_CyFunctionType),
@@ -4084,7 +4624,7 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
 }
 
 /* Py3ClassCreate */
-static PyObject *__Pyx_Py3MetaclassPrepare(PyObject *metaclass, PyObject *bases, PyObject *name,
+  static PyObject *__Pyx_Py3MetaclassPrepare(PyObject *metaclass, PyObject *bases, PyObject *name,
                                            PyObject *qualname, PyObject *mkw, PyObject *modname, PyObject *doc) {
     PyObject *ns;
     if (metaclass) {
@@ -4151,7 +4691,7 @@ static PyObject *__Pyx_Py3ClassCreate(PyObject *metaclass, PyObject *name, PyObj
 }
 
 /* PyErrFetchRestore */
-#if CYTHON_FAST_THREAD_STATE
+  #if CYTHON_FAST_THREAD_STATE
 static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
     PyObject *tmp_type, *tmp_value, *tmp_tb;
     tmp_type = tstate->curexc_type;
@@ -4175,7 +4715,7 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #endif
 
 /* CLineInTraceback */
-#ifndef CYTHON_CLINE_IN_TRACEBACK
+  #ifndef CYTHON_CLINE_IN_TRACEBACK
 static int __Pyx_CLineForTraceback(CYTHON_NCP_UNUSED PyThreadState *tstate, int c_line) {
     PyObject *use_cline;
     PyObject *ptype, *pvalue, *ptraceback;
@@ -4217,7 +4757,7 @@ static int __Pyx_CLineForTraceback(CYTHON_NCP_UNUSED PyThreadState *tstate, int 
 #endif
 
 /* CodeObjectCache */
-static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {
+  static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {
     int start = 0, mid = 0, end = count - 1;
     if (end >= 0 && code_line > entries[end].code_line) {
         return count;
@@ -4297,7 +4837,7 @@ static void __pyx_insert_code_object(int code_line, PyCodeObject* code_object) {
 }
 
 /* AddTraceback */
-#include "compile.h"
+  #include "compile.h"
 #include "frameobject.h"
 #include "traceback.h"
 static PyCodeObject* __Pyx_CreateCodeObjectForTraceback(
@@ -4388,7 +4928,7 @@ bad:
 }
 
 /* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
+  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
 #ifdef __Pyx_HAS_GCC_DIAGNOSTIC
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
@@ -4426,7 +4966,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
 }
 
 /* CIntFromPyVerify */
-#define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)\
+  #define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)\
     __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 0)
 #define __PYX_VERIFY_RETURN_INT_EXC(target_type, func_type, func_value)\
     __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 1)
@@ -4448,7 +4988,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
     }
 
 /* CIntFromPy */
-static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
+  static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
 #ifdef __Pyx_HAS_GCC_DIAGNOSTIC
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
@@ -4644,7 +5184,7 @@ raise_neg_overflow:
 }
 
 /* CIntFromPy */
-static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
+  static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
 #ifdef __Pyx_HAS_GCC_DIAGNOSTIC
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
@@ -4840,7 +5380,7 @@ raise_neg_overflow:
 }
 
 /* FastTypeChecks */
-#if CYTHON_COMPILING_IN_CPYTHON
+  #if CYTHON_COMPILING_IN_CPYTHON
 static int __Pyx_InBases(PyTypeObject *a, PyTypeObject *b) {
     while (a) {
         a = a->tp_base;
@@ -4940,7 +5480,7 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
 #endif
 
 /* CheckBinaryVersion */
-static int __Pyx_check_binary_version(void) {
+  static int __Pyx_check_binary_version(void) {
     char ctversion[4], rtversion[4];
     PyOS_snprintf(ctversion, 4, "%d.%d", PY_MAJOR_VERSION, PY_MINOR_VERSION);
     PyOS_snprintf(rtversion, 4, "%s", Py_GetVersion());
@@ -4956,7 +5496,7 @@ static int __Pyx_check_binary_version(void) {
 }
 
 /* InitStrings */
-static int __Pyx_InitStrings(__Pyx_StringTabEntry *t) {
+  static int __Pyx_InitStrings(__Pyx_StringTabEntry *t) {
     while (t->p) {
         #if PY_MAJOR_VERSION < 3
         if (t->is_unicode) {
