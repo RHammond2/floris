@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<style>
+.r1 {color: #000080}
+.r2 {font-weight: bold}
+.r3 {color: #008000; background-color: #f8f8f8; font-weight: bold}
+.r4 {color: #000000; background-color: #f8f8f8}
+.r5 {color: #0000ff; background-color: #f8f8f8; font-weight: bold}
+.r6 {background-color: #f8f8f8}
+.r7 {color: #666666; background-color: #f8f8f8}
+.r8 {color: #0000ff; background-color: #f8f8f8}
+.r9 {font-style: italic}
+.r10 {color: #ba2121; background-color: #f8f8f8}
+.r11 {color: #aa22ff; background-color: #f8f8f8; font-weight: bold}
+.r12 {color: #bb6622; background-color: #f8f8f8; font-weight: bold}
+.r13 {color: #19177c; background-color: #f8f8f8}
+.r14 {color: #008000; background-color: #f8f8f8}
+.r15 {color: #0000ff}
+body {
+    color: #000000;
+    background-color: #ffffff;
+}
+</style>
+</head>
+<html>
+<body>
+    <code>
+        <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">                                          Memory usage: <span class="r1">▇█▇▇▇███████████</span> (max: 112.00MB)                                          
+     /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/jax/interpreters/xla.py: % of time =  35.50% out of   4.94s.     
+       ╷       ╷        ╷     ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys  </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%    </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │     │       │     │              │       │                                                              
+    36 │       │     1% │     │       │     │              │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">..pprint_util</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> pp</span><span class="r6">                               </span>   
+   ... │       │        │     │       │     │              │       │                                                              
+   135 │       │     1% │     │       │     │              │       │<span class="r4">  </span><span class="r3">return</span><span class="r4"> (backend</span><span class="r7">.</span><span class="r4">buffer_from_pyval(x, device),)</span><span class="r6">           </span>   
+   ... │       │        │     │       │     │              │       │                                                              
+   236 │    1% │        │     │       │     │              │       │<span class="r4">  </span><span class="r3">return</span><span class="r4"> compiled_fun(</span><span class="r7">*</span><span class="r4">args)</span><span class="r6">                               </span>   
+   ... │       │        │     │       │     │              │       │                                                              
+   346 │   12% │    14% │  1% │       │     │              │     4 │<span class="r4">  </span><span class="r3">return</span><span class="r4"> backend</span><span class="r7">.</span><span class="r4">compile(built_c, compile_options</span><span class="r7">=</span><span class="r4">options)</span><span class="r6"> </span>   
+   ... │       │        │     │       │     │              │       │                                                              
+   351 │    3% │     1% │     │       │     │              │       │<span class="r4">  out_bufs </span><span class="r7">=</span><span class="r4"> compiled</span><span class="r7">.</span><span class="r4">execute(input_bufs)</span><span class="r6">                  </span>   
+   ... │       │        │     │       │     │              │       │                                                              
+   986 │    1% │        │     │       │     │              │       │<span class="r3">def</span><span class="r4"> </span><span class="r8">make_device_array</span><span class="r4">(aval: core</span><span class="r7">.</span><span class="r4">ShapedArray, device: Opti…</span>   
+   ... │       │        │     │       │     │              │       │                                                              
+       ╵       ╵        ╵     ╵       ╵     ╵              ╵       ╵                                                              
+<span class="r9">          /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/jax/core.py: % of time =   2.55% out of   4.94s.           </span>
+       ╷       ╷        ╷    ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │     │              │       │                                                              
+    33 │       │     1% │    │       │     │              │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> linear_util </span><span class="r3">as</span><span class="r4"> lu</span><span class="r6">                            </span>   
+   ... │       │        │    │       │     │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵     ╵              ╵       ╵                                                              
+<span class="r9">      /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/jaxlib/tpu_client.py: % of time =   2.35% out of   4.94s.      </span>
+       ╷       ╷        ╷    ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │     │              │       │                                                              
+    26 │       │     2% │    │       │     │              │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> tpu_client_extension </span><span class="r3">as</span><span class="r4"> _tpu_client</span><span class="r6">          </span>   
+   ... │       │        │    │       │     │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵     ╵              ╵       ╵                                                              
+<span class="r9">                  /opt/miniconda3/envs/floris-fly/lib/python3.7/textwrap.py: % of time =   2.33% out of   4.94s.                  </span>
+       ╷       ╷       ╷     ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys  </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%    </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/textwrap.py    </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │     │       │      │              │       │                                                              
+   430 │       │       │     │   85% │    2 │▁▁▁▁          │       │<span class="r4">    text </span><span class="r7">=</span><span class="r4"> _whitespace_only_re</span><span class="r7">.</span><span class="r4">sub(</span><span class="r10">''</span><span class="r4">, text)</span><span class="r6">               </span>   
+   431 │    1% │       │     │   54% │   -3 │▁▁▁▁▁▁▁▁▁     │       │<span class="r4">    indents </span><span class="r7">=</span><span class="r4"> _leading_whitespace_re</span><span class="r7">.</span><span class="r4">findall(text)</span><span class="r6">         </span>   
+   432 │    1% │       │  0% │       │      │              │       │<span class="r4">    </span><span class="r3">for</span><span class="r4"> indent </span><span class="r11">in</span><span class="r4"> indents:</span><span class="r6">                                 </span>   
+   ... │       │       │     │       │      │              │       │                                                              
+       ╵       ╵       ╵     ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">      /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/scipy/_lib/doccer.py: % of time =   2.24% out of   4.94s.      </span>
+       ╷       ╷       ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │    │       │      │              │       │                                                              
+    48 │       │       │    │   99% │    3 │▁▁▁           │       │<span class="r4">    lines </span><span class="r7">=</span><span class="r4"> docstring</span><span class="r7">.</span><span class="r4">expandtabs()</span><span class="r7">.</span><span class="r4">splitlines()</span><span class="r6">            </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+    54 │       │       │    │   98% │    1 │▁             │       │<span class="r4">    indent </span><span class="r7">=</span><span class="r4"> </span><span class="r10">' '</span><span class="r4"> </span><span class="r7">*</span><span class="r4"> icount</span><span class="r6">                                  </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+    58 │       │       │    │   96% │    7 │▁▁▁▁▁▁▁       │       │<span class="r4">        lines </span><span class="r7">=</span><span class="r4"> dstr</span><span class="r7">.</span><span class="r4">expandtabs()</span><span class="r7">.</span><span class="r4">splitlines()</span><span class="r6">             </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+    60 │       │       │    │   99% │    1 │▁             │       │<span class="r4">            newlines </span><span class="r7">=</span><span class="r4"> [lines[</span><span class="r7">0</span><span class="r4">]]</span><span class="r6">                          </span>   
+    61 │    1% │       │    │  100% │   -4 │▁▁▁▁▁▁        │       │<span class="r4">            </span><span class="r3">for</span><span class="r4"> line </span><span class="r11">in</span><span class="r4"> lines[</span><span class="r7">1</span><span class="r4">:]:</span><span class="r6">                         </span>   
+    62 │       │       │    │   99% │    5 │▁▁▁▁▁▁▁       │     1 │<span class="r4">                newlines</span><span class="r7">.</span><span class="r4">append(indent</span><span class="r7">+</span><span class="r4">line)</span><span class="r6">               </span>   
+    63 │       │       │    │   98% │    3 │▁▁▁           │     1 │<span class="r4">            indented[name] </span><span class="r7">=</span><span class="r4"> </span><span class="r10">'</span><span class="r12">\n</span><span class="r10">'</span><span class="r7">.</span><span class="r4">join(newlines)</span><span class="r6">           </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+    66 │       │       │    │   88% │    2 │▁▁            │       │<span class="r4">    </span><span class="r3">return</span><span class="r4"> docstring </span><span class="r7">%</span><span class="r4"> indented</span><span class="r6">                            </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+   194 │       │       │    │   99% │    1 │▁             │       │<span class="r4">        stripped </span><span class="r7">=</span><span class="r4"> line</span><span class="r7">.</span><span class="r4">lstrip()</span><span class="r6">                           </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+       ╵       ╵       ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">       /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/numpy/__init__.py: % of time =   2.19% out of   4.94s.        </span>
+       ╷       ╷        ╷    ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │     │              │       │                                                              
+   151 │       │     1% │    │       │     │              │       │<span class="r4">    </span><span class="r3">from</span><span class="r4"> </span><span class="r5">.</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> ctypeslib</span><span class="r6">                                </span>   
+   ... │       │        │    │       │     │              │       │                                                              
+   187 │       │     1% │    │       │     │              │       │<span class="r4">    </span><span class="r3">from</span><span class="r4"> </span><span class="r5">.testing</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> Tester</span><span class="r6">                            </span>   
+   ... │       │        │    │       │     │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵     ╵              ╵       ╵                                                              
+<span class="r9">  /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/jax/_src/numpy/lax_numpy.py: % of time =   2.00% out of   4.94s.  </span>
+       ╷       ╷       ╷    ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │    │       │     │              │       │                                                              
+       ╵       ╵       ╵    ╵       ╵     ╵              ╵       ╵                                                              
+<span class="r9">    /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/scipy/linalg/__init__.py: % of time =   1.99% out of   4.94s.     </span>
+       ╷       ╷        ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │      │              │       │                                                              
+   194 │       │        │    │  100% │    1 │▁             │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.misc</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> </span><span class="r7">*</span><span class="r6">                                        </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+   199 │       │        │    │       │    1 │▁             │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.decomp_cholesky</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> </span><span class="r7">*</span><span class="r6">                             </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+   209 │       │     2% │    │       │      │              │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">._solvers</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> </span><span class="r7">*</span><span class="r6">                                    </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">      /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/numpy/fft/__init__.py: % of time =   1.76% out of   4.94s.      </span>
+       ╷       ╷        ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │      │              │       │                                                              
+     4 │       │        │    │  100% │    1 │▁             │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.info</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> </span><span class="r13">__doc__</span><span class="r6">                                  </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+     6 │       │     1% │    │       │      │              │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.fftpack</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> </span><span class="r7">*</span><span class="r6">                                     </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">   /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/numpy/core/fromnumeric.py: % of time =   1.65% out of   4.94s.    </span>
+       ╷       ╷        ╷    ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │     │              │       │                                                              
+    17 │       │     1% │    │       │     │              │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> _methods</span><span class="r6">                                     </span>   
+   ... │       │        │    │       │     │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵     ╵              ╵       ╵                                                              
+<span class="r9">      /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/jaxlib/xla_client.py: % of time =   1.56% out of   4.94s.       </span>
+       ╷       ╷        ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │      │              │       │                                                              
+    31 │       │        │    │  100% │    1 │▁             │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">absl</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> logging</span><span class="r6">                                   </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+    39 │       │        │    │   90% │    0 │▁▁▁▁          │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> xla_extension </span><span class="r3">as</span><span class="r4"> _xla</span><span class="r6">                        </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+    63 │       │     1% │    │       │      │              │       │<span class="r4">  </span><span class="r3">return</span><span class="r4"> _xla</span><span class="r7">.</span><span class="r4">get_cpu_client(asynchronous</span><span class="r7">=</span><span class="r3">True</span><span class="r4">)</span><span class="r6">            </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">   /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/numpy/lib/function_base.py: % of time =   1.43% out of   4.94s.    </span>
+       ╷       ╷        ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │      │              │       │                                                              
+    55 │       │     1% │    │  100% │    1 │▁             │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">numpy.lib.histograms</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> histogram, histogramdd</span><span class="r6">    </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">           /opt/miniconda3/envs/floris-fly/lib/python3.7/collections/__init__.py: % of time =   1.42% out of   4.94s.            </span>
+       ╷       ╷       ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/collections/_… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │    │       │      │              │       │                                                              
+   397 │    1% │       │    │   86% │   -7 │▁▁▁▁▁         │       │<span class="r4">    exec(s, namespace)</span><span class="r6">                                     </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+   466 │       │       │    │   99% │    1 │▁             │       │<span class="r4">    result </span><span class="r7">=</span><span class="r4"> </span><span class="r14">type</span><span class="r4">(typename, (</span><span class="r14">tuple</span><span class="r4">,), class_namespace)</span><span class="r6">     </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+       ╵       ╵       ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">   /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/scipy/stats/_distn_infrastructure.py: % of time =   1.40% out of   </span>
+<span class="r9">                                                              4.94s.                                                              </span>
+       ╷       ╷       ╷     ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys  </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%    </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │     │       │      │              │       │                                                              
+   350 │       │       │     │  100% │    1 │▁▁▁           │       │<span class="r4">    exec(</span><span class="r10">'del '</span><span class="r4"> </span><span class="r7">+</span><span class="r4"> obj)</span><span class="r6">                                     </span>   
+   ... │       │       │     │       │      │              │       │                                                              
+   701 │    1% │       │  0% │   99% │   -5 │▁▁▁▁▁▁▁       │       │<span class="r4">        exec(parse_arg_template </span><span class="r7">%</span><span class="r4"> dct, ns)</span><span class="r6">                 </span>   
+   ... │       │       │     │       │      │              │       │                                                              
+  1659 │       │       │     │  100% │    1 │▁             │       │<span class="r4">                dct </span><span class="r7">=</span><span class="r4"> </span><span class="r14">dict</span><span class="r4">(distcont)</span><span class="r6">                       </span>   
+   ... │       │       │     │       │      │              │       │                                                              
+       ╵       ╵       ╵     ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">   /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/numpy/core/_add_newdocs.py: % of time =   1.37% out of   4.94s.   </span>
+       ╷       ╷        ╷    ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │     │              │       │                                                              
+  6833 │       │     1% │    │       │     │              │       │<span class="r4">               canonical_name_doc</span><span class="r7">=</span><span class="r4">canonical_name_doc, alia…</span>   
+   ... │       │        │    │       │     │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵     ╵              ╵       ╵                                                              
+<span class="r9">       /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/scipy/sparse/lil.py: % of time =   1.32% out of   4.94s.       </span>
+       ╷       ╷        ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time %  </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native  </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │        │    │       │      │              │       │                                                              
+    17 │       │     1% │    │   90% │    1 │▁             │       │<span class="r3">from</span><span class="r4"> </span><span class="r5">.</span><span class="r4"> </span><span class="r3">import</span><span class="r4"> _csparsetools</span><span class="r6">                                </span>   
+   ... │       │        │    │       │      │              │       │                                                              
+       ╵       ╵        ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">                  /opt/miniconda3/envs/floris-fly/lib/python3.7/inspect.py: % of time =   1.20% out of   4.94s.                  </span>
+       ╷       ╷       ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/inspect.py     </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │    │       │      │              │       │                                                              
+   504 │       │       │    │  100% │    2 │▁▁            │       │<span class="r4">        </span><span class="r3">def</span><span class="r4"> </span><span class="r8">_is_wrapper</span><span class="r4">(f):</span><span class="r6">                                </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+   619 │       │       │    │   51% │    2 │▁▁            │       │<span class="r4">        lines </span><span class="r7">=</span><span class="r4"> doc</span><span class="r7">.</span><span class="r4">expandtabs()</span><span class="r7">.</span><span class="r4">split(</span><span class="r10">'</span><span class="r12">\n</span><span class="r10">'</span><span class="r4">)</span><span class="r6">               </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+   626 │       │       │    │   65% │    2 │▁▁▁▁          │       │<span class="r4">            content </span><span class="r7">=</span><span class="r4"> </span><span class="r14">len</span><span class="r4">(line</span><span class="r7">.</span><span class="r4">lstrip())</span><span class="r6">                   </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+   640 │       │       │    │   63% │    1 │▁             │       │<span class="r4">        </span><span class="r3">return</span><span class="r4"> </span><span class="r10">'</span><span class="r12">\n</span><span class="r10">'</span><span class="r7">.</span><span class="r4">join(lines)</span><span class="r6">                            </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+  2760 │       │       │    │   91% │    1 │▁             │       │<span class="r4">                params </span><span class="r7">=</span><span class="r4"> OrderedDict()</span><span class="r6">                     </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+  2799 │       │       │    │  100% │    2 │▁▁            │       │<span class="r4">                params </span><span class="r7">=</span><span class="r4"> OrderedDict(((param</span><span class="r7">.</span><span class="r4">name, param)</span><span class="r6">  </span>   
+  2800 │       │       │    │  100% │   -2 │▁▁▁▁          │       │<span class="r4">                                                </span><span class="r3">for</span><span class="r4"> param </span><span class="r11">…</span>   
+   ... │       │       │    │       │      │              │       │                                                              
+       ╵       ╵       ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">     /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/traitlets/traitlets.py: % of time =   1.13% out of   4.94s.     </span>
+       ╷       ╷       ╷    ╷       ╷      ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net   </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB)  </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━┿━━━━━━━┿━━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │    │       │      │              │       │                                                              
+   232 │       │       │    │   75% │    2 │▁▁▁▁          │       │<span class="r4">    </span><span class="r3">for</span><span class="r4"> key </span><span class="r11">in</span><span class="r4"> </span><span class="r14">dir</span><span class="r4">(</span><span class="r14">object</span><span class="r4">):</span><span class="r6">                                </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+   735 │       │       │    │  100% │    0 │▁▁            │       │<span class="r4">        </span><span class="r3">return</span><span class="r4"> </span><span class="r14">super</span><span class="r4">(MetaHasDescriptors, mcls)</span><span class="r7">.</span><span class="r8">__new__</span><span class="r4">(mcl…</span>   
+   ... │       │       │    │       │      │              │       │                                                              
+  1617 │       │       │    │  100% │    1 │▁             │       │<span class="r3">class</span><span class="r4"> </span><span class="r5">Instance</span><span class="r4">(ClassBasedTraitType):</span><span class="r6">                       </span>   
+   ... │       │       │    │       │      │              │       │                                                              
+  2228 │       │       │    │   80% │    1 │▁             │       │<span class="r4">        </span><span class="r14">super</span><span class="r4">(Container,</span><span class="r14">self</span><span class="r4">)</span><span class="r7">.</span><span class="r8">__init__</span><span class="r4">(klass</span><span class="r7">=</span><span class="r14">self</span><span class="r7">.</span><span class="r4">klass, a…</span>   
+   ... │       │       │    │       │      │              │       │                                                              
+       ╵       ╵       ╵    ╵       ╵      ╵              ╵       ╵                                                              
+<span class="r9">         /opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages/jax/dtypes.py: % of time =   1.08% out of   4.94s.         </span>
+       ╷       ╷       ╷    ╷       ╷     ╷              ╷       ╷                                                              
+ <span class="r2"> Line </span>│<span class="r2">Time % </span>│<span class="r2">Time % </span>│<span class="r2">Sys </span>│<span class="r2">Mem %  </span>│<span class="r2">Net  </span>│<span class="r2">Memory usage  </span>│<span class="r2">Copy   </span>│<span class="r2">                                                             </span> 
+       │<span class="r2">Python </span>│<span class="r2">native </span>│<span class="r2">%   </span>│<span class="r2">Python </span>│<span class="r2">(MB) </span>│<span class="r2">over time / % </span>│<span class="r2">(MB/s) </span>│<span class="r2">/opt/miniconda3/envs/floris-fly/lib/python3.7/site-packages… </span> 
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━┿━━━━━━━┿━━━━━┿━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+   ... │       │       │    │       │     │              │       │                                                              
+       ╵       ╵       ╵    ╵       ╵     ╵              ╵       ╵                                                              
+generated by the <a href="https://github.com/emeryberger/scalene"><span class="r15">scalene</span></a> profiler                                                                                                   
+</pre>
+    </code>
+</body>
+</html>

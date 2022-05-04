@@ -17,15 +17,13 @@ on:
     # Pull request event triggers are unrelated to paths
 
 jobs:
-  build:
 
+  code-qa-validation:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # 3.5 fails with a bad comparison in TurbineMap unit tests
-        python-version: [3.6, 3.7, 3.8, 3.9] # 3.5
-        # windows-latest fails in codecov
-        os: [ubuntu-latest, macos-latest]
+        python-version: [3.9]
+        os: [ubuntu-latest] #, macos-latest, windows-latest]
       fail-fast: False
 
     steps:
@@ -34,10 +32,11 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: Install project
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install -e .
     # - name: Lint with flake8
     #   run: |
     #     pip install flake8
@@ -47,16 +46,19 @@ jobs:
     #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run tests
       run: |
-        pip install pytest
-        pytest --ignore examples
+        # pytest tests/
+        # -rA displays the captured output for all tests after they're run
+        # See the docs: https://doc.pytest.org/en/latest/reference/reference.html#command-line-flags
+        pytest -rA tests/ --ignore tests/timing.py --ignore tests/profiling.py
     - name: Generate coverage report
       # Run these tests on unit tests only so that we avoid inflating our code
       # coverage through the regression tests
+      if: matrix.os == 'ubuntu-latest'
       run: |
         pip install pytest
         pip install pytest-cov
-        pytest --cov=./ --cov-report=xml `find . -name "*_test.py" -not -name "*regression*"`
-    - name: Upload coverage to Codecov  
+        pytest --cov=./ --cov-report=xml tests/ --ignore tests/reg_tests --ignore tests/timing.py --ignore tests/profiling.py
+    - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}

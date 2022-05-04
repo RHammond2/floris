@@ -1,4 +1,4 @@
-# Copyright 2020 NREL
+# Copyright 2022 NREL
 
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
@@ -10,248 +10,150 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
+from typing import Any, Dict
+
+from attrs import define, field
 import numpy as np
+from pathlib import Path
+from scipy import integrate
+from scipy.interpolate import RegularGridInterpolator
+import scipy.io
+import os
 
-from .base_velocity_deficit import VelocityDeficit
+from floris.simulation import BaseModel
+from floris.simulation import FlowField
+from floris.simulation import Grid
 
 
-class TurbOPark(VelocityDeficit):
+@define
+class TurbOParkVelocityDeficit(BaseModel):
     """
-    An implementation of the TurbOPark model by Nicolai Nygaard
-    :cite:`jvm-nygaard2020modelling`.
-    Default tuning calibrations taken from same paper.
-
-    References:
-        .. bibliography:: /source/zrefs.bib
-            :style: unsrt
-            :filter: docname in docnames
-            :keyprefix: jvm-
+    Model based on the TurbOPark model. For model details see https://github.com/OrstedRD/TurbOPark,
+    https://github.com/OrstedRD/TurbOPark/blob/main/TurbOPark%20description.pdf, and
+    Nygaard, Nicolai Gayle, et al. "Modelling cluster wakes and wind farm blockage."
+    Journal of Physics: Conference Series. Vol. 1618. No. 6. IOP Publishing, 2020.
     """
+    A: float = field(default=0.04)
+    sigma_max_rel: float = field(default=4.0)
+    overlap_gauss_interp: RegularGridInterpolator = field(init=False)
+    model_string = "turbopark"
 
-    default_parameters = {"A": 0.6, "c1": 1.5, "c2": 0.8}
+    def __attrs_post_init__(self) -> None:
+        lookup_table_matlab_file = Path(__file__).parent / "turbopark_lookup_table.mat"
+        lookup_table_file = scipy.io.loadmat(lookup_table_matlab_file)
+        dist = lookup_table_file['overlap_lookup_table'][0][0][0][0]
+        radius_down = lookup_table_file['overlap_lookup_table'][0][0][1][0]
+        overlap_gauss = lookup_table_file['overlap_lookup_table'][0][0][2]
+        self.overlap_gauss_interp = RegularGridInterpolator((dist, radius_down), overlap_gauss, method='linear', bounds_error=False)
 
-    def __init__(self, parameter_dictionary):
-        """
-        Stores model parameters for use by methods.
+    def prepare_function(
+        self,
+        grid: Grid,
+        flow_field: FlowField,
+    ) -> Dict[str, Any]:
 
-        Args:
-            parameter_dictionary (dict): Model-specific parameters.
-                Default values are used when a parameter is not included
-                in `parameter_dictionary`. Possible key-value pairs include:
+        kwargs = dict(
+            x=grid.x_sorted,
+            y=grid.y_sorted,
+            z=grid.z_sorted,
+            u_initial=flow_field.u_initial_sorted,
+        )
+        return kwargs
 
-                -   **we** (*float*): The linear wake decay constant that
-                    defines the cone boundary for the wake as well as the
-                    velocity deficit. D/2 +/- we*x is the cone boundary for the
-                    wake.
-        """
-        super().__init__(parameter_dictionary)
-        self.model_string = "turbopark"
-        model_dictionary = self._get_model_dict(__class__.default_parameters)
-        self.A = float(model_dictionary["A"])
-        self.c1 = float(model_dictionary["c1"])
-        self.c2 = float(model_dictionary["c2"])
-
+    # @profile
     def function(
         self,
-        x_locations,
-        y_locations,
-        z_locations,
-        turbine,
-        turbine_coord,
-        deflection_field,
-        flow_field,
-    ):
-        """
-        Using the TubrOPark wake model, this method calculates and returns
-        the wake velocity deficits, caused by the specified turbine,
-        relative to the freestream velocities at the grid of points
-        comprising the wind farm flow field.
+        x_i: np.ndarray,
+        y_i: np.ndarray,
+        z_i: np.ndarray,
+        ambient_turbulence_intensity: np.ndarray,
+        Cts: np.ndarray,
+        rotor_diameter_i: np.ndarray,
+        rotor_diameters: np.ndarray,
+        i: int,
+        # enforces the use of the below as keyword arguments and adherence to the
+        # unpacking of the results from prepare_function()
+        *,
+        x: np.ndarray,
+        y: np.ndarray,
+        z: np.ndarray,
+        u_initial: np.ndarray,
+    ) -> None:
+        delta_total = np.zeros_like(u_initial)
 
-        Args:
-            x_locations (np.array): An array of floats that contains the
-                streamwise direction grid coordinates of the flow field
-                domain (m).
-            y_locations (np.array): An array of floats that contains the grid
-                coordinates of the flow field domain in the direction normal to
-                x and parallel to the ground (m).
-            z_locations (np.array): An array of floats that contains the grid
-                coordinates of the flow field domain in the vertical
-                direction (m).
-            turbine (:py:obj:`floris.simulation.turbine`): Object that
-                represents the turbine creating the wake.
-            turbine_coord (:py:obj:`floris.utilities.Vec3`): Object containing
-                the coordinate of the turbine creating the wake (m).
-            deflection_field (np.array): An array of floats that contains the
-                amount of wake deflection in meters in the y direction at each
-                grid point of the flow field.
-            flow_field (:py:class:`floris.simulation.flow_field`): Object
-                containing the flow field information for the wind farm.
+        # Normalized distances along x between the turbine i and all other turbines
+        # The downstream_mask is used to avoid negative numbers in the sqrt and the subsequent runtime warnings
+        # Here self.NUM_EPS is to avoid precision issues with masking, and is slightly larger than 0.0
+        downstream_mask = np.array(x_i - x >= self.NUM_EPS)
+        x_dist = (x_i - x) * downstream_mask / rotor_diameters
 
-        Returns:
-            np.array, np.array, np.array:
-                Three arrays of floats that contain the wake velocity
-                deficit in m/s created by the turbine relative to the freestream
-                velocities for the U, V, and W components, aligned with the
-                x, y, and z directions, respectively. The three arrays contain
-                the velocity deficits at each grid point in the flow field.
-        """
+        # Radial distance between turbine i and the centerlines of wakes from all real/image turbines
+        r_dist = np.sqrt((y_i - y) ** 2 + (z_i - z) ** 2)
+        r_dist_image = np.sqrt((y_i - y) ** 2 + (z_i - (-z)) ** 2)
 
-        # Get model parameters
-        A = self.A
-        c1 = self.c1
-        c2 = self.c2
+        Cts[:,:,i:,:,:] = 0.00001
 
-        # Initial flowfield used to calculate velocity deficit
-        U0 = flow_field.u_initial
+        # Characteristic wake widths from all turbines relative to turbine i
+        dw = characteristic_wake_width(x_dist, ambient_turbulence_intensity, Cts, self.A)
+        epsilon = 0.25 * np.sqrt(np.min(0.5 * (1 + np.sqrt(1 - Cts)) / np.sqrt(1 - Cts), 3, keepdims=True))
+        sigma = rotor_diameters * (epsilon + dw)
 
-        # Get turbulence intensity for current turbine
-        I0 = turbine.current_turbulence_intensity
+        # Peak wake deficits
+        val = 1 - Cts / (8 * (sigma / rotor_diameters) ** 2)
+        C = 1 - np.sqrt(val)
 
-        # Parameters from turbine
-        D = turbine.rotor_diameter
-        Ct = turbine.Ct
-        V_in = turbine.average_velocity
+        # Compute deficit for all turbines and mask to keep upstream and overlapping turbines
+        effective_width = self.sigma_max_rel * sigma
+        is_overlapping = effective_width / 2 + rotor_diameter_i / 2 > r_dist
 
-        # Computed values
-        alpha = c1 * I0  # (Page 4)
-        beta = c2 * I0 / np.sqrt(Ct)
+        wtg_overlapping = np.array(x_dist > 0) * is_overlapping
 
-        # get the x term
-        x = x_locations - turbine_coord.x1
+        delta_real = np.empty(np.shape(u_initial)) * np.nan
+        delta_image = np.empty(np.shape(u_initial)) * np.nan
 
-        # Solve for the wake diameter
-        # (Equation 6 (in steps))
-        term1 = np.sqrt((alpha + (beta * x / D)) ** 2 + 1)
-        term2 = np.sqrt(1 + alpha ** 2)
-        term3 = (term1 + 1) * alpha
-        term4 = (term2 + 1) * (alpha + (beta * x / D))
-        Dwx = D + ((A * I0 * D) / beta) * (term1 - term2 - np.log(term3 / term4))
+        # Compute deficits for real turbines and for mirrored (image) turbines
+        delta_real = C * self.overlap_gauss_interp((r_dist / sigma, rotor_diameter_i / 2 / sigma)) * wtg_overlapping
+        delta_image = C * self.overlap_gauss_interp((r_dist_image / sigma, rotor_diameter_i / 2 / sigma)) * wtg_overlapping
+        delta = np.concatenate((delta_real, delta_image), axis=2)
 
-        # Solve for the velocity deficit
-        delta = (1 - (V_in / U0) * np.sqrt(1 - Ct)) * (D / Dwx) ** 2
+        delta_total[:, :, i, :, :] = np.sqrt(np.sum(np.nan_to_num(delta)**2, axis=2))
 
-        # Solve for velocity deficit c
-        c = delta
+        return delta_total          
 
-        # Define these bounds as in jensen
-        boundary_line = Dwx / 2.0
-        y_upper = boundary_line + turbine_coord.x2 + deflection_field
-        y_lower = -1 * boundary_line + turbine_coord.x2 + deflection_field
-        z_upper = boundary_line + turbine.hub_height
-        z_lower = -1 * boundary_line + turbine.hub_height
 
-        # filter points upstream and beyond the upper and
-        # lower bounds of the wake
-        c[x_locations - turbine_coord.x1 < 0] = 0
-        c[y_locations > y_upper] = 0
-        c[y_locations < y_lower] = 0
-        c[z_locations > z_upper] = 0
-        c[z_locations < z_lower] = 0
+def precalculate_overlap():
+    # TODO: first implementation to generate wake overlap lookup table (currently supplied by turbopark_lookup_table.mat.)
+    # However, the result of this function doesn't generate the same interpolant as the .mat file, so if used, needs to be corrected.
+    dist = np.arange(0, 10, 1.0)
+    radius_down = np.arange(0, 20, 1.0)
+    overlap_gauss = np.zeros((len(dist), len(radius_down)))
 
-        return (
-            c * flow_field.u_initial,
-            np.zeros(np.shape(flow_field.u_initial)),
-            np.zeros(np.shape(flow_field.u_initial)),
+    for i in range(len(dist)):
+        for j in range(len(radius_down)):
+            if radius_down[j] > 0:
+                fun = lambda r, theta: np.exp(-(r ** 2 + dist[i] ** 2 - 2 * dist[i] * r * np.cos(theta))/2) * r
+                out = integrate.dblquad(fun, 0, radius_down[j], lambda x: 0, lambda x: 2 * np.pi)[0]
+                out = out / (np.pi * radius_down[j] ** 2)
+            else:
+                out = np.exp(-(dist[i] ** 2) / 2)
+            overlap_gauss[i, j] = out
+
+    return dist, radius_down, overlap_gauss
+
+
+def characteristic_wake_width(x_dist, TI, Cts, A):
+    # Parameter values taken from S. T. Frandsen, “Risø-R-1188(EN) Turbulence and turbulence generated structural
+    # loading in wind turbine clusters” Risø, Roskilde, Denmark, 2007.
+    c1 = 1.5
+    c2 = 0.8
+
+    alpha = TI * c1
+    beta = c2 * TI / np.sqrt(Cts)
+
+    dw = A * TI / beta * (
+        np.sqrt((alpha + beta * x_dist) ** 2 + 1) - np.sqrt(1 + alpha ** 2) - np.log(
+            ((np.sqrt((alpha + beta * x_dist) ** 2 + 1) + 1) * alpha) / ((np.sqrt(1 + alpha ** 2) + 1) * (alpha + beta * x_dist))
         )
+    )
 
-    @property
-    def A(self):
-        """
-        Model calibration constant A used in determining the wake expansion rate.
-
-        **Note:** This is a virtual property used to "get" or "set" a value.
-
-        Args:
-            value (float): Value to set.
-
-        Returns:
-            float: Value currently set.
-
-        Raises:
-            ValueError: Invalid value.
-        """
-        return self._A
-
-    @A.setter
-    def A(self, value):
-        if type(value) is not float:
-            err_msg = (
-                "Invalid value type given for A: {}, " + "expected float."
-            ).format(value)
-            self.logger.error(err_msg, stack_info=True)
-            raise ValueError(err_msg)
-        self._A = value
-        if value != __class__.default_parameters["A"]:
-            self.logger.info(
-                (
-                    "Current value of A, {0}, is not equal to tuned " + "value of {1}."
-                ).format(value, __class__.default_parameters["A"])
-            )
-
-    @property
-    def c1(self):
-        """
-        Calibration constant for the wake added turbelence.
-
-        **Note:** This is a virtual property used to "get" or "set" a value.
-
-        Args:
-            value (float): Value to set.
-
-        Returns:
-            float: Value currently set.
-
-        Raises:
-            ValueError: Invalid value.
-        """
-        return self._c1
-
-    @c1.setter
-    def c1(self, value):
-        if type(value) is not float:
-            err_msg = (
-                "Invalid value type given for c1: {}, " + "expected float."
-            ).format(value)
-            self.logger.error(err_msg, stack_info=True)
-            raise ValueError(err_msg)
-        self._c1 = value
-        if value != __class__.default_parameters["c1"]:
-            self.logger.info(
-                (
-                    "Current value of c1, {0}, is not equal to tuned " + "value of {1}."
-                ).format(value, __class__.default_parameters["c1"])
-            )
-
-    @property
-    def c2(self):
-        """
-        Calibration constant for the wake added turbelence.
-
-        **Note:** This is a virtual property used to "get" or "set" a value.
-
-        Args:
-            value (float): Value to set.
-
-        Returns:
-            float: Value currently set.
-
-        Raises:
-            ValueError: Invalid value.
-        """
-        return self._c2
-
-    @c2.setter
-    def c2(self, value):
-        if type(value) is not float:
-            err_msg = (
-                "Invalid value type given for c2: {}, " + "expected float."
-            ).format(value)
-            self.logger.error(err_msg, stack_info=True)
-            raise ValueError(err_msg)
-        self._c2 = value
-        if value != __class__.default_parameters["c2"]:
-            self.logger.info(
-                (
-                    "Current value of c2, {0}, is not equal to tuned " + "value of {1}."
-                ).format(value, __class__.default_parameters["c2"])
-            )
+    return dw

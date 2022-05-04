@@ -12,36 +12,38 @@
 
 # See https://floris.readthedocs.io for documentation
 
+
 """
-The :py:obj:`floris.simulation` package contains the modules used to
-complete a wake simulation for a given wind farm and turbine
-configuration.
+The :py:obj:`floris` package contains :py:obj:`floris.utilities` module
+and the modules that make up the FLORIS software. The floris simulation
+modules are used to complete a wake simulation for a given wind farm
+and turbine configuration.
 
-All classes can be be imported with
+All modules and package can be imported with
 
-    >>> import floris.simulation
+    >>> import floris
 
 The ``__init__.py`` file enables the import of all modules in this
 package so any additional modules should be included there.
 
-Examples:
-    >>> import floris.simulation
-
-    >>> dir(floris.simulation)
-    ['Farm', 'Floris', 'FlowField', 'InputReader', 'Turbine',
-    'TurbineMap', 'Wake', 'WindMap', '__builtins__', '__cached__',
-    '__doc__', '__file__', '__loader__', '__name__', '__package__',
-    '__path__', '__spec__', 'farm', 'floris', 'flow_field', 'input_reader',
-    'turbine', 'turbine_map', 'wake', 'wake_combination', 'wake_deflection',
-    'wake_turbulence', 'wake_velocity', 'wind_map']
+isort:skip_file
 """
 
-from . import wake_velocity, wake_deflection, wake_turbulence, wake_combination
+# Provide full-path imports here for all modules
+# that should be included in the simulation package.
+# Since some of these depend on each other, the order
+# that they are listed here does matter.
+from .base import BaseClass, BaseModel
+from .turbine import Turbine, Ct, power, axial_induction, average_velocity
 from .farm import Farm
-from .wake import Wake
-from .floris import Floris
-from .turbine import Turbine
-from .wind_map import WindMap
+from .grid import Grid, TurbineGrid, FlowFieldGrid, FlowFieldPlanarGrid
 from .flow_field import FlowField
-from .turbine_map import TurbineMap
-from .input_reader import InputReader
+from .wake import WakeModelManager
+from .solver import sequential_solver, full_flow_sequential_solver, cc_solver, full_flow_cc_solver, turbopark_solver, full_flow_turbopark_solver
+from .floris import Floris
+
+
+# initialize the logger
+import floris.logging_manager
+
+floris.logging_manager._setup_logger()

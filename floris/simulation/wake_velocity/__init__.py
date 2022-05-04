@@ -10,4 +10,11 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-from . import gaussianModels
+# See https://floris.readthedocs.io for documentation
+
+
+from floris.simulation.wake_velocity.none import NoneVelocityDeficit
+from floris.simulation.wake_velocity.cumulative_gauss_curl import CumulativeGaussCurlVelocityDeficit
+from floris.simulation.wake_velocity.gauss import GaussVelocityDeficit
+from floris.simulation.wake_velocity.jensen import JensenVelocityDeficit
+from floris.simulation.wake_velocity.turbopark import TurbOParkVelocityDeficit

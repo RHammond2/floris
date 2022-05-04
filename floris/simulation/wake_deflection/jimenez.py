@@ -10,13 +10,22 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
+from typing import Any, Dict
+
+from attrs import define, field
+import numexpr as ne
 import numpy as np
 
-from ...utilities import cosd, sind
-from .base_velocity_deflection import VelocityDeflection
+from floris.simulation import BaseModel
+from floris.simulation import Farm
+from floris.simulation import FlowField
+from floris.simulation import Grid
+from floris.simulation import Turbine
+from floris.utilities import cosd, sind
 
 
-class Jimenez(VelocityDeflection):
+@define
+class JimenezVelocityDeflection(BaseModel):
     """
     Jiménez wake deflection model, dervied from
     :cite:`jdm-jimenez2010application`.
@@ -28,36 +37,33 @@ class Jimenez(VelocityDeflection):
             :keyprefix: jdm-
     """
 
-    default_parameters = {"kd": 0.05, "ad": 0.0, "bd": 0.0}
+    kd: float = field(default=0.05)
+    ad: float = field(default=0.0)
+    bd: float = field(default=0.0)
+    model_string = "jimenez"
 
-    def __init__(self, parameter_dictionary):
-        """
-        Stores model parameters for use by methods.
+    def prepare_function(
+        self,
+        grid: Grid,
+        flow_field: FlowField,
+    ) -> Dict[str, Any]:
 
-        Args:
-            parameter_dictionary (dict): Model-specific parameters.
-                Default values are used when a parameter is not included
-                in `parameter_dictionary`. Possible key-value pairs include:
+        kwargs = dict(
+            x=grid.x_sorted,
+        )
+        return kwargs
 
-                    -   **kd** (*float*): Parameter used to determine the skew
-                        angle of the wake.
-                    -   **ad** (*float*): Additional tuning parameter to modify
-                        the wake deflection with a lateral offset.
-                        Defaults to 0.
-                    -   **bd** (*float*): Additional tuning parameter to modify
-                        the wake deflection with a lateral offset.
-                        Defaults to 0.
-
-        """
-        super().__init__(parameter_dictionary)
-        self.model_string = "jimenez"
-        model_dictionary = self._get_model_dict(__class__.default_parameters)
-        self.ad = float(model_dictionary["ad"])
-        self.kd = float(model_dictionary["kd"])
-        self.bd = float(model_dictionary["bd"])
-
+    # @profile
     def function(
-        self, x_locations, y_locations, z_locations, turbine, coord, flow_field
+        self,
+        x_i: np.ndarray,
+        y_i: np.ndarray,
+        yaw_i: np.ndarray,
+        turbulence_intensity_i: np.ndarray,
+        ct_i: np.ndarray,
+        rotor_diameter_i: np.ndarray,
+        *,
+        x: np.ndarray,
     ):
         """
         Calcualtes the deflection field of the wake in relation to the yaw of
@@ -79,136 +85,54 @@ class Jimenez(VelocityDeflection):
 
         Returns:
             deflection (np.array): Deflected wake centerline.
+
+
+        This function calculates the deflection of the entire flow field
+        given the yaw angle and Ct of the current turbine
         """
+
+        # NOTE: Its important to remember the rules of broadcasting here.
+        # An operation between two np.arrays of different sizes involves
+        # broadcasting. First, the rank and then the dimensions are compared.
+        # If the ranks are different, new dimensions of size 1 are added to
+        # the missing dimensions. Then, arrays can be combined (arithmetic)
+        # if corresponding dimensions are either the same size or 1.
+        # https://numpy.org/doc/stable/user/basics.broadcasting.html
+        # Here, many dimensions are 1, but these are essentially treated
+        # as a scalar value for that dimension.
 
         # angle of deflection
-        xi_init = cosd(turbine.yaw_angle) * sind(turbine.yaw_angle) * turbine.Ct / 2.0
+        xi_init = cosd(yaw_i) * sind(yaw_i) * ct_i / 2.0
 
-        x_locations = x_locations - coord.x1
+        """
+        delta_x = x - x_i
 
         # yaw displacement
-        yYaw_init = (
-            xi_init
-            * (
-                15 * (2 * self.kd * x_locations / turbine.rotor_diameter + 1) ** 4.0
-                + xi_init ** 2.0
-            )
-            / (
-                (30 * self.kd / turbine.rotor_diameter)
-                * (2 * self.kd * x_locations / turbine.rotor_diameter + 1) ** 5.0
-            )
-        ) - (xi_init * turbine.rotor_diameter * (15 + xi_init ** 2.0) / (30 * self.kd))
+        A = 15 * (2 * self.kd * delta_x / rotor_diameter_i + 1) ** 4.0 + xi_init ** 2.0
+        B = (30 * self.kd / rotor_diameter_i) * ( 2 * self.kd * delta_x / rotor_diameter_i + 1 ) ** 5.0
+        C = xi_init * rotor_diameter_i * (15 + xi_init ** 2.0)
+        D = 30 * self.kd
+
+        yYaw_init = (xi_init * A / B) - (C / D)
 
         # corrected yaw displacement with lateral offset
-        deflection = yYaw_init + self.ad + self.bd * x_locations
+        # This has the same shape as the grid
 
-        x = np.unique(x_locations)
-        for i in range(len(x)):
-            tmp = np.max(deflection[x_locations == x[i]])
-            deflection[x_locations == x[i]] = tmp
+        deflection = yYaw_init + self.ad + self.bd * delta_x
+        """
+
+        # Numexpr - do not change below without corresponding changes above.
+        kd = self.kd
+        ad = self.ad
+        bd = self.bd
+
+        delta_x = ne.evaluate("x - x_i")
+        A = ne.evaluate("15 * (2 * kd * delta_x / rotor_diameter_i + 1) ** 4.0 + xi_init ** 2.0")
+        B = ne.evaluate("(30 * kd / rotor_diameter_i) * ( 2 * kd * delta_x / rotor_diameter_i + 1 ) ** 5.0")
+        C = ne.evaluate("xi_init * rotor_diameter_i * (15 + xi_init ** 2.0)")
+        D = ne.evaluate("30 * kd")
+
+        yYaw_init = ne.evaluate("(xi_init * A / B) - (C / D)")
+        deflection = ne.evaluate("yYaw_init + ad + bd * delta_x")
 
         return deflection
-
-    @property
-    def kd(self):
-        """
-        Parameter used to determine the skew angle of the wake.
-
-        **Note:** This is a virtual property used to "get" or "set" a value.
-
-        Args:
-            value (float): Value to set.
-
-        Returns:
-            float: Value currently set.
-
-        Raises:
-            ValueError: Invalid value.
-        """
-        return self._kd
-
-    @kd.setter
-    def kd(self, value):
-        if type(value) is not float:
-            err_msg = (
-                "Invalid value type given for kd: {}, " + "expected float."
-            ).format(value)
-            self.logger.error(err_msg, stack_info=True)
-            raise ValueError(err_msg)
-        self._kd = value
-        if value != __class__.default_parameters["kd"]:
-            self.logger.info(
-                (
-                    "Current value of kd, {0}, is not equal to tuned " + "value of {1}."
-                ).format(value, __class__.default_parameters["kd"])
-            )
-
-    @property
-    def ad(self):
-        """
-        Parameter available for additional tuning of the wake deflection with a
-        lateral offset.
-
-        **Note:** This is a virtual property used to "get" or "set" a value.
-
-        Args:
-            value (float): Value to set.
-
-        Returns:
-            float: Value currently set.
-
-        Raises:
-            ValueError: Invalid value.
-        """
-        return self._ad
-
-    @ad.setter
-    def ad(self, value):
-        if type(value) is not float:
-            err_msg = (
-                "Invalid value type given for ad: {}, " + "expected float."
-            ).format(value)
-            self.logger.error(err_msg, stack_info=True)
-            raise ValueError(err_msg)
-        self._ad = value
-        if value != __class__.default_parameters["ad"]:
-            self.logger.info(
-                (
-                    "Current value of ad, {0}, is not equal to tuned " + "value of {1}."
-                ).format(value, __class__.default_parameters["ad"])
-            )
-
-    @property
-    def bd(self):
-        """
-        Parameter available for additional tuning of the wake deflection with a
-        lateral offset.
-
-        **Note:** This is a virtual property used to "get" or "set" a value.
-
-        Args:
-            value (float): Value to set.
-
-        Returns:
-            float: Value currently set.
-
-        Raises:
-            ValueError: Invalid value.
-        """
-        return self._bd
-
-    @bd.setter
-    def bd(self, value):
-        if type(value) is not float:
-            err_msg = (
-                "Invalid value type given for bd: {}, " + "expected float."
-            ).format(value)
-            self.logger.error(err_msg, stack_info=True)
-            raise ValueError(err_msg)
-        self._bd = value
-        if value != __class__.default_parameters["bd"]:
-            self.logger.info(
-                (
-                    "Current value of bd, {0}, is not equal to tuned " + "value of {1}."
-                ).format(value, __class__.default_parameters["bd"])
-            )

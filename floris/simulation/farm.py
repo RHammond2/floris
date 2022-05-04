@@ -10,19 +10,32 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
+# from __future__ import annotations
+from typing import Any, List
+
+import attrs
+from attrs import define, field
+import numpy as np
+from pathlib import Path
+import os
 import copy
 
-import numpy as np
+from floris.type_dec import (
+    NDArrayObject,
+    floris_array_converter,
+    NDArrayFloat
+)
+from floris.utilities import Vec3, load_yaml
+from floris.simulation import BaseClass
+from floris.simulation import Turbine
 
-from .wind_map import WindMap
-from ..utilities import Vec3
-from .flow_field import FlowField
-from .turbine_map import TurbineMap
 
-
-class Farm:
-    """
-    Farm is a class containing the objects that make up a FLORIS model.
+@define
+class Farm(BaseClass):
+    """Farm is where wind power plants should be instantiated from a YAML configuration
+    file. The Farm will create a heterogenous set of turbines that compose a windfarm,
+    validate the inputs, and then create a vectorized representation of the the turbine
+    data.
 
     Farm is the container class of the FLORIS package. It brings
     together all of the component objects after input (i.e., Turbine,
@@ -31,260 +44,112 @@ class Farm:
     for generating output.
     """
 
-    def __init__(self, instance_dictionary, turbine, wake):
-        """
-        The initialization method unpacks some of the data from the input
-        dictionary in order to create a couple of unerlying data structures:
+    layout_x: NDArrayFloat = field(converter=floris_array_converter)
+    layout_y: NDArrayFloat = field(converter=floris_array_converter)
+    turbine_type: List = field()
 
-            - :py:obj:`~.wind_map.WindMap`
-            - :py:obj:`~.turbine_map.TurbineMap`
+    turbine_definitions: dict = field(init=False)
+    yaw_angles: NDArrayFloat = field(init=False)
+    yaw_angles_sorted: NDArrayFloat = field(init=False)
+    coordinates: List[Vec3] = field(init=False)
+    hub_heights: NDArrayFloat = field(init=False)
+    hub_heights_sorted: NDArrayFloat = field(init=False, default=[])
+    turbine_fCts: tuple = field(init=False, default=[])
+    turbine_type_map_sorted: NDArrayObject = field(init=False, default=[])
+    rotor_diameters_sorted: NDArrayFloat = field(init=False, default=[])
+    TSRs_sorted: NDArrayFloat = field(init=False, default=[])
+    pPs_sorted: NDArrayFloat = field(init=False, default=[])
 
-        Args:
-            instance_dictionary (dict): The required keys in this dictionary
-                are:
+    @layout_x.validator
+    def check_x(self, instance: attrs.Attribute, value: Any) -> None:
+        if len(value) != len(self.layout_y):
+            raise ValueError("layout_x and layout_y must have the same number of entries.")
 
-                    -   **wind_speed** (*list*): The wind speed measurements at
-                        hub height (m/s).
-                    -   **wind_x** (*list*): The x-coordinates of the wind
-                        speed measurements.
-                    -   **wind_y** (*list*): The y-coordinates of the wind
-                        speed measurements.
-                    -   **wind_direction** (*list*): The wind direction
-                        measurements (deg).
-                    -   **turbulence_intensity** (*list*): Turbulence intensity
-                        measurements at hub height (as a decimal fraction).
-                    -   **wind_shear** (*float*): The power law wind shear
-                        exponent.
-                    -   **wind_veer** (*float*): The vertical change in wind
-                        direction across the rotor.
-                    -   **air_density** (*float*): The air density (kg/m^3).
-                    -   **layout_x** (*list*): The x-coordinates of the
-                        turbines.
-                    -   **layout_y** (*list*): The y-coordinates of the
-                        turbines.
+    @layout_y.validator
+    def check_y(self, instance: attrs.Attribute, value: Any) -> None:
+        if len(value) != len(self.layout_x):
+            raise ValueError("layout_x and layout_y must have the same number of entries.")
 
-            turbine (:py:obj:`~.turbine.Turbine`): The turbine models used
-                throughout the farm.
-            wake (:py:obj:`~.wake.Wake`): The wake model used to simulate the
-                freestream flow and wakes.
-        """
-        self.name = instance_dictionary["name"]
-        properties = instance_dictionary["properties"]
-        layout_x = properties["layout_x"]
-        layout_y = properties["layout_y"]
-        wind_x = properties["wind_x"]
-        wind_y = properties["wind_y"]
+    @turbine_type.validator
+    def check_turbine_type(self, instance: attrs.Attribute, value: Any) -> None:
+        if len(value) != len(self.layout_x):
+            if len(value) == 1:
+                value = self.turbine_type * len(self.layout_x)
+            else:
+                raise ValueError("turbine_type must have the same number of entries as layout_x/layout_y or have a single turbine_type value.")
 
-        self.wind_map = WindMap(
-            wind_speed=properties["wind_speed"],
-            layout_array=(layout_x, layout_y),
-            wind_layout=(wind_x, wind_y),
-            turbulence_intensity=properties["turbulence_intensity"],
-            wind_direction=properties["wind_direction"],
+        self.turbine_definitions = copy.deepcopy(value)
+        for i, val in enumerate(value):
+            if type(val) is str:
+                _floris_dir = Path(__file__).parent.parent
+                fname = _floris_dir / "turbine_library" / f"{val}.yaml"
+                if not os.path.isfile(fname):
+                    raise ValueError("User-selected turbine definition `{}` does not exist in pre-defined turbine library.".format(val))
+                self.turbine_definitions[i] = load_yaml(fname)
+
+    def initialize(self, sorted_indices):
+        # Sort yaw angles from most upstream to most downstream wind turbine
+        self.yaw_angles_sorted = np.take_along_axis(
+            self.yaw_angles,
+            sorted_indices[:, :, :, 0, 0],
+            axis=2,
         )
 
-        self.flow_field = FlowField(
-            wind_shear=properties["wind_shear"],
-            wind_veer=properties["wind_veer"],
-            air_density=properties["air_density"],
-            turbine_map=TurbineMap(
-                layout_x,
-                layout_y,
-                [copy.deepcopy(turbine) for ii in range(len(layout_x))],
-            ),
-            wake=wake,
-            wind_map=self.wind_map,
-            specified_wind_height=properties["specified_wind_height"],
+    def construct_hub_heights(self):
+        self.hub_heights = np.array([turb['hub_height'] for turb in self.turbine_definitions])
+
+    def construct_rotor_diameters(self):
+        self.rotor_diameters = np.array([turb['rotor_diameter'] for turb in self.turbine_definitions])
+
+    def construct_turbine_TSRs(self):
+        self.TSRs = np.array([turb['TSR'] for turb in self.turbine_definitions])
+
+    def construc_turbine_pPs(self):
+        self.pPs = np.array([turb['pP'] for turb in self.turbine_definitions])
+
+    def construct_turbine_map(self):
+        self.turbine_map = [Turbine.from_dict(turb) for turb in self.turbine_definitions]
+
+    def construct_turbine_fCts(self):
+        self.turbine_fCts = [(turb.turbine_type, turb.fCt_interp) for turb in self.turbine_map]
+
+    def construct_turbine_fCps(self):
+        self.turbine_fCps = [(turb.turbine_type, turb.fCp_interp) for turb in self.turbine_map]
+
+    def construct_turbine_power_interps(self):
+        self.turbine_power_interps = [(turb.turbine_type, turb.power_interp) for turb in self.turbine_map]
+
+    def construct_coordinates(self):
+        self.coordinates = np.array(
+            [Vec3([x, y, z]) for x, y, z in zip(self.layout_x, self.layout_y, self.hub_heights)]
         )
 
-    def __str__(self):
-        return (
-            "Name: {}\n".format(self.name)
-            + "Wake Model: {}\n".format(self.flow_field.wake.velocity_model)
-            + "Deflection Model: {}\n".format(self.flow_field.wake.deflection_model)
+    def expand_farm_properties(self, n_wind_directions: int, n_wind_speeds: int, sorted_coord_indices):
+        template_shape = np.ones_like(sorted_coord_indices)
+        self.hub_heights_sorted = np.take_along_axis(self.hub_heights * template_shape, sorted_coord_indices, axis=2)
+        self.rotor_diameters_sorted = np.take_along_axis(self.rotor_diameters * template_shape, sorted_coord_indices, axis=2)
+        self.TSRs_sorted = np.take_along_axis(self.TSRs * template_shape, sorted_coord_indices, axis=2)
+        self.pPs_sorted = np.take_along_axis(self.pPs * template_shape, sorted_coord_indices, axis=2)
+        self.turbine_type_names_sorted = [turb["turbine_type"] for turb in self.turbine_definitions]
+        self.turbine_type_map_sorted = np.take_along_axis(
+            np.reshape(self.turbine_type_names_sorted * n_wind_directions, np.shape(sorted_coord_indices)),
+            sorted_coord_indices,
+            axis=2
         )
 
-    def set_wake_model(self, wake_model):
-        """
-        Sets the velocity deficit model to use as given, and determines the
-        wake deflection model based on the selected velocity deficit model.
+    def set_yaw_angles(self, n_wind_directions: int, n_wind_speeds: int):
+        # TODO Is this just for initializing yaw angles to zero?
+        self.yaw_angles = np.zeros((n_wind_directions, n_wind_speeds, self.n_turbines))
+        self.yaw_angles_sorted = np.zeros((n_wind_directions, n_wind_speeds, self.n_turbines))
 
-        Args:
-            wake_model (str): The desired wake model.
-
-        Raises:
-            Exception: Invalid wake model.
-        """
-        valid_wake_models = [
-            "jensen",
-            "turbopark",
-            "multizone",
-            "gauss",
-            "gauss_legacy",
-            "blondel",
-            "ishihara_qian",
-            "curl",
-        ]
-        if wake_model not in valid_wake_models:
-            # TODO: logging
-            raise Exception(
-                "Invalid wake model. Valid options include: {}.".format(
-                    ", ".join(valid_wake_models)
-                )
-            )
-
-        self.flow_field.wake.velocity_model = wake_model
-        if (
-            wake_model == "jensen"
-            or wake_model == "multizone"
-            or wake_model == "turbopark"
-        ):
-            self.flow_field.wake.deflection_model = "jimenez"
-        elif (
-            wake_model == "blondel"
-            or wake_model == "ishihara_qian"
-            or "gauss" in wake_model
-        ):
-            self.flow_field.wake.deflection_model = "gauss"
-        else:
-            self.flow_field.wake.deflection_model = wake_model
-
-        self.flow_field.reinitialize_flow_field(
-            with_resolution=self.flow_field.wake.velocity_model.model_grid_resolution
-        )
-
-        self.turbine_map.reinitialize_turbines()
-
-    def set_yaw_angles(self, yaw_angles):
-        """
-        Sets the yaw angles for all turbines on the
-        :py:obj:`~.turbine.Turbine` objects directly.
-
-        Args:
-            yaw_angles (float or list( float )): A single value to set
-                all turbine yaw angles or a list of yaw angles corresponding
-                to individual turbine yaw angles. Yaw angles are expected
-                in degrees.
-        """
-        if isinstance(yaw_angles, float) or isinstance(yaw_angles, int):
-            yaw_angles = [yaw_angles] * len(self.turbines)
-
-        for yaw_angle, turbine in zip(yaw_angles, self.turbines):
-            turbine.yaw_angle = yaw_angle
-
-    # Getters & Setters
+    def finalize(self, unsorted_indices):
+        self.yaw_angles = np.take_along_axis(self.yaw_angles_sorted, unsorted_indices[:,:,:,0,0], axis=2)
+        self.hub_heights = np.take_along_axis(self.hub_heights_sorted, unsorted_indices[:,:,:,0,0], axis=2)
+        self.rotor_diameters = np.take_along_axis(self.rotor_diameters_sorted, unsorted_indices[:,:,:,0,0], axis=2)
+        self.TSRs = np.take_along_axis(self.TSRs_sorted, unsorted_indices[:,:,:,0,0], axis=2)
+        self.pPs = np.take_along_axis(self.pPs_sorted, unsorted_indices[:,:,:,0,0], axis=2)
+        self.turbine_type_map = np.take_along_axis(self.turbine_type_map_sorted, unsorted_indices[:,:,:,0,0], axis=2)
 
     @property
-    def wind_speed(self):
-        """
-        Wind speed at each wind turbine.
-
-        Returns:
-            list(float)
-        """
-        return self.wind_map.turbine_wind_speed
-
-    @property
-    def wind_direction(self):
-        """
-        Wind direction at each wind turbine.
-        # TODO: Explain the wind direction change here.
-        #       - Is there a transformation on wind map?
-        #       - Is this always from a particular direction?
-
-        Returns:
-            list(float)
-        """
-        return list((np.array(self.wind_map.turbine_wind_direction) - 90) % 360)
-
-    @property
-    def wind_shear(self):
-        """
-        Wind shear power law exponent for the flow field.
-
-        Returns:
-            float
-        """
-        return self.flow_field.wind_shear
-
-    @property
-    def wind_veer(self):
-        """
-        Wind veer (vertical change in wind direction) for the flow field.
-
-        Returns:
-            float
-        """
-        return self.flow_field.wind_veer
-
-    @property
-    def turbulence_intensity(self):
-        """
-        Initial turbulence intensity at each turbine expressed as a
-        decimal fraction.
-
-        Returns:
-            list(float)
-        """
-        return self.wind_map.turbine_turbulence_intensity
-
-    @property
-    def air_density(self):
-        """
-        Air density for the wind farm in kg/m^3.
-
-        Returns:
-            float
-        """
-        return self.flow_field.air_density
-
-    @property
-    def wind_map(self):
-        """
-        WindMap object attached to the Farm.
-
-        Args:
-            value (:py:obj:`~.wind_map.WindMap`): WindMap object to be set.
-
-        Returns:
-            :py:obj:`~.wind_map.WindMap`
-        """
-        # TODO: Does this need to be a virtual propert?
-        return self._wind_map
-
-    @wind_map.setter
-    def wind_map(self, value):
-        self._wind_map = value
-
-    @property
-    def turbine_map(self):
-        """
-        TurbineMap attached to the Farm's :py:obj:`~.flow_field.FlowField`
-        object. This is used to reduce the depth of the object-hierachy
-        required to modify the wake models from a script.
-
-        Returns:
-            :py:obj:`~.turbine_map.TurbineMap`
-        """
-        return self.flow_field.turbine_map
-
-    @property
-    def turbines(self):
-        """
-        All turbines included in the model.
-
-        Returns:
-            list(:py:obj:`~.turbine.Turbine`)
-        """
-        return self.turbine_map.turbines
-
-    @property
-    def wake(self):
-        """
-        The Farm's Wake object. This is used to reduce the depth of the
-        object-hierachy required to modify the wake models from a script.
-
-        Returns:
-            :py:obj:`~.wake.Wake`.
-        """
-        return self.flow_field.wake
+    def n_turbines(self):
+        return len(self.layout_x)

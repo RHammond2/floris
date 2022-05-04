@@ -12,95 +12,54 @@
 
 # See https://floris.readthedocs.io for documentation
 
-import copy
 
 import numpy as np
-import pytest
 
-from floris.simulation import Wake, Turbine, WindMap, FlowField, TurbineMap
+from floris.simulation import FlowField, TurbineGrid
+from tests.conftest import N_TURBINES
 
 
-@pytest.fixture
-def flow_field_fixture(sample_inputs_fixture):
-    wake = Wake(sample_inputs_fixture.wake)
-    turbine = Turbine(sample_inputs_fixture.turbine)
-    turbine_map = TurbineMap(
-        [0.0, 100.0], [0.0, 0.0], [copy.deepcopy(turbine), copy.deepcopy(turbine)]
+def test_n_wind_speeds(flow_field_fixture):
+    assert flow_field_fixture.n_wind_speeds > 0
+
+
+def test_n_wind_directions(flow_field_fixture):
+    assert flow_field_fixture.n_wind_directions > 0
+
+
+def test_initialize_velocity_field(flow_field_fixture, turbine_grid_fixture: TurbineGrid):
+    flow_field_fixture.wind_shear = 1.0
+    flow_field_fixture.initialize_velocity_field(turbine_grid_fixture)
+
+    # Check the shape of the velocity arrays: u_initial, v_initial, w_initial  and u, v, w
+    # Dimensions are (# wind speeds, # turbines, N grid points, M grid points)
+    assert np.shape(flow_field_fixture.u_sorted)[0] == flow_field_fixture.n_wind_directions
+    assert np.shape(flow_field_fixture.u_sorted)[1] == flow_field_fixture.n_wind_speeds
+    assert np.shape(flow_field_fixture.u_sorted)[2] == N_TURBINES
+    assert np.shape(flow_field_fixture.u_sorted)[3] == turbine_grid_fixture.grid_resolution
+    assert np.shape(flow_field_fixture.u_sorted)[4] == turbine_grid_fixture.grid_resolution
+
+    # Check that the wind speed profile was created correctly. By setting the shear
+    # exponent to 1.0 above, the shear profile is a linear function of height and
+    # the points on the turbine rotor are equally spaced about the rotor.
+    # This means that their average should equal the wind speed at the center
+    # which is the input wind speed.
+    shape = np.shape(flow_field_fixture.u_sorted[0, 0, 0, :, :])
+    n_elements = shape[0] * shape[1]
+    average = np.sum(flow_field_fixture.u_sorted[:, :, 0, :, :], axis=(-2, -1)) / np.array([n_elements])
+    baseline = np.reshape(flow_field_fixture.wind_speeds, (1, -1)) * np.ones(
+        (flow_field_fixture.n_wind_directions, flow_field_fixture.n_wind_speeds)
     )
-    farm_prop = sample_inputs_fixture.farm["properties"]
-    wind_map = WindMap(
-        wind_speed=farm_prop["wind_speed"],
-        layout_array=(farm_prop["layout_x"], farm_prop["layout_y"]),
-        wind_layout=(farm_prop["wind_x"], farm_prop["wind_y"]),
-        turbulence_intensity=farm_prop["turbulence_intensity"],
-        wind_direction=farm_prop["wind_direction"],
-    )
-    return FlowField(
-        farm_prop["wind_shear"],
-        farm_prop["wind_veer"],
-        farm_prop["air_density"],
-        wake,
-        turbine_map,
-        wind_map,
-        farm_prop["specified_wind_height"],
-    )
+    assert np.array_equal(average, baseline)
 
 
-def test_instantiation(flow_field_fixture):
-    """
-    The class should initialize with the standard inputs
-    """
-    assert type(flow_field_fixture) is FlowField
+def test_asdict(flow_field_fixture: FlowField, turbine_grid_fixture: TurbineGrid):
+    
+    flow_field_fixture.initialize_velocity_field(turbine_grid_fixture)
+    dict1 = flow_field_fixture.as_dict()
 
+    new_ff = FlowField.from_dict(dict1)
+    new_ff.initialize_velocity_field(turbine_grid_fixture)
+    dict2 = new_ff.as_dict()
 
-def test_discretize_domain(flow_field_fixture):
-    """
-    The class should discretize the domain on initialization with three
-    component-arrays each of type np.ndarray and size (100, 100, 50)
-    """
-    x, y, z = flow_field_fixture._discretize_turbine_domain()
-    assert (
-        np.shape(x) == (2, 5, 5)
-        and type(x) is np.ndarray
-        and np.shape(y) == (2, 5, 5)
-        and type(y) is np.ndarray
-        and np.shape(z) == (2, 5, 5)
-        and type(z) is np.ndarray
-    )
-
-
-def test_2x_calculate_wake(flow_field_fixture):
-    """
-    Calling `calculate_wake` multiple times should result in the same
-    calculation.
-
-    Args:
-        flow_field_fixture (pytest.fixture): The pytest fixture for the class.
-    """
-    n_turbines = len(flow_field_fixture.turbine_map.turbines)
-
-    # Establish a container for the data in successive calls to calculate wake
-    calculate_wake_results = {1: [None] * n_turbines, 2: [None] * n_turbines}
-
-    # Do the first call
-    flow_field_fixture.calculate_wake()
-    for i, turbine in enumerate(flow_field_fixture.turbine_map.turbines):
-        calculate_wake_results[1][i] = {
-            "Ct": turbine.Ct,
-            "power": turbine.power,
-            "aI": turbine.aI,
-            "average_velocity": turbine.average_velocity,
-        }
-
-    # Do the second call
-    flow_field_fixture.calculate_wake()
-    for i, turbine in enumerate(flow_field_fixture.turbine_map.turbines):
-        calculate_wake_results[2][i] = {
-            "Ct": turbine.Ct,
-            "power": turbine.power,
-            "aI": turbine.aI,
-            "average_velocity": turbine.average_velocity,
-        }
-
-    # Compare the results
-    assert calculate_wake_results[1] == calculate_wake_results[2]
+    assert dict1 == dict2
