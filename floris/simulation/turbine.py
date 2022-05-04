@@ -81,7 +81,7 @@ def power(
     air_density: float,
     velocities: NDArrayFloat,
     yaw_angle: NDArrayFloat,
-    pP: float,
+    pP: NDArrayFloat,
     power_interp: NDArrayObject,
     turbine_type_map: NDArrayObject,
     ix_filter: NDArrayInt | Iterable[int] | None = None,
