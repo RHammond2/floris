@@ -34,6 +34,7 @@ try:
 
         # Velocity Models
         Extension("floris.simulation.wake_velocity.gauss", ["floris/simulation/wake_velocity/gauss.py"]),
+        Extension("floris.simulation.wake_velocity.jensen", ["floris/simulation/wake_velocity/jensen.py"]),
         Extension("floris.simulation.wake_velocity.turbopark", ["floris/simulation/wake_velocity/turbopark.py"]),
         Extension("floris.simulation.wake_velocity.cumulative_gauss_curl", ["floris/simulation/wake_velocity/cumulative_gauss_curl.py"]),
 
@@ -65,6 +66,14 @@ try:
         Extension("floris.tools.interface_utilities", ["floris/tools/interface_utilities.py"]),
         Extension("floris.tools.uncertainty_interface", ["floris/tools/uncertainty_interface.py"]),
         Extension("floris.tools.floris_interface_legacy_reader", ["floris/tools/floris_interface_legacy_reader.py"]),
+
+        # Optimization Tools
+        Extension("floris.tools.optimization.other.boundary_grid", ["floris/tools/optimization/other/boundary_grid.py"]),
+        Extension("floris.tools.optimization.pyoptsparse.layout", ["floris/tools/optimization/pyoptsparse/layout.py"]),
+        Extension("floris.tools.optimization.pyoptsparse.optimization", ["floris/tools/optimization/pyoptsparse/optimization.py"]),
+        Extension("floris.tools.optimization.pyoptsparse.power_density", ["floris/tools/optimization/pyoptsparse/power_density.py"]),
+        Extension("floris.tools.optimization.pyoptsparse.yaw", ["floris/tools/optimization/pyoptsparse/yaw.py"]),
+        Extension("floris.tools.optimization.scipy.*", ["floris/tools/optimization/scipy/*.py"]),
     ])
 except ImportError:
     ext_modules = None
