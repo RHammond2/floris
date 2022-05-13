@@ -10,19 +10,18 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
+import os
 from typing import Any, Dict
-
-from attrs import define, field
-import numpy as np
 from pathlib import Path
+
+import numpy as np
+import scipy.io
+from attrs import field, define
 from scipy import integrate
 from scipy.interpolate import RegularGridInterpolator
-import scipy.io
-import os
 
-from floris.simulation import BaseModel
-from floris.simulation import FlowField
-from floris.simulation import Grid
+from floris.type_dec import NDArrayFloat
+from floris.simulation import Grid, BaseModel, FlowField
 
 
 @define
@@ -46,7 +45,7 @@ class TurbOParkVelocityDeficit(BaseModel):
         overlap_gauss = lookup_table_file['overlap_lookup_table'][0][0][2]
         self.overlap_gauss_interp = RegularGridInterpolator((dist, radius_down), overlap_gauss, method='linear', bounds_error=False)
 
-    def prepare_function(
+    def prepare_function(  # type: ignore
         self,
         grid: Grid,
         flow_field: FlowField,
@@ -61,7 +60,7 @@ class TurbOParkVelocityDeficit(BaseModel):
         return kwargs
 
     # @profile
-    def function(
+    def function(  # type: ignore
         self,
         x_i: np.ndarray,
         y_i: np.ndarray,
@@ -78,7 +77,7 @@ class TurbOParkVelocityDeficit(BaseModel):
         y: np.ndarray,
         z: np.ndarray,
         u_initial: np.ndarray,
-    ) -> None:
+    ) -> NDArrayFloat:
         delta_total = np.zeros_like(u_initial)
 
         # Normalized distances along x between the turbine i and all other turbines
@@ -118,7 +117,7 @@ class TurbOParkVelocityDeficit(BaseModel):
 
         delta_total[:, :, i, :, :] = np.sqrt(np.sum(np.nan_to_num(delta)**2, axis=2))
 
-        return delta_total          
+        return delta_total
 
 
 def precalculate_overlap():

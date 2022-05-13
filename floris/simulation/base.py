@@ -23,7 +23,7 @@ from typing import Any, Dict, Final
 import attrs
 from attrs import define
 
-from floris.type_dec import FromDictMixin
+from floris.type_dec import NDArrayFloat, FromDictMixin
 from floris.logging_manager import LoggerBase
 
 
@@ -73,9 +73,9 @@ class BaseModel(BaseClass, ABC):
         raise NotImplementedError("BaseModel.model_string")
 
     @abstractmethod
-    def prepare_function() -> dict:
+    def prepare_function(self) -> dict:
         raise NotImplementedError("BaseModel.prepare_function")
 
     @abstractmethod
-    def function() -> None:
+    def function(self) -> NDArrayFloat:
         raise NotImplementedError("BaseModel.function")

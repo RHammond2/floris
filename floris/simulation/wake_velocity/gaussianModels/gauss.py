@@ -15,9 +15,9 @@ import copy
 import numpy as np
 from scipy.special import gamma
 
-from ....utilities import cosd, sind, tand
+from floris.utilities import cosd
+
 from .gaussian_model_base import GaussianModel
-from ..base_velocity_deficit import VelocityDeficit
 
 
 class Gauss(GaussianModel):

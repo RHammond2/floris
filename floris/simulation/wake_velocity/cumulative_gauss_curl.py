@@ -12,18 +12,15 @@
 
 from typing import Any, Dict
 
-from attrs import define, field
-import numexpr as ne
 import numpy as np
+import numexpr as ne
+from attrs import field, define
 from numpy import newaxis as na
 from scipy.special import gamma
 
-from floris.simulation import BaseModel
-from floris.simulation import Farm
-from floris.simulation import FlowField
-from floris.simulation import Grid
-from floris.simulation import Turbine
+from floris.type_dec import NDArrayFloat
 from floris.utilities import cosd, sind, tand, pshape
+from floris.simulation import Farm, Grid, Turbine, BaseModel, FlowField
 
 
 @define
@@ -40,7 +37,7 @@ class CumulativeGaussCurlVelocityDeficit(BaseModel):
 
     model_string = "cumulative_gauss_curl"
 
-    def prepare_function(
+    def prepare_function(  # type: ignore
         self,
         grid: Grid,
         flow_field: FlowField,
@@ -54,7 +51,7 @@ class CumulativeGaussCurlVelocityDeficit(BaseModel):
         )
         return kwargs
 
-    def function(
+    def function(  # type: ignore
         self,
         ii: int,
         x_i: np.ndarray,
@@ -75,7 +72,7 @@ class CumulativeGaussCurlVelocityDeficit(BaseModel):
         y: np.ndarray,
         z: np.ndarray,
         u_initial: np.ndarray,
-    ) -> None:
+    ) -> tuple[NDArrayFloat, NDArrayFloat]:
 
         turbine_Ct = ct
         turbine_ti = turbulence_intensity
@@ -158,7 +155,7 @@ class CumulativeGaussCurlVelocityDeficit(BaseModel):
         #     Z = (z_i_loc - z_coord) ** 2 / (2 * S)
 
         #     lbda = self.alpha_mod * sigma_i[0:ii-1, :, :, :, :, :] ** 2 / S * np.exp(-Y) * np.exp(-Z)
-        #     sum_lbda = np.sum(lbda * (Ctmp[0:ii-1, :, :, :, :, :] / u_initial), axis=0)       
+        #     sum_lbda = np.sum(lbda * (Ctmp[0:ii-1, :, :, :, :, :] / u_initial), axis=0)
         # else:
         #     sum_lbda = 0.0
 
@@ -233,4 +230,3 @@ def wake_expansion(
     # Do this ^^ in the main function
 
     return sigma_y
- 

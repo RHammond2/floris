@@ -19,16 +19,17 @@ from abc import ABC, abstractmethod
 from typing import Iterable
 
 import attrs
-from attrs import define, field
 import numpy as np
+from attrs import field, define
 
-from floris.utilities import Vec3, rotate_coordinates_rel_west, cosd, sind
-from floris.type_dec import  (
+from floris.type_dec import (
+    NDArrayInt,
+    NDArrayFloat,
     floris_float_type,
     floris_array_converter,
-    NDArrayFloat,
-    NDArrayInt
 )
+from floris.utilities import Vec3, cosd, sind, rotate_coordinates_rel_west
+
 
 @define
 class Grid(ABC):
@@ -99,15 +100,11 @@ class Grid(ABC):
     def grid_resolution_validator(self, instance: attrs.Attribute, value: int | Iterable) -> None:
         # TODO move this to the grid types and off of the base class
         """Check that grid resolution is given as int or Vec3 with int components."""
-        if isinstance(value, int) and type(self) is TurbineGrid:
+        if isinstance(value, int) and isinstance(self, TurbineGrid):
             return
-        elif isinstance(value, Iterable) and type(self) is FlowFieldPlanarGrid:
-            assert type(value[0]) is int
-            assert type(value[1]) is int
-        elif isinstance(value, Iterable) and type(self) is FlowFieldGrid:
-            assert type(value[0]) is int
-            assert type(value[1]) is int
-            assert type(value[2]) is int
+        elif isinstance(value, Iterable) and isinstance(self, (FlowFieldPlanarGrid, FlowFieldGrid)):
+            if not all(isinstance(el, int) for el in value):
+                raise ValueError("All values in `grid_resolution` must be of type: `int`")
         else:
             raise TypeError("`grid_resolution` must be of type int or Iterable(int,)")
 
@@ -184,6 +181,8 @@ class TurbineGrid(Grid):
         # Create the data for the turbine grids
         radius_ratio = 0.5
         disc_area_radius = radius_ratio * self.reference_turbine_diameter / 2
+
+        assert isinstance(self.grid_resolution, int)  # prevents mypy error
         template_grid = np.ones(
             (
                 self.n_wind_directions,
@@ -277,9 +276,9 @@ class FlowFieldGrid(Grid):
         zmax = 6 * max(z[0,0])
 
         x_points, y_points, z_points = np.meshgrid(
-            np.linspace(xmin, xmax, int(self.grid_resolution[0])),
-            np.linspace(ymin, ymax, int(self.grid_resolution[1])),
-            np.linspace(zmin, zmax, int(self.grid_resolution[2])),
+            np.linspace(xmin, xmax, int(self.grid_resolution[0])),  # type: ignore
+            np.linspace(ymin, ymax, int(self.grid_resolution[1])),  # type: ignore
+            np.linspace(zmin, zmax, int(self.grid_resolution[2])),  # type: ignore
             indexing="ij"
         )
 
@@ -398,7 +397,7 @@ class FlowFieldPlanarGrid(Grid):
         # # print(self.x)
 
         # x_coordinates, y_coordinates, _ = self.turbine_coordinates_array.T
-        
+
         # x_center_of_rotation = (np.min(x_coordinates) + np.max(x_coordinates)) / 2
         # y_center_of_rotation = (np.min(y_coordinates) + np.max(y_coordinates)) / 2
         # # print(x_center_of_rotation)

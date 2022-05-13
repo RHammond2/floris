@@ -12,15 +12,11 @@
 
 from typing import Any, Dict
 
-from attrs import define, field
-import numexpr as ne
 import numpy as np
+import numexpr as ne
+from attrs import field, define
 
-from floris.simulation import BaseModel
-from floris.simulation import Farm
-from floris.simulation import FlowField
-from floris.simulation import Grid
-from floris.simulation import Turbine
+from floris.simulation import Farm, Grid, Turbine, BaseModel, FlowField
 
 
 @define
@@ -44,7 +40,7 @@ class JensenVelocityDeficit(BaseModel):
     we: float = field(converter=float, default=0.05)
     model_string = "jensen"
 
-    def prepare_function(
+    def prepare_function(  # type: ignore
         self,
         grid: Grid,
         flow_field: FlowField,
@@ -64,7 +60,7 @@ class JensenVelocityDeficit(BaseModel):
         return kwargs
 
     # @profile
-    def function(
+    def function(  # type: ignore
         self,
         x_i: np.ndarray,
         y_i: np.ndarray,
@@ -126,24 +122,32 @@ class JensenVelocityDeficit(BaseModel):
         """
 
         # Numexpr - do not change below without corresponding changes above.
-        dx = ne.evaluate("x - x_i")
-        dy = ne.evaluate("y - y_i - deflection_field_i")
-        dz = ne.evaluate("z - z_i")
+        # dx = ne.evaluate("x - x_i")
+        # dy = ne.evaluate("y - y_i - deflection_field_i")
+        # dz = ne.evaluate("z - z_i")
+
+        dx = x - x_i
+        dy = y - y_i - deflection_field_i
+        dz = z - z_i
 
         we = self.we
         NUM_EPS = JensenVelocityDeficit.NUM_EPS
 
         # y = m * x + b
-        boundary_line = ne.evaluate("we * dx + rotor_radius")
+        # boundary_line = ne.evaluate("we * dx + rotor_radius")
+        boundary_line = we * dx + rotor_radius
 
-        c = ne.evaluate("( rotor_radius / ( rotor_radius + we * dx + NUM_EPS ) ) ** 2")
+        # c = ne.evaluate("( rotor_radius / ( rotor_radius + we * dx + NUM_EPS ) ) ** 2")
+        c = (rotor_radius / (rotor_radius + we * dx + NUM_EPS)) ** 2
 
         # C should be 0 at the current turbine and everywhere in front of it
-        downstream_mask = ne.evaluate("dx > 0 + NUM_EPS")
+        # downstream_mask = ne.evaluate("dx > 0 + NUM_EPS")
+        downstream_mask = dx > 0 + NUM_EPS
 
         # C should be 0 everywhere outside of the lateral and vertical bounds defined by the wake expansion parameter
-        boundary_mask = ne.evaluate("sqrt(dy ** 2 + dz ** 2) < boundary_line")
-        
+        # boundary_mask = ne.evaluate("sqrt(dy ** 2 + dz ** 2) < boundary_line")
+        boundary_mask = np.sqrt(dy ** 2 + dz ** 2) < boundary_line
+
         mask = np.logical_and(downstream_mask, boundary_mask)
         c[~mask] = 0.0
         # c = ne.evaluate("c * downstream_mask * boundary_mask")

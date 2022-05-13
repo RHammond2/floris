@@ -29,15 +29,24 @@ from scipy.stats import norm
 from scipy.interpolate import LinearNDInterpolator, NearestNDInterpolator
 from numpy.lib.arraysetops import unique
 
-from floris.utilities import Vec3
 from floris.type_dec import NDArrayFloat
-from floris.simulation import Farm, Floris, FlowField, WakeModelManager, farm, floris, flow_field
+from floris.utilities import Vec3
+from floris.simulation import (
+    Farm,
+    Floris,
+    FlowField,
+    WakeModelManager,
+    farm,
+    floris,
+    flow_field,
+)
 from floris.logging_manager import LoggerBase
-from floris.tools.cut_plane import get_plane_from_flow_data
+from floris.tools.cut_plane import CutPlane, change_resolution, get_plane_from_flow_data
+
 # from floris.tools.flow_data import FlowData
 from floris.simulation.turbine import Ct, power, axial_induction, average_velocity
 from floris.tools.interface_utilities import get_params, set_params, show_params
-from floris.tools.cut_plane import CutPlane, change_resolution, get_plane_from_flow_data
+
 
 # from .visualization import visualize_cut_plane
 # from .layout_functions import visualize_layout, build_turbine_loc
@@ -160,7 +169,7 @@ class FlorisInterface(LoggerBase):
             if self.floris.wake.model_strings["velocity_model"] == "turbopark":
                 # TODO: Implement wake steering for the TurbOPark model
                 raise ValueError("Non-zero yaw angles given and for TurbOPark model; wake steering with this model is not yet implemented.")
-            self.floris.farm.yaw_angles = yaw_angles
+            self.floris.farm.yaw_angles = yaw_angles  # type: ignore
 
         # Initialize solution space
         self.floris.initialize_domain()
@@ -646,7 +655,7 @@ class FlorisInterface(LoggerBase):
                 up to 1.0 and are used to weigh the wind farm power for every
                 condition in calculating the wind farm's AEP.
             cut_in_wind_speed (float, optional): Wind speed in m/s below which
-                any calculations are ignored and the wind farm is known to 
+                any calculations are ignored and the wind farm is known to
                 produce 0.0 W of power. Note that to prevent problems with the
                 wake models at negative / zero wind speeds, this variable must
                 always have a positive value. Defaults to 0.001 [m/s].
@@ -664,7 +673,7 @@ class FlorisInterface(LoggerBase):
                 in AEP due to wakes. Defaults to *False*.
 
         Returns:
-            float: 
+            float:
                 The Annual Energy Production (AEP) for the wind farm in
                 watt-hours.
         """
@@ -939,7 +948,7 @@ def _generate_uncertainty_parameters(unc_options: dict, unc_pmfs: dict) -> dict:
 
     #     # Return the dataframe
     #     return df
-    
+
     # def get_flow_data(self, resolution=None, grid_spacing=10, velocity_deficit=False):
     #     """
     #     Generate :py:class:`~.tools.flow_data.FlowData` object corresponding to

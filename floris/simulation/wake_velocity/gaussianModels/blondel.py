@@ -14,9 +14,9 @@ import numpy as np
 from scipy.special import gamma
 from scipy.optimize import minimize_scalar
 
-from ....utilities import cosd, sind, tand
+from floris.utilities import cosd, tand
+
 from .gaussian_model_base import GaussianModel
-from ..base_velocity_deficit import VelocityDeficit
 
 
 class Blondel(GaussianModel):

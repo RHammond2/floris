@@ -10,24 +10,21 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-# from __future__ import annotations
-from typing import Any, List
-
-import attrs
-from attrs import define, field
-import numpy as np
-from pathlib import Path
 import os
 import copy
 
-from floris.type_dec import (
-    NDArrayObject,
-    floris_array_converter,
-    NDArrayFloat
-)
+# from __future__ import annotations
+from turtle import onscreenclick
+from typing import Any, List
+from pathlib import Path
+
+import attrs
+import numpy as np
+from attrs import field, define
+
+from floris.type_dec import NDArrayFloat, NDArrayObject, floris_array_converter
 from floris.utilities import Vec3, load_yaml
-from floris.simulation import BaseClass
-from floris.simulation import Turbine
+from floris.simulation import Turbine, BaseClass
 
 
 @define
@@ -49,12 +46,12 @@ class Farm(BaseClass):
     turbine_type: List = field()
 
     turbine_definitions: dict = field(init=False)
-    yaw_angles: NDArrayFloat = field(init=False)
+    yaw_angles: NDArrayFloat = field(init=False, converter=floris_array_converter, on_setattr=attrs.setters.convert)
     yaw_angles_sorted: NDArrayFloat = field(init=False)
     coordinates: List[Vec3] = field(init=False)
     hub_heights: NDArrayFloat = field(init=False)
     hub_heights_sorted: NDArrayFloat = field(init=False, default=[])
-    turbine_fCts: tuple = field(init=False, default=[])
+    turbine_fCts: NDArrayObject = field(init=False, default=[])
     turbine_type_map_sorted: NDArrayObject = field(init=False, default=[])
     rotor_diameters_sorted: NDArrayFloat = field(init=False, default=[])
     TSRs_sorted: NDArrayFloat = field(init=False, default=[])

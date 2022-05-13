@@ -13,20 +13,21 @@
 # See https://floris.readthedocs.io for documentation
 
 from __future__ import annotations
+
 from collections.abc import Iterable
 
 import attrs
-from attrs import define, field
 import numpy as np
+from attrs import field, define
 from scipy.interpolate import interp1d
 
 from floris.type_dec import (
-    floris_array_converter,
-    NDArrayFloat,
-    NDArrayFilter,
     NDArrayInt,
-    NDArrayObject,
+    NDArrayFloat,
     FromDictMixin,
+    NDArrayFilter,
+    NDArrayObject,
+    floris_array_converter,
 )
 from floris.utilities import cosd
 from floris.simulation import BaseClass
@@ -288,9 +289,9 @@ class PowerThrustTable(FromDictMixin):
         if any(el.ndim > 1 for el in inputs):
             raise ValueError("power, thrust, and wind_speed inputs must be 1-D.")
 
-        if len( set( (self.power.size, self.thrust.size, self.wind_speed.size) ) ) > 1:        
+        if len( set( (self.power.size, self.thrust.size, self.wind_speed.size) ) ) > 1:
             raise ValueError("power, thrust, and wind_speed tables must be the same size.")
-        
+
         # Remove any duplicate wind speed entries
         _, duplicate_filter = np.unique(self.wind_speed, return_index=True)
         object.__setattr__(self, "power", self.power[duplicate_filter])
@@ -343,7 +344,7 @@ class Turbine(BaseClass):
     pT: float
     TSR: float
     generator_efficiency: float
-    power_thrust_table: PowerThrustTable = field(converter=PowerThrustTable.from_dict)
+    power_thrust_table: PowerThrustTable = field(converter=PowerThrustTable.from_dict)  # type: ignore
 
     # rloc: float = float_attrib()  # TODO: goes here or on the Grid?
     # use_points_on_perimeter: bool = bool_attrib()
@@ -382,7 +383,7 @@ class Turbine(BaseClass):
         Given an array of wind speeds, this function returns an array of the interpolated thrust coefficients
         from the power / thrust table used to define the Turbine. The values are bound by the range of the input values.
         Any requested wind speeds outside of the range of input wind speeds are assigned Ct of 0.0001 or 0.9999.
-        
+
         The fill_value arguments sets (upper, lower) bounds for any values outside of the input range
         """
         self.fCt_interp = interp1d(
