@@ -14,42 +14,18 @@
 
 from __future__ import annotations
 
-import copy
-from typing import Any, Tuple
+from typing import Tuple
 from pathlib import Path
-from itertools import repeat, product
-from multiprocessing import cpu_count
-from multiprocessing.pool import Pool
 
 import numpy as np
 import pandas as pd
-import numpy.typing as npt
-import matplotlib.pyplot as plt
-from scipy.stats import norm
 from scipy.interpolate import LinearNDInterpolator, NearestNDInterpolator
-from numpy.lib.arraysetops import unique
 
 from floris.type_dec import NDArrayFloat
-from floris.utilities import Vec3
-from floris.simulation import (
-    Farm,
-    Floris,
-    FlowField,
-    WakeModelManager,
-    farm,
-    floris,
-    flow_field,
-)
+from floris.simulation import Floris
 from floris.logging_manager import LoggerBase
-from floris.tools.cut_plane import CutPlane, change_resolution, get_plane_from_flow_data
-
-# from floris.tools.flow_data import FlowData
 from floris.simulation.turbine import Ct, power, axial_induction, average_velocity
-from floris.tools.interface_utilities import get_params, set_params, show_params
-
-
-# from .visualization import visualize_cut_plane
-# from .layout_functions import visualize_layout, build_turbine_loc
+from floris.tools.cut_plane import CutPlane
 
 
 class FlorisInterface(LoggerBase):
@@ -79,7 +55,7 @@ class FlorisInterface(LoggerBase):
             self.floris = Floris.from_dict(self.configuration)
 
         else:
-            raise TypeError("The Floris `configuration` must of type 'dict', 'str', or 'Path'.")
+            raise TypeError("The Floris `configuration` must be of type 'dict', 'str', or 'Path'.")
 
         # Store the heterogeneous map for use after reinitailization
         self.het_map = het_map
@@ -194,7 +170,8 @@ class FlorisInterface(LoggerBase):
         # turbine_id: list[str] | None = None,
         # wtg_id: list[str] | None = None,
         # with_resolution: float | None = None,
-        solver_settings: dict | None = None
+        solver_settings: dict | None = None,
+        time_series: bool | None = False
     ):
         # Export the floris object recursively as a dictionary
         floris_dict = self.floris.as_dict()
@@ -225,6 +202,11 @@ class FlorisInterface(LoggerBase):
             farm_dict["layout_y"] = layout[1]
         if turbine_type is not None:
             farm_dict["turbine_type"] = turbine_type
+
+        if time_series:
+            flow_field_dict["time_series"] = True
+        else:
+            flow_field_dict["time_series"] = False
 
         ## Wake
         # if wake is not None:
@@ -606,6 +588,9 @@ class FlorisInterface(LoggerBase):
             velocities=self.floris.flow_field.u,
         )
         return turbine_avg_vels
+
+    def get_turbine_TIs(self) -> NDArrayFloat:
+        return self.floris.flow_field.turbulence_intensity_field
 
     def get_farm_power(
         self,

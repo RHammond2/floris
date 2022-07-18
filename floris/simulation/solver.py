@@ -16,7 +16,6 @@ import time
 import sys
 
 from floris.simulation import Farm
-from floris.simulation import Turbine
 from floris.simulation import TurbineGrid, FlowFieldGrid
 from floris.simulation import Ct, axial_induction
 from floris.simulation import FlowField
@@ -233,6 +232,7 @@ def full_flow_sequential_solver(farm: Farm, flow_field: FlowField, flow_field_gr
         wind_directions=turbine_grid_flow_field.wind_directions,
         wind_speeds=turbine_grid_flow_field.wind_speeds,
         grid_resolution=3,
+        time_series=turbine_grid_flow_field.time_series,
     )
     turbine_grid_farm.expand_farm_properties(
         turbine_grid_flow_field.n_wind_directions, turbine_grid_flow_field.n_wind_speeds, turbine_grid.sorted_coord_indices
