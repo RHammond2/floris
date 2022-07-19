@@ -12,14 +12,15 @@
 
 # See https://floris.readthedocs.io for documentation
 
+import os
+import functools
 from typing import Tuple
 
-from attrs import define, field
-import numpy as np
 import yaml
-import os
+import numpy as np
+from attrs import field, define
 
-from floris.type_dec import floris_array_converter, NDArrayFloat
+from floris.type_dec import NDArrayFloat, floris_array_converter
 
 
 def pshape(array: np.ndarray, label: str = ""):
@@ -42,7 +43,7 @@ class Vec3:
     # NOTE: this does not convert elements to float if they are given as int. Is this ok?
 
     @components.validator
-    def _check_components(self, attribute, value) -> None:        
+    def _check_components(self, attribute, value) -> None:
         if np.ndim(value) > 1:
             raise ValueError(f"Vec3 must contain exactly 1 dimension, {np.ndim(value)} were given.")
         if np.size(value) != 3:
@@ -245,3 +246,51 @@ def load_yaml(filename, loader=Loader):
         return filename  # filename already yaml dict
     with open(filename) as fid:
         return yaml.load(fid, loader)
+
+from multiprocessing import Pool
+
+
+def split_calculate_join(func):
+    """Wrapper/decorator to split the 0th dimension of a NumPy array once the
+    array has at least 2 million cells, and adheres to a 5 dimensional
+    WS x WD x Turb x grid x grid layout.
+    """
+    @functools.wraps(func)
+    def wrapper_split_and_calculate(*args):
+        # Get the indices for the 5-D arrays containing at least 2M cells
+        split = []
+        for i, arg in enumerate(args):
+            if not isinstance(arg, np.ndarray):
+                continue
+            if arg.ndim < 5:
+                continue
+            if arg.size > 2e6:
+                split.append(i)
+
+        # If not splitting, return the processed function
+        if not split:
+            return func(*args)
+
+        # Create a list of arguments to be run with the arrays split up
+        # according to the maximum array size, limited by the 0th dimension
+        ix = split[0]
+        arr = args[ix]
+        n_split = min(int(np.ceil(arr.size / 2e6)), arr.shape[0])
+        split_args = {i: np.array_split(args[i], n_split) for i in split}
+        new_args = [args for _ in range(len(split))]
+        for i, val in split_args.items():
+            for j, v in enumerate(val):
+                new_args[j][i] = v
+
+        # Get the results of the function and concatenate back together
+        # results = [func(*a) for a in new_args]
+
+        # Optional multiprocessing workflow?
+        # TODO: This will likely need to have an environment variable set for
+        # the number of nodes to use
+        # from multiprocessing import Pool
+        with Pool(4) as p:
+            results = list(p.starmap(func, new_args))
+        results = np.concatenate(results)
+
+    return wrapper_split_and_calculate
