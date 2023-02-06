@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>floris.tools.cut_plane.subtract &#8212; FLORIS</title>
+    <title>floris.tools.parallel_computing_interface &#8212; FLORIS</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="floris.tools.cut_plane.wind_speed_profile" href="floris.tools.cut_plane.wind_speed_profile.html" />
-    <link rel="prev" title="floris.tools.cut_plane.set_origin" href="floris.tools.cut_plane.set_origin.html" />
+    <link rel="next" title="floris.tools.parallel_computing_interface.ParallelComputingInterface" href="floris.tools.parallel_computing_interface.ParallelComputingInterface.html" />
+    <link rel="prev" title="floris.tools.optimization.yaw_optimization.yaw_optimizer_sr.YawOptimizationSR" href="floris.tools.optimization.yaw_optimization.yaw_optimizer_sr.YawOptimizationSR.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="python">
     
@@ -540,16 +540,16 @@ const thebe_selector_output = ".output, .cell_output"
      </i>
     </label>
     <ul class="current">
-     <li class="toctree-l3 current active has-children">
+     <li class="toctree-l3 has-children">
       <a class="reference internal" href="floris.tools.cut_plane.html">
        floris.tools.cut_plane
       </a>
-      <input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
       <label for="toctree-checkbox-17">
        <i class="fas fa-chevron-down">
        </i>
       </label>
-      <ul class="current">
+      <ul>
        <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.cut_plane.calculate_power.html">
          floris.tools.cut_plane.calculate_power
@@ -598,11 +598,6 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.cut_plane.set_origin.html">
          floris.tools.cut_plane.set_origin
-        </a>
-       </li>
-       <li class="toctree-l4 current active">
-        <a class="current reference internal" href="#">
-         floris.tools.cut_plane.subtract
         </a>
        </li>
        <li class="toctree-l4">
@@ -714,18 +709,8 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="floris.tools.layout_functions.build_turbine_loc.html">
-         floris.tools.layout_functions.build_turbine_loc
-        </a>
-       </li>
-       <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.layout_functions.label_line.html">
          floris.tools.layout_functions.label_line
-        </a>
-       </li>
-       <li class="toctree-l4">
-        <a class="reference internal" href="floris.tools.layout_functions.make_turbine_array.html">
-         floris.tools.layout_functions.make_turbine_array
         </a>
        </li>
        <li class="toctree-l4">
@@ -782,12 +767,29 @@ const thebe_selector_output = ".output, .cell_output"
        </li>
       </ul>
      </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="current reference internal" href="#">
+       floris.tools.parallel_computing_interface
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+      <label for="toctree-checkbox-23">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.tools.parallel_computing_interface.ParallelComputingInterface.html">
+         floris.tools.parallel_computing_interface.ParallelComputingInterface
+        </a>
+       </li>
+      </ul>
+     </li>
      <li class="toctree-l3 has-children">
       <a class="reference internal" href="floris.tools.power_rose.html">
        floris.tools.power_rose
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-      <label for="toctree-checkbox-23">
+      <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+      <label for="toctree-checkbox-24">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -803,8 +805,8 @@ const thebe_selector_output = ".output, .cell_output"
       <a class="reference internal" href="floris.tools.rews.html">
        floris.tools.rews
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-      <label for="toctree-checkbox-24">
+      <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+      <label for="toctree-checkbox-25">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -835,8 +837,8 @@ const thebe_selector_output = ".output, .cell_output"
       <a class="reference internal" href="floris.tools.uncertainty_interface.html">
        floris.tools.uncertainty_interface
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-      <label for="toctree-checkbox-25">
+      <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+      <label for="toctree-checkbox-26">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -852,12 +854,17 @@ const thebe_selector_output = ".output, .cell_output"
       <a class="reference internal" href="floris.tools.visualization.html">
        floris.tools.visualization
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-      <label for="toctree-checkbox-26">
+      <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+      <label for="toctree-checkbox-27">
        <i class="fas fa-chevron-down">
        </i>
       </label>
       <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.tools.visualization.add_turbine_id_labels.html">
+         floris.tools.visualization.add_turbine_id_labels
+        </a>
+       </li>
        <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.visualization.line_contour_cut_plane.html">
          floris.tools.visualization.line_contour_cut_plane
@@ -884,6 +891,11 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="floris.tools.visualization.show_plots.html">
+         floris.tools.visualization.show_plots
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.visualization.visualize_cut_plane.html">
          floris.tools.visualization.visualize_cut_plane
         </a>
@@ -899,8 +911,8 @@ const thebe_selector_output = ".output, .cell_output"
       <a class="reference internal" href="floris.tools.wind_rose.html">
        floris.tools.wind_rose
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
-      <label for="toctree-checkbox-27">
+      <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+      <label for="toctree-checkbox-28">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -918,8 +930,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="floris.type_dec.html">
      floris.type_dec
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
-    <label for="toctree-checkbox-28">
+    <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+    <label for="toctree-checkbox-29">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -955,8 +967,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="floris.utilities.html">
      floris.utilities
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
-    <label for="toctree-checkbox-29">
+    <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
+    <label for="toctree-checkbox-30">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1115,7 +1127,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nrel/floris/issues/new?title=Issue%20on%20page%20%2F_autosummary/floris.tools.cut_plane.subtract.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nrel/floris/issues/new?title=Issue%20on%20page%20%2F_autosummary/floris.tools.parallel_computing_interface.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1132,7 +1144,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/nrel/floris/edit/main/docs/_autosummary/floris.tools.cut_plane.subtract.rst"
+        <a href="https://github.com/nrel/floris/edit/main/docs/_autosummary/floris.tools.parallel_computing_interface.rst"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1160,7 +1172,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/_autosummary/floris.tools.cut_plane.subtract.rst"
+        <a href="../_sources/_autosummary/floris.tools.parallel_computing_interface.rst"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1209,7 +1221,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>floris.tools.cut_plane.subtract</h1>
+                <h1>floris.tools.parallel_computing_interface</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1221,26 +1233,152 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="floris-tools-cut-plane-subtract">
-<h1>floris.tools.cut_plane.subtract<a class="headerlink" href="#floris-tools-cut-plane-subtract" title="Permalink to this headline">#</a></h1>
+  <section id="module-floris.tools.parallel_computing_interface">
+<span id="floris-tools-parallel-computing-interface"></span><h1>floris.tools.parallel_computing_interface<a class="headerlink" href="#module-floris.tools.parallel_computing_interface" title="Permalink to this headline">#</a></h1>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="floris.tools.parallel_computing_interface.ParallelComputingInterface.html#floris.tools.parallel_computing_interface.ParallelComputingInterface" title="floris.tools.parallel_computing_interface.ParallelComputingInterface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelComputingInterface</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
-<dt class="sig sig-object py" id="floris.tools.cut_plane.subtract">
-<span class="sig-prename descclassname"><span class="pre">floris.tools.cut_plane.</span></span><span class="sig-name descname"><span class="pre">subtract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cut_plane_a_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_plane_b_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/cut_plane.html#subtract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.cut_plane.subtract" title="Permalink to this definition">#</a></dt>
-<dd><p>Subtract u,v,w terms of cut_plane_b from cut_plane_a</p>
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface._load_local_floris_object">
+<span class="sig-prename descclassname"><span class="pre">floris.tools.parallel_computing_interface.</span></span><span class="sig-name descname"><span class="pre">_load_local_floris_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fi_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">het_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unc_pmfs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_yaw_in_relative_frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#_load_local_floris_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface._load_local_floris_object" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface._get_turbine_powers_serial">
+<span class="sig-prename descclassname"><span class="pre">floris.tools.parallel_computing_interface.</span></span><span class="sig-name descname"><span class="pre">_get_turbine_powers_serial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fi_information</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#_get_turbine_powers_serial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface._get_turbine_powers_serial" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface._optimize_yaw_angles_serial">
+<span class="sig-prename descclassname"><span class="pre">floris.tools.parallel_computing_interface.</span></span><span class="sig-name descname"><span class="pre">_optimize_yaw_angles_serial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fi_information</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_yaw_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_yaw_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles_baseline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ny_passes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_downstream_turbines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploit_layout_symmetry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_convergence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_progress</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#_optimize_yaw_angles_serial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface._optimize_yaw_angles_serial" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.tools.parallel_computing_interface.</span></span><span class="sig-name descname"><span class="pre">ParallelComputingInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_workers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_wind_direction_splits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_wind_speed_splits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_mpi4py</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate_flowfield_from_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_timings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface" title="Permalink to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.copy" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.reinitialize">
+<span class="sig-name descname"><span class="pre">reinitialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_shear</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_veer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_wind_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbulence_intensity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.reinitialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.reinitialize" title="Permalink to this definition">#</a></dt>
+<dd><p>Pass to the FlorisInterface reinitialize function. To allow users
+to directly replace a FlorisInterface object with this
+UncertaintyInterface object, this function is required.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface._preprocessing">
+<span class="sig-name descname"><span class="pre">_preprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface._preprocessing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface._preprocessing" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface._merge_subsets">
+<span class="sig-name descname"><span class="pre">_merge_subsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface._merge_subsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface._merge_subsets" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface._postprocessing">
+<span class="sig-name descname"><span class="pre">_postprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface._postprocessing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface._postprocessing" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.calculate_wake">
+<span class="sig-name descname"><span class="pre">calculate_wake</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.calculate_wake"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.calculate_wake" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.get_turbine_powers">
+<span class="sig-name descname"><span class="pre">get_turbine_powers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.get_turbine_powers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.get_turbine_powers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.get_farm_power">
+<span class="sig-name descname"><span class="pre">get_farm_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.get_farm_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.get_farm_power" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.get_farm_AEP">
+<span class="sig-name descname"><span class="pre">get_farm_AEP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_in_wind_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_out_wind_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_wake</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.get_farm_AEP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.get_farm_AEP" title="Permalink to this definition">#</a></dt>
+<dd><p>Estimate annual energy production (AEP) for distributions of wind speed, wind
+direction, frequency of occurrence, and yaw offset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cut_plane_a_in</strong> (<a class="reference internal" href="floris.tools.cut_plane.CutPlane.html#floris.tools.cut_plane.CutPlane" title="floris.tools.cut_plane.CutPlane"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutPlane</span></code></a>) -- Plane of data to subtract from.</p></li>
-<li><p><strong>cut_plane_b_in</strong> (<a class="reference internal" href="floris.tools.cut_plane.CutPlane.html#floris.tools.cut_plane.CutPlane" title="floris.tools.cut_plane.CutPlane"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutPlane</span></code></a>) -- Plane of data to subtract b.</p></li>
+<li><p><strong>freq</strong> (<em>NDArrayFloat</em>) -- NumPy array with shape (n_wind_directions,
+n_wind_speeds) with the frequencies of each wind direction and
+wind speed combination. These frequencies should typically sum
+up to 1.0 and are used to weigh the wind farm power for every
+condition in calculating the wind farm's AEP.</p></li>
+<li><p><strong>cut_in_wind_speed</strong> (<em>float</em><em>, </em><em>optional</em>) -- Wind speed in m/s below which
+any calculations are ignored and the wind farm is known to
+produce 0.0 W of power. Note that to prevent problems with the
+wake models at negative / zero wind speeds, this variable must
+always have a positive value. Defaults to 0.001 [m/s].</p></li>
+<li><p><strong>cut_out_wind_speed</strong> (<em>float</em><em>, </em><em>optional</em>) -- Wind speed above which the
+wind farm is known to produce 0.0 W of power. If None is
+specified, will assume that the wind farm does not cut out
+at high wind speeds. Defaults to None.</p></li>
+<li><p><strong>yaw_angles</strong> (<em>NDArrayFloat</em><em> | </em><em>list</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) -- The relative turbine yaw angles in degrees. If None is
+specified, will assume that the turbine yaw angles are all
+zero degrees for all conditions. Defaults to None.</p></li>
+<li><p><strong>turbine_weights</strong> (<em>NDArrayFloat</em><em> | </em><em>list</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) -- weighing terms that allow the user to emphasize power at
+particular turbines and/or completely ignore the power
+from other turbines. This is useful when, for example, you are
+modeling multiple wind farms in a single floris object. If you
+only want to calculate the power production for one of those
+farms and include the wake effects of the neighboring farms,
+you can set the turbine_weights for the neighboring farms'
+turbines to 0.0. The array of turbine powers from floris
+is multiplied with this array in the calculation of the
+objective function. If None, this  is an array with all values
+1.0 and with shape equal to (n_wind_directions, n_wind_speeds,
+n_turbines). Defaults to None.</p></li>
+<li><p><strong>no_wake</strong> -- (bool, optional): When <em>True</em> updates the turbine
+quantities without calculating the wake or adding the wake to
+the flow field. This can be useful when quantifying the loss
+in AEP due to wakes. Defaults to <em>False</em>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Difference of cut_plane_a_in minus cut_plane_b_in.</p>
+<dd class="field-even"><p>The Annual Energy Production (AEP) for the wind farm in
+watt-hours.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>cut_plane (<a class="reference internal" href="floris.tools.cut_plane.CutPlane.html#floris.tools.cut_plane.CutPlane" title="floris.tools.cut_plane.CutPlane"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutPlane</span></code></a>)</p>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.optimize_yaw_angles">
+<span class="sig-name descname"><span class="pre">optimize_yaw_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minimum_yaw_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">25.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_yaw_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles_baseline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ny_passes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[5,</span> <span class="pre">4]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_downstream_turbines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploit_layout_symmetry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_convergence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_worker_progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.optimize_yaw_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.optimize_yaw_angles" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.layout_x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">layout_x</span></span><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.layout_x" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.layout_y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">layout_y</span></span><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.layout_y" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1272,17 +1410,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="floris.tools.cut_plane.set_origin.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="floris.tools.optimization.yaw_optimization.yaw_optimizer_sr.YawOptimizationSR.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">floris.tools.cut_plane.set_origin</p>
+            <p class="prev-next-title">floris.tools.optimization.yaw_optimization.yaw_optimizer_sr.YawOptimizationSR</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="floris.tools.cut_plane.wind_speed_profile.html" title="next page">
+    <a class='right-next' id="next-link" href="floris.tools.parallel_computing_interface.ParallelComputingInterface.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">floris.tools.cut_plane.wind_speed_profile</p>
+        <p class="prev-next-title">floris.tools.parallel_computing_interface.ParallelComputingInterface</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
