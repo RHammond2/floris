@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Input File Reference" href="input_reference.html" />
-    <link rel="prev" title="Background and Concepts" href="background_concepts.html" />
+    <link rel="next" title="Coming Soon!" href="reference.html" />
+    <link rel="prev" title="Input File Reference" href="input_reference.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="python">
     
@@ -121,20 +121,32 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="installation.html">
    Installation
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  User Reference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="background_concepts.html">
+  <a class="reference internal" href="floris_101.html">
    Background and Concepts
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Examples Index
+ <li class="toctree-l1">
+  <a class="reference internal" href="floating_wind_turbine.html">
+   Floating Wind Turbine Modeling
   </a>
  </li>
  <li class="toctree-l1">
@@ -142,9 +154,38 @@ const thebe_selector_output = ".output, .cell_output"
    Input File Reference
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Examples Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Theory and Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reference.html">
+   Coming Soon!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Developer Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="dev_guide.html">
    Developer's Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code_quality.html">
+   Code Quality
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -382,13 +423,28 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.compute_tilt_angles_for_floating_turbines.html">
+         floris.simulation.turbine.compute_tilt_angles_for_floating_turbines
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.turbine.power.html">
          floris.simulation.turbine.power
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.rotor_effective_velocity.html">
+         floris.simulation.turbine.rotor_effective_velocity
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.turbine.PowerThrustTable.html">
          floris.simulation.turbine.PowerThrustTable
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.TiltTable.html">
+         floris.simulation.turbine.TiltTable
         </a>
        </li>
        <li class="toctree-l4">
@@ -957,6 +1013,11 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.type_dec.convert_to_path.html">
+       floris.type_dec.convert_to_path
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="_autosummary/floris.type_dec.floris_array_converter.html">
        floris.type_dec.floris_array_converter
       </a>
@@ -1041,11 +1102,6 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code_quality.html">
-   Code Quality
-  </a>
  </li>
 </ul>
 
@@ -1326,6 +1382,11 @@ title="Print to PDF"
      23_visualize_layout.py
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#floating-turbine-models-py">
+     24_floating_turbine_models.py
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1491,6 +1552,11 @@ title="Print to PDF"
      23_visualize_layout.py
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#floating-turbine-models-py">
+     24_floating_turbine_models.py
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1564,12 +1630,13 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="examples-index">
 <span id="examples"></span><h1>Examples Index<a class="headerlink" href="#examples-index" title="Permalink to this headline">#</a></h1>
-<p>The FLORIS software repository includes a set of <a class="reference external" href="https://github.com/NREL/floris/tree/main/examples">examples/</a>
+<p>The FLORIS software repository includes a set of
+<a class="reference external" href="https://github.com/NREL/floris/tree/main/examples">examples/</a>
 intended to describe most features as well as provide a starting point
 for various analysis methods. These are generally ordered from simplest
 to most complex. The examples and their content are described below.
 Prior to exploring the examples, it is highly recommended to review
-<a class="reference internal" href="background_concepts.html#background-concepts"><span class="std std-ref">Background and Concepts</span></a>.</p>
+<a class="reference internal" href="floris_101.html#background-concepts"><span class="std std-ref">Background and Concepts</span></a>.</p>
 <section id="basic-setup-and-pre-and-post-processing">
 <h2>Basic setup and pre and post processing<a class="headerlink" href="#basic-setup-and-pre-and-post-processing" title="Permalink to this headline">#</a></h2>
 <p>These examples are primarily for demonstration and explanation purposes.
@@ -1586,7 +1653,8 @@ simulation with multiple wind conditions.</p>
 </section>
 <section id="visualizations-py">
 <h3>02_visualizations.py<a class="headerlink" href="#visualizations-py" title="Permalink to this headline">#</a></h3>
-<p>Create visualizations for x, y, and z planes in the whole farm as well as plots of the grid points on each turbine rotor.</p>
+<p>Create visualizations for x, y, and z planes in the whole farm as well as plots of the grid points
+on each turbine rotor.</p>
 </section>
 <section id="making-adjustments-py">
 <h3>03_making_adjustments.py<a class="headerlink" href="#making-adjustments-py" title="Permalink to this headline">#</a></h3>
@@ -1625,7 +1693,7 @@ Evaluate the individual turbine powers.</p>
 </section>
 <section id="sweep-wind-conditions-py">
 <h3>06_sweep_wind_conditions.py<a class="headerlink" href="#sweep-wind-conditions-py" title="Permalink to this headline">#</a></h3>
-<p>Simulate a wind farm with multiple wind speeds and wind directions</p>
+<p>Simulate a wind farm with multiple wind speeds and wind directions.</p>
 <ul class="simple">
 <li><p>Setting up a problem considering the vectorization of the calculations</p>
 <ul>
@@ -1647,7 +1715,7 @@ a wind farm.</p>
 </section>
 <section id="calc-aep-from-rose-use-class-py">
 <h3>08_calc_aep_from_rose_use_class.py<a class="headerlink" href="#calc-aep-from-rose-use-class-py" title="Permalink to this headline">#</a></h3>
-<p>Do the above but use the included WindRose class</p>
+<p>Do the above but use the included WindRose class.</p>
 </section>
 <section id="compare-farm-power-with-neighbor-py">
 <h3>09_compare_farm_power_with_neighbor.py<a class="headerlink" href="#compare-farm-power-with-neighbor-py" title="Permalink to this headline">#</a></h3>
@@ -1676,7 +1744,7 @@ impact on wind turbine wakes.</p>
 </section>
 <section id="b-heterogenaity-multiple-ws-wd-py">
 <h3>16b_heterogenaity_multiple_ws_wd.py<a class="headerlink" href="#b-heterogenaity-multiple-ws-wd-py" title="Permalink to this headline">#</a></h3>
-<p>Illustrate usage of heterogenaity with multiple wind speeds and directions</p>
+<p>Illustrate usage of heterogenaity with multiple wind speeds and directions.</p>
 </section>
 <section id="multiple-turbine-types-py">
 <h3>17_multiple_turbine_types.py<a class="headerlink" href="#multiple-turbine-types-py" title="Permalink to this headline">#</a></h3>
@@ -1686,7 +1754,12 @@ of different types and plot the wake profiles.</p>
 <section id="visualize-layout-py">
 <h3>23_visualize_layout.py<a class="headerlink" href="#visualize-layout-py" title="Permalink to this headline">#</a></h3>
 <p>Use the visualize_layout function to provide diagram visualization
-of a turbine layout within FLORIS</p>
+of a turbine layout within FLORIS.</p>
+</section>
+<section id="floating-turbine-models-py">
+<h3>24_floating_turbine_models.py<a class="headerlink" href="#floating-turbine-models-py" title="Permalink to this headline">#</a></h3>
+<p>Demonstrates the definition of a floating turbine and how to enable the effects of tilt
+on Cp and Ct.</p>
 </section>
 </section>
 <section id="optimization">
@@ -1782,17 +1855,17 @@ atmospheric conditions of a wind farm.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="background_concepts.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="input_reference.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Background and Concepts</p>
+            <p class="prev-next-title">Input File Reference</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="input_reference.html" title="next page">
+    <a class='right-next' id="next-link" href="reference.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Input File Reference</p>
+        <p class="prev-next-title">Coming Soon!</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

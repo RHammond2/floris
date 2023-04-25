@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Developer&#39;s Guide" href="dev_guide.html" />
-    <link rel="prev" title="Examples Index" href="examples.html" />
+    <link rel="next" title="Examples Index" href="examples.html" />
+    <link rel="prev" title="Floating Wind Turbine Modeling" href="floating_wind_turbine.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="python">
     
@@ -121,20 +121,32 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="installation.html">
    Installation
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  User Reference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="background_concepts.html">
+  <a class="reference internal" href="floris_101.html">
    Background and Concepts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   Examples Index
+  <a class="reference internal" href="floating_wind_turbine.html">
+   Floating Wind Turbine Modeling
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -143,8 +155,37 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="examples.html">
+   Examples Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Theory and Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reference.html">
+   Coming Soon!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Developer Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="dev_guide.html">
    Developer's Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code_quality.html">
+   Code Quality
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -382,13 +423,28 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.compute_tilt_angles_for_floating_turbines.html">
+         floris.simulation.turbine.compute_tilt_angles_for_floating_turbines
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.turbine.power.html">
          floris.simulation.turbine.power
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.rotor_effective_velocity.html">
+         floris.simulation.turbine.rotor_effective_velocity
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.turbine.PowerThrustTable.html">
          floris.simulation.turbine.PowerThrustTable
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.TiltTable.html">
+         floris.simulation.turbine.TiltTable
         </a>
        </li>
        <li class="toctree-l4">
@@ -957,6 +1013,11 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.type_dec.convert_to_path.html">
+       floris.type_dec.convert_to_path
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="_autosummary/floris.type_dec.floris_array_converter.html">
        floris.type_dec.floris_array_converter
       </a>
@@ -1041,11 +1102,6 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code_quality.html">
-   Code Quality
-  </a>
  </li>
 </ul>
 
@@ -1154,7 +1210,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/nrel/floris/edit/main/docs/input_reference.rst"
+        <a href="https://github.com/nrel/floris/edit/main/docs/input_reference.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1182,7 +1238,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/input_reference.rst"
+        <a href="_sources/input_reference.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1193,7 +1249,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.rst</span>
+<span class="headerbtn__text-container">.md</span>
 </a>
 
       </li>
@@ -1243,8 +1299,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="input-file-reference">
-<span id="input-reference"></span><h1>Input File Reference<a class="headerlink" href="#input-file-reference" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="input-file-reference">
+<h1>Input File Reference<a class="headerlink" href="#input-file-reference" title="Permalink to this headline">#</a></h1>
+<p>In additional to reinitializing <code class="xref py py-class docutils literal notranslate"><span class="pre">FlorisInterface</span></code>, users can also set up a
+single input YAML file. The below defintions guide a user to the top, mid, and lower
+level parameterizations. In the
+<a class="reference external" href="https://github.com/NREL/floris/tree/main/examples/inputs">examples</a> folder, there exists a few
+samples that can be viewed alongside this guide.</p>
 <dl class="simple">
 <dt>name</dt><dd><p>A name for this input file.
 This is not currently only for the user's reference.</p>
@@ -1406,17 +1467,17 @@ must have a corresponding parameter block.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="examples.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="floating_wind_turbine.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Examples Index</p>
+            <p class="prev-next-title">Floating Wind Turbine Modeling</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="dev_guide.html" title="next page">
+    <a class='right-next' id="next-link" href="examples.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Developer's Guide</p>
+        <p class="prev-next-title">Examples Index</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
