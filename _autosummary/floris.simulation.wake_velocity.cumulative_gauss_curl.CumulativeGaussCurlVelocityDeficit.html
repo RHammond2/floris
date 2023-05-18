@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="floris.simulation.wake_velocity.gauss" href="floris.simulation.wake_velocity.gauss.html" />
+    <link rel="next" title="floris.simulation.wake_velocity.empirical_gauss" href="floris.simulation.wake_velocity.empirical_gauss.html" />
     <link rel="prev" title="floris.simulation.wake_velocity.cumulative_gauss_curl.wake_expansion" href="floris.simulation.wake_velocity.cumulative_gauss_curl.wake_expansion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="python">
@@ -152,8 +152,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../input_reference.html">
-   Input File Reference
+  <a class="reference internal" href="../turbine_interaction.html">
+   Turbine Library Interface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../input_reference_main.html">
+   Main Input File Reference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../input_reference_turbine.html">
+   Turbine Input File Reference
   </a>
  </li>
  <li class="toctree-l1">
@@ -169,8 +179,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../reference.html">
-   Coming Soon!
+  <a class="reference internal" href="../wake_models.html">
+   Wake Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bibliography.html">
+   Bibliography
   </a>
  </li>
 </ul>
@@ -351,6 +366,16 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.grid.PointsGrid.html">
+         floris.simulation.grid.PointsGrid
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.grid.TurbineCubatureGrid.html">
+         floris.simulation.grid.TurbineCubatureGrid
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="floris.simulation.grid.TurbineGrid.html">
          floris.simulation.grid.TurbineGrid
         </a>
@@ -378,8 +403,18 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.solver.empirical_gauss_solver.html">
+         floris.simulation.solver.empirical_gauss_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="floris.simulation.solver.full_flow_cc_solver.html">
          floris.simulation.solver.full_flow_cc_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.solver.full_flow_empirical_gauss_solver.html">
+         floris.simulation.solver.full_flow_empirical_gauss_solver
         </a>
        </li>
        <li class="toctree-l4">
@@ -435,6 +470,16 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.turbine.cubic_cubature.html">
+         floris.simulation.turbine.cubic_cubature
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.turbine.cubic_mean.html">
+         floris.simulation.turbine.cubic_mean
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="floris.simulation.turbine.power.html">
          floris.simulation.turbine.power
         </a>
@@ -442,6 +487,16 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="floris.simulation.turbine.rotor_effective_velocity.html">
          floris.simulation.turbine.rotor_effective_velocity
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.turbine.simple_cubature.html">
+         floris.simulation.turbine.simple_cubature
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.turbine.simple_mean.html">
+         floris.simulation.turbine.simple_mean
         </a>
        </li>
        <li class="toctree-l4">
@@ -516,6 +571,11 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.wake_deflection.empirical_gauss.html">
+         floris.simulation.wake_deflection.empirical_gauss
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="floris.simulation.wake_deflection.gauss.html">
          floris.simulation.wake_deflection.gauss
         </a>
@@ -552,6 +612,11 @@ const thebe_selector_output = ".output, .cell_output"
          floris.simulation.wake_turbulence.none
         </a>
        </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.wake_turbulence.wake_induced_mixing.html">
+         floris.simulation.wake_turbulence.wake_induced_mixing
+        </a>
+       </li>
       </ul>
      </li>
      <li class="toctree-l3 current active has-children">
@@ -567,6 +632,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4 current active">
         <a class="reference internal" href="floris.simulation.wake_velocity.cumulative_gauss_curl.html">
          floris.simulation.wake_velocity.cumulative_gauss_curl
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.simulation.wake_velocity.empirical_gauss.html">
+         floris.simulation.wake_velocity.empirical_gauss
         </a>
        </li>
        <li class="toctree-l4">
@@ -685,11 +755,6 @@ const thebe_selector_output = ".output, .cell_output"
        </i>
       </label>
       <ul>
-       <li class="toctree-l4">
-        <a class="reference internal" href="floris.tools.floris_interface.generate_heterogeneous_wind_map.html">
-         floris.tools.floris_interface.generate_heterogeneous_wind_map
-        </a>
-       </li>
        <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.floris_interface.set_rotor_diameter.html">
          floris.tools.floris_interface.set_rotor_diameter
@@ -974,6 +1039,11 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="floris.tools.visualization.visualize_heterogeneous_cut_plane.html">
+         floris.tools.visualization.visualize_heterogeneous_cut_plane
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.visualization.visualize_quiver.html">
          floris.tools.visualization.visualize_quiver
         </a>
@@ -1032,11 +1102,45 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="floris.utilities.html">
-     floris.utilities
+    <a class="reference internal" href="floris.turbine_library.html">
+     floris.turbine_library
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
     <label for="toctree-checkbox-30">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="floris.turbine_library.turbine_previewer.html">
+       floris.turbine_library.turbine_previewer
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
+      <label for="toctree-checkbox-31">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.turbine_library.turbine_previewer.TurbineInterface.html">
+         floris.turbine_library.turbine_previewer.TurbineInterface
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="floris.turbine_library.turbine_previewer.TurbineLibrary.html">
+         floris.turbine_library.turbine_previewer.TurbineLibrary
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="floris.utilities.html">
+     floris.utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/>
+    <label for="toctree-checkbox-32">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1057,8 +1161,23 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="floris.utilities.reverse_rotate_coordinates_rel_west.html">
+       floris.utilities.reverse_rotate_coordinates_rel_west
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="floris.utilities.rotate_coordinates_rel_west.html">
        floris.utilities.rotate_coordinates_rel_west
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="floris.utilities.round_nearest.html">
+       floris.utilities.round_nearest
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="floris.utilities.round_nearest_2_or_5.html">
+       floris.utilities.round_nearest_2_or_5
       </a>
      </li>
      <li class="toctree-l3">
@@ -1173,7 +1292,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/nrel/floris"
+        <a href="https://github.com/NREL/floris"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1190,7 +1309,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nrel/floris/issues/new?title=Issue%20on%20page%20%2F_autosummary/floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/NREL/floris/issues/new?title=Issue%20on%20page%20%2F_autosummary/floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1207,7 +1326,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/nrel/floris/edit/main/docs/_autosummary/floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.rst"
+        <a href="https://github.com/NREL/floris/edit/main/docs/_autosummary/floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.rst"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1304,7 +1423,7 @@ title="Print to PDF"
 <dd><p>Bases: <a class="reference internal" href="floris.simulation.base.BaseModel.html#floris.simulation.base.BaseModel" title="floris.simulation.base.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">floris.simulation.base.BaseModel</span></code></a></p>
 <p>The cumulative curl model is an implementation of the model described in
 <span id="id1">[]</span>, which itself is based on the cumulative model of
-<span id="id2">[]</span></p>
+<span id="id2">[<a class="reference internal" href="../bibliography.html#id26" title="Majid Bastankhah, Bridget L. Welch, Luis A. Martínez-Tossas, Jennifer King, and Paul Fleming. Analytical solution for the cumulative wake of wind turbines in wind farms. Journal of Fluid Mechanics, 911:A53, 2021. doi:10.1017/jfm.2020.1037.">7</a>]</span></p>
 <p>References:
 .. bibliography:: /references.bib</p>
 <blockquote>
@@ -1328,7 +1447,7 @@ title="Print to PDF"
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.as_dict" title="floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.as_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_dict</span></code></a></p></td>
-<td><p>Creates a JSON and YAML friendly dictionary that can be save for future reloading.</p></td>
+<td><p>Creates a YAML friendly dictionary that can be saved for future reloading.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.from_dict" title="floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dict</span></code></a></p></td>
 <td><p>Maps a data dictionary to an <cite>attr</cite>-defined class.</p></td>
@@ -1506,7 +1625,7 @@ title="Print to PDF"
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit._abc_impl" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit._abc_impl" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1530,12 +1649,13 @@ parameters as a dictionary.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.as_dict">
 <span class="sig-name descname"><span class="pre">as_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#floris.simulation.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.as_dict" title="Permalink to this definition">#</a></dt>
-<dd><p>Creates a JSON and YAML friendly dictionary that can be save for future reloading.
+<dd><p>Creates a YAML friendly dictionary that can be saved for future reloading.
 This dictionary will contain only <cite>Python</cite> types that can later be converted to their
-proper <cite>Turbine</cite> formats.</p>
+proper formats. See <cite>_attr_floris_filter</cite> for detail on which attributes are
+removed from the export.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>All key, vaue pais required for class recreation.</p>
+<dd class="field-odd"><p>All key, value pairs required for class recreation.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>dict</p>
@@ -1631,10 +1751,10 @@ The data dictionary to be mapped.</p>
             <p class="prev-next-title">floris.simulation.wake_velocity.cumulative_gauss_curl.wake_expansion</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="floris.simulation.wake_velocity.gauss.html" title="next page">
+    <a class='right-next' id="next-link" href="floris.simulation.wake_velocity.empirical_gauss.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">floris.simulation.wake_velocity.gauss</p>
+        <p class="prev-next-title">floris.simulation.wake_velocity.empirical_gauss</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

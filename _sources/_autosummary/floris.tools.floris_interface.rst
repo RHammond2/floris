@@ -15,7 +15,6 @@ floris.tools.floris\_interface
       :toctree:
       :nosignatures:
    
-      generate_heterogeneous_wind_map
       set_rotor_diameter
    
    

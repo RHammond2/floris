@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Coming Soon!" href="reference.html" />
-    <link rel="prev" title="Input File Reference" href="input_reference.html" />
+    <link rel="next" title="Wake Models" href="wake_models.html" />
+    <link rel="prev" title="Turbine Input File Reference" href="input_reference_turbine.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="python">
     
@@ -152,8 +152,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="input_reference.html">
-   Input File Reference
+  <a class="reference internal" href="turbine_interaction.html">
+   Turbine Library Interface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_reference_main.html">
+   Main Input File Reference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_reference_turbine.html">
+   Turbine Input File Reference
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -169,8 +179,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="reference.html">
-   Coming Soon!
+  <a class="reference internal" href="wake_models.html">
+   Wake Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
   </a>
  </li>
 </ul>
@@ -351,6 +366,16 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.grid.PointsGrid.html">
+         floris.simulation.grid.PointsGrid
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.grid.TurbineCubatureGrid.html">
+         floris.simulation.grid.TurbineCubatureGrid
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.grid.TurbineGrid.html">
          floris.simulation.grid.TurbineGrid
         </a>
@@ -378,8 +403,18 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.empirical_gauss_solver.html">
+         floris.simulation.solver.empirical_gauss_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.solver.full_flow_cc_solver.html">
          floris.simulation.solver.full_flow_cc_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.full_flow_empirical_gauss_solver.html">
+         floris.simulation.solver.full_flow_empirical_gauss_solver
         </a>
        </li>
        <li class="toctree-l4">
@@ -435,6 +470,16 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.cubic_cubature.html">
+         floris.simulation.turbine.cubic_cubature
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.cubic_mean.html">
+         floris.simulation.turbine.cubic_mean
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.turbine.power.html">
          floris.simulation.turbine.power
         </a>
@@ -442,6 +487,16 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.turbine.rotor_effective_velocity.html">
          floris.simulation.turbine.rotor_effective_velocity
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.simple_cubature.html">
+         floris.simulation.turbine.simple_cubature
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.simple_mean.html">
+         floris.simulation.turbine.simple_mean
         </a>
        </li>
        <li class="toctree-l4">
@@ -516,6 +571,11 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_deflection.empirical_gauss.html">
+         floris.simulation.wake_deflection.empirical_gauss
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.wake_deflection.gauss.html">
          floris.simulation.wake_deflection.gauss
         </a>
@@ -552,6 +612,11 @@ const thebe_selector_output = ".output, .cell_output"
          floris.simulation.wake_turbulence.none
         </a>
        </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_turbulence.wake_induced_mixing.html">
+         floris.simulation.wake_turbulence.wake_induced_mixing
+        </a>
+       </li>
       </ul>
      </li>
      <li class="toctree-l3 has-children">
@@ -567,6 +632,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.cumulative_gauss_curl.html">
          floris.simulation.wake_velocity.cumulative_gauss_curl
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.empirical_gauss.html">
+         floris.simulation.wake_velocity.empirical_gauss
         </a>
        </li>
        <li class="toctree-l4">
@@ -685,11 +755,6 @@ const thebe_selector_output = ".output, .cell_output"
        </i>
       </label>
       <ul>
-       <li class="toctree-l4">
-        <a class="reference internal" href="_autosummary/floris.tools.floris_interface.generate_heterogeneous_wind_map.html">
-         floris.tools.floris_interface.generate_heterogeneous_wind_map
-        </a>
-       </li>
        <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.tools.floris_interface.set_rotor_diameter.html">
          floris.tools.floris_interface.set_rotor_diameter
@@ -974,6 +1039,11 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.visualize_heterogeneous_cut_plane.html">
+         floris.tools.visualization.visualize_heterogeneous_cut_plane
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.tools.visualization.visualize_quiver.html">
          floris.tools.visualization.visualize_quiver
         </a>
@@ -1032,11 +1102,45 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/floris.utilities.html">
-     floris.utilities
+    <a class="reference internal" href="_autosummary/floris.turbine_library.html">
+     floris.turbine_library
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
     <label for="toctree-checkbox-30">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.turbine_library.turbine_previewer.html">
+       floris.turbine_library.turbine_previewer
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
+      <label for="toctree-checkbox-31">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.turbine_library.turbine_previewer.TurbineInterface.html">
+         floris.turbine_library.turbine_previewer.TurbineInterface
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.turbine_library.turbine_previewer.TurbineLibrary.html">
+         floris.turbine_library.turbine_previewer.TurbineLibrary
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="_autosummary/floris.utilities.html">
+     floris.utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/>
+    <label for="toctree-checkbox-32">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1057,8 +1161,23 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.reverse_rotate_coordinates_rel_west.html">
+       floris.utilities.reverse_rotate_coordinates_rel_west
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="_autosummary/floris.utilities.rotate_coordinates_rel_west.html">
        floris.utilities.rotate_coordinates_rel_west
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.round_nearest.html">
+       floris.utilities.round_nearest
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.round_nearest_2_or_5.html">
+       floris.utilities.round_nearest_2_or_5
       </a>
      </li>
      <li class="toctree-l3">
@@ -1173,7 +1292,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/nrel/floris"
+        <a href="https://github.com/NREL/floris"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1190,7 +1309,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nrel/floris/issues/new?title=Issue%20on%20page%20%2Fexamples.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/NREL/floris/issues/new?title=Issue%20on%20page%20%2Fexamples.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1207,7 +1326,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/nrel/floris/edit/main/docs/examples.md"
+        <a href="https://github.com/NREL/floris/edit/main/docs/examples.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1384,6 +1503,26 @@ title="Print to PDF"
      24_floating_turbine_models.py
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tilt-driven-vertical-wake-deflection-py">
+     25_tilt_driven_vertical_wake_deflection.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#empirical-gauss-velocity-deficit-parameters-py">
+     26_empirical_gauss_velocity_deficit_parameters.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#empirical-gauss-deflection-parameters-py">
+     27_empirical_gauss_deflection_parameters.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-wind-speed-at-points-py">
+     28_extract_wind_speed_at_points.py
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1552,6 +1691,26 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#floating-turbine-models-py">
      24_floating_turbine_models.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tilt-driven-vertical-wake-deflection-py">
+     25_tilt_driven_vertical_wake_deflection.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#empirical-gauss-velocity-deficit-parameters-py">
+     26_empirical_gauss_velocity_deficit_parameters.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#empirical-gauss-deflection-parameters-py">
+     27_empirical_gauss_deflection_parameters.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-wind-speed-at-points-py">
+     28_extract_wind_speed_at_points.py
     </a>
    </li>
   </ul>
@@ -1758,6 +1917,34 @@ of a turbine layout within FLORIS.</p>
 <p>Demonstrates the definition of a floating turbine and how to enable the effects of tilt
 on Cp and Ct.</p>
 </section>
+<section id="tilt-driven-vertical-wake-deflection-py">
+<h3>25_tilt_driven_vertical_wake_deflection.py<a class="headerlink" href="#tilt-driven-vertical-wake-deflection-py" title="Permalink to this headline">#</a></h3>
+<p>This example demonstrates vertical wake deflections due to the tilt angle when running
+with the Empirical Gauss model. Note that only the Empirical Gauss model implements
+vertical deflections at this time. Also be aware that this example uses a potentially
+unrealistic tilt angle, 15 degrees, to highlight the wake deflection. Moreover, the magnitude
+of vertical deflections due to tilt has not been validated.</p>
+</section>
+<section id="empirical-gauss-velocity-deficit-parameters-py">
+<h3>26_empirical_gauss_velocity_deficit_parameters.py<a class="headerlink" href="#empirical-gauss-velocity-deficit-parameters-py" title="Permalink to this headline">#</a></h3>
+<p>This example illustrates the main parameters of the Empirical Gaussian
+velocity deficit model and their effects on the wind turbine wake.</p>
+</section>
+<section id="empirical-gauss-deflection-parameters-py">
+<h3>27_empirical_gauss_deflection_parameters.py<a class="headerlink" href="#empirical-gauss-deflection-parameters-py" title="Permalink to this headline">#</a></h3>
+<p>This example illustrates the main parameters of the Empirical Gaussian
+deflection model and their effects on the wind turbine wake.</p>
+</section>
+<section id="extract-wind-speed-at-points-py">
+<h3>28_extract_wind_speed_at_points.py<a class="headerlink" href="#extract-wind-speed-at-points-py" title="Permalink to this headline">#</a></h3>
+<p>This example demonstrates the use of the <code class="docutils literal notranslate"><span class="pre">FlorisInterface.sample_flow_at_points</span></code> method
+to extract the wind speed information at user-specified locations in the flow.</p>
+<p>Specifically, this example gets the wind speed at a single x, y location and four different
+heights over a sweep of wind directions. This mimics the wind speed measurements of a met
+mast across all wind directions (at a fixed free stream wind speed).</p>
+<p>Try different values for met_mast_option to vary the location of the met mast within
+the two-turbine farm.</p>
+</section>
 </section>
 <section id="optimization">
 <h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">#</a></h2>
@@ -1852,17 +2039,17 @@ atmospheric conditions of a wind farm.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="input_reference.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="input_reference_turbine.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Input File Reference</p>
+            <p class="prev-next-title">Turbine Input File Reference</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="reference.html" title="next page">
+    <a class='right-next' id="next-link" href="wake_models.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Coming Soon!</p>
+        <p class="prev-next-title">Wake Models</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

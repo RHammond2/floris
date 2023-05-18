@@ -17,11 +17,13 @@ floris.simulation.floris.Floris
       :nosignatures:
    
       ~Floris.as_dict
+      ~Floris.check_deprecated_inputs
       ~Floris.finalize
       ~Floris.from_dict
       ~Floris.from_file
       ~Floris.get_model_defaults
       ~Floris.initialize_domain
+      ~Floris.solve_for_points
       ~Floris.solve_for_viz
       ~Floris.steady_state_atmospheric_condition
       ~Floris.to_file

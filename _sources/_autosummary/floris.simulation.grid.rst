@@ -23,6 +23,8 @@ floris.simulation.grid
       FlowFieldGrid
       FlowFieldPlanarGrid
       Grid
+      PointsGrid
+      TurbineCubatureGrid
       TurbineGrid
    
    

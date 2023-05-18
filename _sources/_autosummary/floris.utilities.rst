@@ -18,7 +18,10 @@
       cosd
       load_yaml
       pshape
+      reverse_rotate_coordinates_rel_west
       rotate_coordinates_rel_west
+      round_nearest
+      round_nearest_2_or_5
       sind
       tand
       wind_delta
