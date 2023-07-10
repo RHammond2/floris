@@ -49,7 +49,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -752,11 +752,6 @@ const thebe_selector_output = ".output, .cell_output"
        </i>
       </label>
       <ul>
-       <li class="toctree-l4">
-        <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.set_rotor_diameter.html">
-         floris.tools.floris_interface.set_rotor_diameter
-        </a>
-       </li>
        <li class="toctree-l4">
         <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.FlorisInterface.html">
          floris.tools.floris_interface.FlorisInterface
@@ -2339,18 +2334,6 @@ title="Open an issue"
             <span class="k">return</span> <span class="n">xcoords</span><span class="p">,</span> <span class="n">ycoords</span><span class="p">,</span> <span class="n">zcoords</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">xcoords</span><span class="p">,</span> <span class="n">ycoords</span></div></div>
-
-
-<span class="c1">## Functionality removed in v3</span>
-
-<div class="viewcode-block" id="set_rotor_diameter"><a class="viewcode-back" href="../../../_autosummary/floris.tools.floris_interface.set_rotor_diameter.html#floris.tools.floris_interface.set_rotor_diameter">[docs]</a><span class="k">def</span> <span class="nf">set_rotor_diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rotor_diameter</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function has been replaced and no longer works correctly, assigning an error</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-        <span class="s2">&quot;FlorinInterface.set_rotor_diameter has been removed in favor of &quot;</span>
-        <span class="s2">&quot;FlorinInterface.change_turbine. See examples/change_turbine/.&quot;</span>
-    <span class="p">)</span></div>
 </pre></div>
 
               </div>

@@ -49,7 +49,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -753,11 +753,6 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.set_rotor_diameter.html">
-         floris.tools.floris_interface.set_rotor_diameter
-        </a>
-       </li>
-       <li class="toctree-l4">
         <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.FlorisInterface.html">
          floris.tools.floris_interface.FlorisInterface
         </a>
@@ -1420,6 +1415,16 @@ title="Open an issue"
 
     <span class="k">def</span> <span class="nf">__attrs_post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
+        <span class="c1"># Configure logging</span>
+        <span class="n">logging_manager</span><span class="o">.</span><span class="n">configure_console_log</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">][</span><span class="s2">&quot;enable&quot;</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">][</span><span class="s2">&quot;level&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">logging_manager</span><span class="o">.</span><span class="n">configure_file_log</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">][</span><span class="s2">&quot;enable&quot;</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">][</span><span class="s2">&quot;level&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">check_deprecated_inputs</span><span class="p">()</span>
 
         <span class="c1"># Initialize farm quanitities that depend on other objects</span>
@@ -1495,16 +1500,6 @@ title="Open an issue"
                 <span class="bp">self</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_wind_speeds</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">sorted_coord_indices</span>
             <span class="p">)</span>
-
-        <span class="c1"># Configure logging</span>
-        <span class="n">logging_manager</span><span class="o">.</span><span class="n">configure_console_log</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">][</span><span class="s2">&quot;enable&quot;</span><span class="p">],</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">][</span><span class="s2">&quot;level&quot;</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="n">logging_manager</span><span class="o">.</span><span class="n">configure_file_log</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">][</span><span class="s2">&quot;enable&quot;</span><span class="p">],</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">][</span><span class="s2">&quot;level&quot;</span><span class="p">],</span>
-        <span class="p">)</span>
 
 <div class="viewcode-block" id="Floris.check_deprecated_inputs"><a class="viewcode-back" href="../../../_autosummary/floris.simulation.floris.Floris.html#floris.simulation.floris.Floris.check_deprecated_inputs">[docs]</a>    <span class="k">def</span> <span class="nf">check_deprecated_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

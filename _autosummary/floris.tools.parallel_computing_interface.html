@@ -50,8 +50,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="floris.tools.parallel_computing_interface.ParallelComputingInterface" href="floris.tools.parallel_computing_interface.ParallelComputingInterface.html" />
@@ -756,11 +754,6 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="floris.tools.floris_interface.set_rotor_diameter.html">
-         floris.tools.floris_interface.set_rotor_diameter
-        </a>
-       </li>
-       <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.floris_interface.FlorisInterface.html">
          floris.tools.floris_interface.FlorisInterface
         </a>
@@ -1446,7 +1439,7 @@ title="Print to PDF"
 
 <dl class="py class">
 <dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.tools.parallel_computing_interface.</span></span><span class="sig-name descname"><span class="pre">ParallelComputingInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_workers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_wind_direction_splits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_wind_speed_splits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_mpi4py</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate_flowfield_from_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_timings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.tools.parallel_computing_interface.</span></span><span class="sig-name descname"><span class="pre">ParallelComputingInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_workers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_wind_direction_splits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_wind_speed_splits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'multiprocessing'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_mpi4py</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate_flowfield_from_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_timings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface" title="Permalink to this definition">#</a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="floris.tools.parallel_computing_interface.ParallelComputingInterface.copy">
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/parallel_computing_interface.html#ParallelComputingInterface.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.parallel_computing_interface.ParallelComputingInterface.copy" title="Permalink to this definition">#</a></dt>

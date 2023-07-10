@@ -50,8 +50,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="floris.tools.visualization.reverse_cut_plane_x_axis_in_plot" href="floris.tools.visualization.reverse_cut_plane_x_axis_in_plot.html" />
@@ -756,11 +754,6 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="floris.tools.floris_interface.set_rotor_diameter.html">
-         floris.tools.floris_interface.set_rotor_diameter
-        </a>
-       </li>
-       <li class="toctree-l4">
         <a class="reference internal" href="floris.tools.floris_interface.FlorisInterface.html">
          floris.tools.floris_interface.FlorisInterface
         </a>
@@ -1420,8 +1413,10 @@ title="Print to PDF"
 <dl class="py function">
 <dt class="sig sig-object py" id="floris.tools.visualization.plot_turbines_with_fi">
 <span class="sig-prename descclassname"><span class="pre">floris.tools.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_turbines_with_fi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/tools/visualization.html#plot_turbines_with_fi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.tools.visualization.plot_turbines_with_fi" title="Permalink to this definition">#</a></dt>
-<dd><p>Wrapper function to plot turbines which extracts the data
-from a FLORIS interface object</p>
+<dd><p>Plot the wind plant layout from turbine locations gotten from a FlorisInterface object.
+Note that this function automatically uses the first wind direction and first wind speed.
+Generally, it is most explicit to create a new FlorisInterface with only the single
+wind condition that should be plotted.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

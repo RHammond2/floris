@@ -49,7 +49,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -752,11 +752,6 @@ const thebe_selector_output = ".output, .cell_output"
        </i>
       </label>
       <ul>
-       <li class="toctree-l4">
-        <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.set_rotor_diameter.html">
-         floris.tools.floris_interface.set_rotor_diameter
-        </a>
-       </li>
        <li class="toctree-l4">
         <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.FlorisInterface.html">
          floris.tools.floris_interface.FlorisInterface
@@ -1494,7 +1489,7 @@ title="Open an issue"
         <span class="k">else</span><span class="p">:</span>
             <span class="n">tilt_angles</span> <span class="o">+=</span> <span class="p">(</span>
                 <span class="n">tilt_interp</span><span class="p">[</span><span class="n">turb_type</span><span class="p">](</span><span class="n">rotor_effective_velocities</span><span class="p">)</span>
-                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">turbine_type_map</span> <span class="o">==</span> <span class="n">turb_type</span><span class="p">)</span>
+                <span class="o">*</span> <span class="p">(</span><span class="n">turbine_type_map</span> <span class="o">==</span> <span class="n">turb_type</span><span class="p">)</span>
             <span class="p">)</span>
 
     <span class="c1"># TODO: Not sure if this is the best way to do this? Basically replaces the initialized</span>
@@ -1619,7 +1614,7 @@ title="Open an issue"
         <span class="c1"># type to the main thrust coefficient array</span>
         <span class="n">p</span> <span class="o">+=</span> <span class="p">(</span>
             <span class="n">power_interp</span><span class="p">[</span><span class="n">turb_type</span><span class="p">](</span><span class="n">rotor_effective_velocities</span><span class="p">)</span>
-            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">turbine_type_map</span> <span class="o">==</span> <span class="n">turb_type</span><span class="p">)</span>
+            <span class="o">*</span> <span class="p">(</span><span class="n">turbine_type_map</span> <span class="o">==</span> <span class="n">turb_type</span><span class="p">)</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="n">ref_density_cp_ct</span></div>
@@ -1707,7 +1702,7 @@ title="Open an issue"
         <span class="c1"># type to the main thrust coefficient array</span>
         <span class="n">thrust_coefficient</span> <span class="o">+=</span> <span class="p">(</span>
             <span class="n">fCt</span><span class="p">[</span><span class="n">turb_type</span><span class="p">](</span><span class="n">average_velocities</span><span class="p">)</span>
-            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">turbine_type_map</span> <span class="o">==</span> <span class="n">turb_type</span><span class="p">)</span>
+            <span class="o">*</span> <span class="p">(</span><span class="n">turbine_type_map</span> <span class="o">==</span> <span class="n">turb_type</span><span class="p">)</span>
         <span class="p">)</span>
     <span class="n">thrust_coefficient</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">thrust_coefficient</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">)</span>
     <span class="n">effective_thrust</span> <span class="o">=</span> <span class="n">thrust_coefficient</span> <span class="o">*</span> <span class="n">cosd</span><span class="p">(</span><span class="n">yaw_angle</span><span class="p">)</span> <span class="o">*</span> <span class="n">cosd</span><span class="p">(</span><span class="n">tilt_angle</span> <span class="o">-</span> <span class="n">ref_tilt_cp_ct</span><span class="p">)</span>

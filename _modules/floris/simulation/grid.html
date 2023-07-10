@@ -49,7 +49,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -752,11 +752,6 @@ const thebe_selector_output = ".output, .cell_output"
        </i>
       </label>
       <ul>
-       <li class="toctree-l4">
-        <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.set_rotor_diameter.html">
-         floris.tools.floris_interface.set_rotor_diameter
-        </a>
-       </li>
        <li class="toctree-l4">
         <a class="reference internal" href="../../../_autosummary/floris.tools.floris_interface.FlorisInterface.html">
          floris.tools.floris_interface.FlorisInterface
@@ -1995,56 +1990,6 @@ title="Open an issue"
                 <span class="n">x_center_of_rotation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_center_of_rotation</span><span class="p">,</span>
                 <span class="n">y_center_of_rotation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y_center_of_rotation</span><span class="p">,</span>
             <span class="p">)</span></div></div>
-
-        <span class="c1"># self.sorted_indices = self.x.argsort(axis=2)</span>
-        <span class="c1"># self.unsorted_indices = self.sorted_indices.argsort(axis=2)</span>
-
-        <span class="c1"># Put the turbines into the final arrays in their sorted order</span>
-        <span class="c1"># self.x = np.take_along_axis(self.x, self.sorted_indices, axis=2)</span>
-        <span class="c1"># self.y = np.take_along_axis(self.y, self.sorted_indices, axis=2)</span>
-        <span class="c1"># self.z = np.take_along_axis(self.z, self.sorted_indices, axis=2)</span>
-
-    <span class="c1"># def finalize(self):</span>
-        <span class="c1"># sorted_indices = self.x.argsort(axis=2)</span>
-        <span class="c1"># unsorted_indices = sorted_indices.argsort(axis=2)</span>
-
-        <span class="c1"># # print(self.x)</span>
-
-        <span class="c1"># x_coordinates, y_coordinates, _ = self.turbine_coordinates_array.T</span>
-
-        <span class="c1"># x_center_of_rotation = (np.min(x_coordinates) + np.max(x_coordinates)) / 2</span>
-        <span class="c1"># y_center_of_rotation = (np.min(y_coordinates) + np.max(y_coordinates)) / 2</span>
-        <span class="c1"># # print(x_center_of_rotation)</span>
-        <span class="c1"># # print(y_center_of_rotation)</span>
-        <span class="c1"># # lkj</span>
-
-        <span class="c1"># self.x = np.take_along_axis(self.x, self.unsorted_indices, axis=2)</span>
-        <span class="c1"># self.y = np.take_along_axis(self.y, self.unsorted_indices, axis=2)</span>
-        <span class="c1"># self.z = np.take_along_axis(self.z, self.unsorted_indices, axis=2)</span>
-        <span class="c1"># # print(self.x)</span>
-
-        <span class="c1"># self.x, self.y, self.z = self._rotated_grid(</span>
-        <span class="c1">#     -1 * self.wind_directions,</span>
-        <span class="c1">#     (x_center_of_rotation, y_center_of_rotation)</span>
-        <span class="c1"># )</span>
-        <span class="c1"># TODO figure out how to un-rotate grid for plotting after it has been solved</span>
-        <span class="c1"># pass</span>
-
-    <span class="c1"># def _rotated_grid(self, angle, center_of_rotation):</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
-    <span class="c1">#     Rotate the discrete flow field grid.</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
-    <span class="c1">#     angle = ((angle - 270) % 360 + 360) % 360</span>
-    <span class="c1">#     # angle = np.reshape(angle, (len(angle), 1, 1))</span>
-    <span class="c1">#     xoffset = self.x - center_of_rotation[0]</span>
-    <span class="c1">#     yoffset = self.y - center_of_rotation[1]</span>
-    <span class="c1">#     rotated_x = (</span>
-    <span class="c1">#         xoffset * cosd(angle) - yoffset * sind(angle) + center_of_rotation[0]</span>
-    <span class="c1">#     )</span>
-    <span class="c1">#     rotated_y = (</span>
-    <span class="c1">#         xoffset * sind(angle) + yoffset * cosd(angle) + center_of_rotation[1]</span>
-    <span class="c1">#     )</span>
-    <span class="c1">#     return rotated_x, rotated_y, self.z</span>
 
 <div class="viewcode-block" id="PointsGrid"><a class="viewcode-back" href="../../../_autosummary/floris.simulation.grid.PointsGrid.html#floris.simulation.grid.PointsGrid">[docs]</a><span class="nd">@define</span>
 <span class="k">class</span> <span class="nc">PointsGrid</span><span class="p">(</span><span class="n">Grid</span><span class="p">):</span>

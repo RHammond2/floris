@@ -9,14 +9,6 @@ floris.tools.floris\_interface
 
    
    
-   .. rubric:: Functions
-
-   .. autosummary::
-      :toctree:
-      :nosignatures:
-   
-      set_rotor_diameter
-   
    
 
    

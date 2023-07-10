@@ -50,7 +50,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -756,11 +756,6 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="_autosummary/floris.tools.floris_interface.set_rotor_diameter.html">
-         floris.tools.floris_interface.set_rotor_diameter
-        </a>
-       </li>
-       <li class="toctree-l4">
         <a class="reference internal" href="_autosummary/floris.tools.floris_interface.FlorisInterface.html">
          floris.tools.floris_interface.FlorisInterface
         </a>
@@ -1464,21 +1459,36 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="architecture-and-design">
 <h1>Architecture and Design<a class="headerlink" href="#architecture-and-design" title="Permalink to this headline">#</a></h1>
-<p>Two fundamental ideas define the design of the FLORIS software:</p>
+<p>At the outset of the design of the FLORIS software, a few fundamental ideas were identified
+that should continue to guide future design decisions. These characteristics should never
+be violated, and ongoing work should strive to meet these ideas and expand on them as much
+as possible.</p>
 <ul class="simple">
-<li><p>Modularity in wake model formulation</p>
+<li><p>Modularity in wake model formulation:</p>
 <ul>
-<li><p>Mathematical formulation should be straightforward to include</p></li>
+<li><p>New mathematical formulation should be straightforward to incorporate.</p></li>
 <li><p>Requisite solver and grid data structures should not conflict with other existing
-wake models</p></li>
+wake models.</p></li>
 </ul>
 </li>
-<li><p>Management of abstraction</p>
+<li><p>Any new feature or work should not affect an existing feature:</p>
+<ul>
+<li><p>Low level code should be reused as much as possible, but high level code should rarely
+be repurposed.</p></li>
+<li><p>It is expected that a new feature will include a new user entry point
+at the highest level.</p></li>
+<li><p>Avoid flags and if-statements that allow using one high-level routine for multiple unrelated
+tasks.</p></li>
+<li><p>When in doubt, create a new pipeline from the user-level API to the low level implementation
+and refactor to consolidate, if necessary, afterwards.</p></li>
+</ul>
+</li>
+<li><p>Management of abstraction:</p>
 <ul>
 <li><p>Low level code is opaque but well tested and exercised; it should be very computationally
-efficient with low algorithmic complexity</p></li>
+efficient with low algorithmic complexity.</p></li>
 <li><p>High level code should be expressive and clear even if it results in verbose or less
-efficient code</p></li>
+efficient code.</p></li>
 </ul>
 </li>
 </ul>
