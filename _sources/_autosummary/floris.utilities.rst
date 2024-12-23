@@ -4,19 +4,17 @@
 .. automodule:: floris.utilities
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
-      :nosignatures:
    
+      check_and_identify_step_size
       cosd
       load_yaml
+      make_wind_directions_adjacent
+      nested_get
+      nested_set
+      print_nested_dict
       pshape
       reverse_rotate_coordinates_rel_west
       rotate_coordinates_rel_west
@@ -28,24 +26,9 @@
       wrap_180
       wrap_360
    
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
-      :toctree:
-      :template: custom-class-template.rst
-      :nosignatures:
    
       Loader
    
-   
-
-   
-   
-   
-
-
-
