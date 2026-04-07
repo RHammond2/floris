@@ -30,11 +30,11 @@
   <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -49,11 +49,11 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
@@ -77,7 +77,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Heterogeneous Map" href="heterogeneous_map.html" />
-    <link rel="prev" title="FLORIS Models" href="floris_models.html" />
+    <link rel="prev" title="Turbine Library" href="turbine_library.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="python"/>
   <meta name="docsearch:version" content="" />
@@ -192,14 +192,18 @@
 <li class="toctree-l1"><a class="reference internal" href="wind_data_user.html">Wind Data Objects</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="floris_models.html">FLORIS Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="turbine_models.html">Wind turbine models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multidimensional_wind_turbine.html">Multidimensional Wind Turbine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbine_library.html">Turbine Library</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heterogeneous_map.html">Heterogeneous Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="turbine_interaction.html">Turbine Library Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layout_optimization.html">Layout Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -236,6 +240,10 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.layout_optimization.layout_optimization_scipy.html">floris.optimization.layout_optimization.layout_optimization_scipy</a></li>
 </ul>
 </details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.optimization.load_optimization.html">floris.optimization.load_optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.load_optimization.load_optimization.html">floris.optimization.load_optimization.load_optimization</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.optimization.other.html">floris.optimization.other</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.other.boundary_grid.html">floris.optimization.other.boundary_grid</a></li>
 </ul>
@@ -261,8 +269,10 @@
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.rotor_velocity.html">floris.core.rotor_velocity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.solver.html">floris.core.solver</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.core.turbine.html">floris.core.turbine</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html">floris.core.turbine.controller_dependent_operation_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.operation_models.html">floris.core.turbine.operation_models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.turbine.html">floris.core.turbine.turbine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.unified_momentum_model.html">floris.core.turbine.unified_momentum_model</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.wake.html">floris.core.wake</a></li>
@@ -352,7 +362,8 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/001_extract_wind_speed_at_turbines.html">Example: Extract wind speed at turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/002_extract_wind_speed_at_points.html">Example: Extract wind speed at points</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/003_plot_velocity_deficit_profiles.html">Example: Plot velocity deficit profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/003_extract_turbulence_intensity_at_points.html">Example: Extract turbulence intensity at points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/004_plot_velocity_deficit_profiles.html">Example: Plot velocity deficit profiles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Heterogeneous</span></p>
 <ul class="nav bd-sidenav">
@@ -369,14 +380,24 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/004_generate_gridded_layout.html">Example: Gridded layout design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/005_layout_optimization_complex_boundary.html">Example: Separated boundaries layout optimization</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Load optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_load_optimization/001_lti_and_voc.html">Example: LTI and VOC Behavior with Changing Wind Direction and Power Setpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_load_optimization/002_row_opt_example.html">Example: Optimize a row of turbines</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/001_multi_dimensional_cp_ct.html">Example: Multi-dimensional Cp/Ct data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/002_multi_dimensional_cp_ct_2Hs.html">Example: Multi-dimensional Cp/Ct with 2 Hs values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/001_multi_dimensional_cp_ct.html">Example: Multi-dimensional power/thrust coefficient data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/002_multi_dimensional_cp_ct_2Hs.html">Example: Multi-dimensional power/thrust coefficient with 2 Hs values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/003_multi_dimensional_cp_ct_TI.html">Example: Multi-dimensional power/thrust coefficients with turbulence intensity</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Operation models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_operation_models/001_compare_yaw_loss.html">Example: Compare yaw loss under different operation models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Turbine</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/001_check_turbine.html">Example: Check turbine power curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/001_reference_turbines.html">Example: Reference turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/002_multiple_turbine_types.html">Example: Multiple turbine types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/003_specify_turbine_power_curve.html">Example: Specify turbine power curve</a></li>
 </ul>
@@ -469,7 +490,7 @@
       
       
       
-      <li><a href="https://github.com/NREL/floris" target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -486,7 +507,7 @@
       
       
       
-      <li><a href="https://github.com/NREL/floris/edit/main/docs/advanced_concepts.ipynb" target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris/edit/main/docs/advanced_concepts.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -503,7 +524,7 @@
       
       
       
-      <li><a href="https://github.com/NREL/floris/issues/new?title=Issue%20on%20page%20%2Fadvanced_concepts.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris/issues/new?title=Issue%20on%20page%20%2Fadvanced_concepts.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -572,7 +593,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -596,7 +617,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -621,6 +642,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data structures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grids">Grids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris-as-a-library">FLORIS as a library</a></li>
 </ul>
             </nav>
         </div>
@@ -639,9 +661,9 @@ are detailed here. See <a class="reference internal" href="intro_concepts.html#i
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a basic FLORIS model for use later</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">FlorisModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">floris</span><span class="w"> </span><span class="kn">import</span> <span class="n">FlorisModel</span>
 <span class="n">fmodel</span> <span class="o">=</span> <span class="n">FlorisModel</span><span class="p">(</span><span class="s2">&quot;gch.yaml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -695,7 +717,132 @@ field-quantities in FLORIS have the same shape.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4f941b269447a1c088a82b28ea552fa94254f73e7dee019f3936ab6174915bad.png" src="_images/4f941b269447a1c088a82b28ea552fa94254f73e7dee019f3936ab6174915bad.png" />
+<img alt="_images/e7ec3c0d577d47b08b1b6c66bed23cd10a059474347499d8ea036b7492e50ad9.png" src="_images/e7ec3c0d577d47b08b1b6c66bed23cd10a059474347499d8ea036b7492e50ad9.png" />
+</div>
+</div>
+</section>
+<section id="floris-as-a-library">
+<h2>FLORIS as a library<a class="headerlink" href="#floris-as-a-library" title="Link to this heading">#</a></h2>
+<p>FLORIS is commonly used as a library in other software packages.
+In cases where the calling-code will create inputs for FLORIS rather than require them from the
+user, it can be helpful to initialize the FLORIS model with default inputs and then
+change them in code.
+In this case, the following workflow is recommended.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">floris</span>
+
+<span class="c1"># Initialize FLORIS with defaults</span>
+<span class="n">fmodel</span> <span class="o">=</span> <span class="n">floris</span><span class="o">.</span><span class="n">FlorisModel</span><span class="p">(</span><span class="s2">&quot;defaults&quot;</span><span class="p">)</span>
+
+<span class="c1"># Within the calling-code&#39;s setup step, update FLORIS as needed</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span> <span class="o">+</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="n">turbulence_intensities</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="c1"># turbine_library_path=&quot;path/to/turbine_library&quot;,   # Shown here for reference</span>
+    <span class="c1"># turbine_type=[&quot;my_turbine&quot;]</span>
+<span class="p">)</span>
+
+<span class="c1"># Within the calling code&#39;s computation, run FLORIS</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/floris/floris/floris/core/flow_field.py:169: UserWarning: &#39;where&#39; used without &#39;out&#39;, expect unitialized memory in output. If this is intentional, use out=None.
+  * np.power(
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, the calling-code can import the FLORIS default inputs as a Python dictionary
+and modify them directly before initializing the FLORIS model.
+This is especially helpful when the calling-code will modify a parameter that isn't
+supported by the <code class="docutils literal notranslate"><span class="pre">FlorisModel.set(...)</span></code> command.
+In particular, the wake model parameters are not directly accessible, so these can be updated
+externally, as shown below.
+Note that the <code class="docutils literal notranslate"><span class="pre">FlorisModel.get_defaults()</span></code> function returns a deep copy of the default inputs,
+so these can be modified directly without side effects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">floris</span>
+
+<span class="c1"># Retrieve the default parameters</span>
+<span class="n">fdefaults</span> <span class="o">=</span> <span class="n">floris</span><span class="o">.</span><span class="n">FlorisModel</span><span class="o">.</span><span class="n">get_defaults</span><span class="p">()</span>
+
+<span class="c1"># Update wake model parameters</span>
+<span class="n">fdefaults</span><span class="p">[</span><span class="s2">&quot;wake&quot;</span><span class="p">][</span><span class="s2">&quot;model_strings&quot;</span><span class="p">][</span><span class="s2">&quot;velocity_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;jensen&quot;</span>
+<span class="n">fdefaults</span><span class="p">[</span><span class="s2">&quot;wake&quot;</span><span class="p">][</span><span class="s2">&quot;wake_velocity_parameters&quot;</span><span class="p">][</span><span class="s2">&quot;jensen&quot;</span><span class="p">][</span><span class="s2">&quot;we&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Initialize FLORIS with modified parameters</span>
+<span class="n">fmodel</span> <span class="o">=</span> <span class="n">floris</span><span class="o">.</span><span class="n">FlorisModel</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="n">fdefaults</span><span class="p">)</span>
+
+<span class="c1"># Within the calling-code&#39;s setup step, update FLORIS as needed</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span> <span class="o">+</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="n">turbulence_intensities</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="c1"># turbine_library_path=&quot;path/to/turbine_library&quot;,   # Shown here for reference</span>
+    <span class="c1"># turbine_type=[&quot;my_turbine&quot;]</span>
+<span class="p">)</span>
+
+<span class="c1"># Verify settings are correct</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">show_config</span><span class="p">()</span>  <span class="c1"># Shows truncated set of inputs; show all with fmodel.show_config(full=True)</span>
+
+<span class="c1"># Within the calling code&#39;s computation, run FLORIS</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>solver
+    type
+        turbine_grid
+    turbine_grid_points
+        3
+wake
+    model_strings
+        combination_model
+            sosfs
+        deflection_model
+            gauss
+        turbulence_model
+            crespo_hernandez
+        velocity_model
+            jensen
+farm
+    layout_x
+        [0.0]
+    layout_y
+        [0.0]
+    turbine_type
+        [&#39;nrel_5MW&#39;]
+    turbine_library_path
+        /home/runner/work/floris/floris/floris/turbine_library
+flow_field
+    wind_speeds
+        [5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0]
+    wind_directions
+        [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]
+    wind_veer
+        0.0
+    wind_shear
+        0.12
+    air_density
+        1.225
+    turbulence_intensities
+        [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]
+    reference_wind_height
+        90.0
+name
+    GCH
+description
+    Default initialization: Gauss-Curl hybrid model (GCH)
+floris_version
+    v4
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -732,12 +879,12 @@ field-quantities in FLORIS have the same shape.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="floris_models.html"
+       href="turbine_library.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">FLORIS Models</p>
+        <p class="prev-next-title">Turbine Library</p>
       </div>
     </a>
     <a class="right-next"
@@ -760,14 +907,16 @@ field-quantities in FLORIS have the same shape.</p>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data structures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grids">Grids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris-as-a-library">FLORIS as a library</a></li>
 </ul>
   </nav></div>
 
@@ -782,7 +931,7 @@ field-quantities in FLORIS have the same shape.</p>
   <div class="footer-item">
     
 <p class="component-author">
-By National Renewable Energy Laboratory
+By National Laboratory of the Rockies
 </p>
 
   </div>
@@ -792,7 +941,7 @@ By National Renewable Energy Laboratory
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>

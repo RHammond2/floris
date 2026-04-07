@@ -10,7 +10,6 @@ floris.core.turbine.turbine
    
       axial_induction
       power
-      select_multidim_condition
       thrust_coefficient
    
    .. rubric:: Classes

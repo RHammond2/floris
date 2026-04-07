@@ -9,6 +9,7 @@
    .. autosummary::
    
       map_turbine_powers_uncertain
+      map_turbine_values_uncertain
    
    .. rubric:: Classes
 

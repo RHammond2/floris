@@ -29,11 +29,11 @@
   <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -48,11 +48,11 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
@@ -72,14 +72,442 @@
                 gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10.8/dist/mermaid.esm.min.mjs"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
-    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.8/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-    <script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.8/dist/mermaid.esm.min.mjs";
-window.addEventListener("load", () => mermaid.run());
-</script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.8/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -199,14 +627,18 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l1"><a class="reference internal" href="wind_data_user.html">Wind Data Objects</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="floris_models.html">FLORIS Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="turbine_models.html">Wind turbine models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multidimensional_wind_turbine.html">Multidimensional Wind Turbine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbine_library.html">Turbine Library</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heterogeneous_map.html">Heterogeneous Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="turbine_interaction.html">Turbine Library Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layout_optimization.html">Layout Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -243,6 +675,10 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.layout_optimization.layout_optimization_scipy.html">floris.optimization.layout_optimization.layout_optimization_scipy</a></li>
 </ul>
 </details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.optimization.load_optimization.html">floris.optimization.load_optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.load_optimization.load_optimization.html">floris.optimization.load_optimization.load_optimization</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.optimization.other.html">floris.optimization.other</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.other.boundary_grid.html">floris.optimization.other.boundary_grid</a></li>
 </ul>
@@ -268,8 +704,10 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.rotor_velocity.html">floris.core.rotor_velocity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.solver.html">floris.core.solver</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.core.turbine.html">floris.core.turbine</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html">floris.core.turbine.controller_dependent_operation_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.operation_models.html">floris.core.turbine.operation_models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.turbine.html">floris.core.turbine.turbine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.unified_momentum_model.html">floris.core.turbine.unified_momentum_model</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.wake.html">floris.core.wake</a></li>
@@ -359,7 +797,8 @@ window.addEventListener("load", () => mermaid.run());
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/001_extract_wind_speed_at_turbines.html">Example: Extract wind speed at turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/002_extract_wind_speed_at_points.html">Example: Extract wind speed at points</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/003_plot_velocity_deficit_profiles.html">Example: Plot velocity deficit profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/003_extract_turbulence_intensity_at_points.html">Example: Extract turbulence intensity at points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/004_plot_velocity_deficit_profiles.html">Example: Plot velocity deficit profiles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Heterogeneous</span></p>
 <ul class="nav bd-sidenav">
@@ -376,14 +815,24 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/004_generate_gridded_layout.html">Example: Gridded layout design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/005_layout_optimization_complex_boundary.html">Example: Separated boundaries layout optimization</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Load optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_load_optimization/001_lti_and_voc.html">Example: LTI and VOC Behavior with Changing Wind Direction and Power Setpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_load_optimization/002_row_opt_example.html">Example: Optimize a row of turbines</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/001_multi_dimensional_cp_ct.html">Example: Multi-dimensional Cp/Ct data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/002_multi_dimensional_cp_ct_2Hs.html">Example: Multi-dimensional Cp/Ct with 2 Hs values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/001_multi_dimensional_cp_ct.html">Example: Multi-dimensional power/thrust coefficient data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/002_multi_dimensional_cp_ct_2Hs.html">Example: Multi-dimensional power/thrust coefficient with 2 Hs values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/003_multi_dimensional_cp_ct_TI.html">Example: Multi-dimensional power/thrust coefficients with turbulence intensity</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Operation models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_operation_models/001_compare_yaw_loss.html">Example: Compare yaw loss under different operation models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Turbine</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/001_check_turbine.html">Example: Check turbine power curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/001_reference_turbines.html">Example: Reference turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/002_multiple_turbine_types.html">Example: Multiple turbine types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/003_specify_turbine_power_curve.html">Example: Specify turbine power curve</a></li>
 </ul>
@@ -476,7 +925,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="https://github.com/NREL/floris" target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -493,7 +942,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="https://github.com/NREL/floris/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -514,7 +963,7 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -613,6 +1062,8 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.core.wake_deflection.jimenez.html#floris.core.wake_deflection.jimenez.JimenezVelocityDeflection.ad">(floris.core.wake_deflection.jimenez.JimenezVelocityDeflection attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.adaptivefixedpointiteration">adaptivefixedpointiteration() (in module floris.core.turbine.unified_momentum_model)</a>
+</li>
       <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_pyoptsparse.html#floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse.add_con_group">add_con_group() (floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse method)</a>
 
       <ul>
@@ -650,6 +1101,8 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       </ul></li>
       <li><a href="_autosummary/floris.core.wake_velocity.cumulative_gauss_curl.html#floris.core.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit.alpha_mod">alpha_mod (floris.core.wake_velocity.cumulative_gauss_curl.CumulativeGaussCurlVelocityDeficit attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.an">an (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
 </li>
       <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.ApproxFlorisModel">ApproxFlorisModel (class in floris.uncertain_floris_model)</a>
 </li>
@@ -709,6 +1162,8 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit.awc_mode">awc_mode (floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit attribute)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.AWC_model">AWC_model() (floris.core.turbine.operation_models.AWCTurbine method)</a>
+</li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_modes">awc_modes (floris.core.farm.Farm attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_modes_sorted">awc_modes_sorted (floris.core.farm.Farm attribute)</a>
@@ -723,9 +1178,11 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.VelocityProfilesFigure.ax_width">ax_width (floris.flow_visualization.VelocityProfilesFigure attribute)</a>
 </li>
-      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.axial_induction">axial_induction() (floris.core.turbine.operation_models.AWCTurbine method)</a>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine.axial_induction">axial_induction() (floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine static method)</a>
 
       <ul>
+        <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.axial_induction">(floris.core.turbine.operation_models.AWCTurbine method)</a>
+</li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.axial_induction">(floris.core.turbine.operation_models.BaseOperationModel static method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.CosineLossTurbine.axial_induction">(floris.core.turbine.operation_models.CosineLossTurbine method)</a>
@@ -737,6 +1194,8 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.SimpleDeratingTurbine.axial_induction">(floris.core.turbine.operation_models.SimpleDeratingTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.SimpleTurbine.axial_induction">(floris.core.turbine.operation_models.SimpleTurbine method)</a>
+</li>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.UnifiedMomentumModelTurbine.axial_induction">(floris.core.turbine.unified_momentum_model.UnifiedMomentumModelTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.axial_induction">(in module floris.core.turbine.turbine)</a>
 </li>
@@ -769,9 +1228,11 @@ window.addEventListener("load", () => mermaid.run());
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/floris.core.wake_deflection.gauss.html#floris.core.wake_deflection.gauss.GaussVelocityDeflection.beta">beta (floris.core.wake_deflection.gauss.GaussVelocityDeflection attribute)</a>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.beta">beta (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
 
       <ul>
+        <li><a href="_autosummary/floris.core.wake_deflection.gauss.html#floris.core.wake_deflection.gauss.GaussVelocityDeflection.beta">(floris.core.wake_deflection.gauss.GaussVelocityDeflection attribute)</a>
+</li>
         <li><a href="_autosummary/floris.core.wake_velocity.gauss.html#floris.core.wake_velocity.gauss.GaussVelocityDeficit.beta">(floris.core.wake_velocity.gauss.GaussVelocityDeficit attribute)</a>
 </li>
       </ul></li>
@@ -867,15 +1328,27 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.html#floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.LayoutOptimizationPyOptSparse.compute_cons">(floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.LayoutOptimizationPyOptSparse method)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.compute_farm_revenue">compute_farm_revenue() (in module floris.optimization.load_optimization.load_optimization)</a>
+</li>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.compute_farm_voc">compute_farm_voc() (in module floris.optimization.load_optimization.load_optimization)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine.compute_local_vertical_shear">compute_local_vertical_shear() (floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine static method)</a>
+</li>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.compute_lti">compute_lti() (in module floris.optimization.load_optimization.load_optimization)</a>
+</li>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.compute_net_revenue">compute_net_revenue() (in module floris.optimization.load_optimization.load_optimization)</a>
+</li>
       <li><a href="_autosummary/floris.turbine_library.turbine_previewer.html#floris.turbine_library.turbine_previewer.TurbineLibrary.compute_power_curves">compute_power_curves() (floris.turbine_library.turbine_previewer.TurbineLibrary method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.turbine_library.turbine_previewer.html#floris.turbine_library.turbine_previewer.TurbineLibrary.compute_thrust_coefficient_curves">compute_thrust_coefficient_curves() (floris.turbine_library.turbine_previewer.TurbineLibrary method)</a>
 </li>
       <li><a href="_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.compute_tilt_angles_for_floating_turbines">compute_tilt_angles_for_floating_turbines() (in module floris.core.rotor_velocity)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.compute_tilt_angles_for_floating_turbines_map">compute_tilt_angles_for_floating_turbines_map() (in module floris.core.rotor_velocity)</a>
+</li>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.compute_turbine_voc">compute_turbine_voc() (in module floris.optimization.load_optimization.load_optimization)</a>
 </li>
       <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.Turbine.condition_keys">condition_keys (floris.core.turbine.turbine.Turbine attribute)</a>
 </li>
@@ -907,6 +1380,16 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.construct_turbine_TSRs">construct_turbine_TSRs() (floris.core.farm.Farm method)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine.control_trajectory">control_trajectory() (floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine static method)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine">ControllerDependentTurbine (class in floris.core.turbine.controller_dependent_operation_model)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationResult.converged">converged (floris.core.turbine.unified_momentum_model.FixedPointIterationResult attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.converged">(floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/floris.type_dec.html#floris.type_dec.convert_to_path">convert_to_path() (in module floris.type_dec)</a>
 </li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.VelocityProfilesFigure.coordinate_labels">coordinate_labels (floris.flow_visualization.VelocityProfilesFigure attribute)</a>
@@ -937,7 +1420,13 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.CosineLossTurbine">CosineLossTurbine (class in floris.core.turbine.operation_models)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.Cp">Cp (floris.core.turbine.unified_momentum_model.MomentumSolution property)</a>
+</li>
       <li><a href="_autosummary/floris.core.wake_turbulence.crespo_hernandez.html#floris.core.wake_turbulence.crespo_hernandez.CrespoHernandez">CrespoHernandez (class in floris.core.wake_turbulence.crespo_hernandez)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.Ct">Ct (floris.core.turbine.unified_momentum_model.MomentumSolution property)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.Ctprime">Ctprime (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.Grid.cubature_weights">cubature_weights (floris.core.grid.Grid attribute)</a>
 </li>
@@ -971,14 +1460,14 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.optimization.other.boundary_grid.html#floris.optimization.other.boundary_grid.discontinuous_grid">discontinuous_grid() (in module floris.optimization.other.boundary_grid)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_pyoptsparse.html#floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse.distance_from_boundaries">distance_from_boundaries() (floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse method)</a>
 
       <ul>
         <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.html#floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.LayoutOptimizationPyOptSparse.distance_from_boundaries">(floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.LayoutOptimizationPyOptSparse method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.wake_deflection.gauss.html#floris.core.wake_deflection.gauss.GaussVelocityDeflection.dm">dm (floris.core.wake_deflection.gauss.GaussVelocityDeflection attribute)</a>
 </li>
       <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRose.downsample">downsample() (floris.wind_data.WindRose method)</a>
@@ -990,6 +1479,10 @@ window.addEventListener("load", () => mermaid.run());
       <li><a href="_autosummary/floris.core.wake_turbulence.crespo_hernandez.html#floris.core.wake_turbulence.crespo_hernandez.CrespoHernandez.downstream">downstream (floris.core.wake_turbulence.crespo_hernandez.CrespoHernandez attribute)</a>
 </li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.VelocityProfilesFigure.downstream_dists_D">downstream_dists_D (floris.flow_visualization.VelocityProfilesFigure attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.dp">dp (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.dp_NL">dp_NL (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.dudz_initial_sorted">dudz_initial_sorted (floris.core.flow_field.FlowField attribute)</a>
 </li>
@@ -1043,7 +1536,19 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.finalize">(floris.core.flow_field.FlowField method)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.find_A_to_satisfy_rev_voc_ratio">find_A_to_satisfy_rev_voc_ratio() (in module floris.optimization.load_optimization.load_optimization)</a>
+</li>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.find_A_to_satisfy_target_VOC_per_MW">find_A_to_satisfy_target_VOC_per_MW() (in module floris.optimization.load_optimization.load_optimization)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine.find_cp">find_cp() (floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine static method)</a>
+</li>
       <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_boundary_grid.html#floris.optimization.layout_optimization.layout_optimization_boundary_grid.LayoutOptimizationBoundaryGrid.find_lengths">find_lengths() (floris.optimization.layout_optimization.layout_optimization_boundary_grid.LayoutOptimizationBoundaryGrid method)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.fixedpointiteration">fixedpointiteration() (in module floris.core.turbine.unified_momentum_model)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationCompatible">FixedPointIterationCompatible (class in floris.core.turbine.unified_momentum_model)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationResult">FixedPointIterationResult (class in floris.core.turbine.unified_momentum_model)</a>
 </li>
       <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.Turbine.floating_tilt_table">floating_tilt_table (floris.core.turbine.turbine.Turbine attribute)</a>
 </li>
@@ -1125,6 +1630,13 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       </ul></li>
       <li>
+    floris.core.turbine.controller_dependent_operation_model
+
+      <ul>
+        <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#module-floris.core.turbine.controller_dependent_operation_model">module</a>
+</li>
+      </ul></li>
+      <li>
     floris.core.turbine.operation_models
 
       <ul>
@@ -1136,6 +1648,13 @@ window.addEventListener("load", () => mermaid.run());
 
       <ul>
         <li><a href="_autosummary/floris.core.turbine.turbine.html#module-floris.core.turbine.turbine">module</a>
+</li>
+      </ul></li>
+      <li>
+    floris.core.turbine.unified_momentum_model
+
+      <ul>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#module-floris.core.turbine.unified_momentum_model">module</a>
 </li>
       </ul></li>
       <li>
@@ -1313,6 +1832,8 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.flow_visualization.html#module-floris.flow_visualization">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     floris.layout_visualization
 
@@ -1327,8 +1848,6 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.logging_manager.html#module-floris.logging_manager">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     floris.optimization
 
@@ -1390,6 +1909,20 @@ window.addEventListener("load", () => mermaid.run());
 
       <ul>
         <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_scipy.html#module-floris.optimization.layout_optimization.layout_optimization_scipy">module</a>
+</li>
+      </ul></li>
+      <li>
+    floris.optimization.load_optimization
+
+      <ul>
+        <li><a href="_autosummary/floris.optimization.load_optimization.html#module-floris.optimization.load_optimization">module</a>
+</li>
+      </ul></li>
+      <li>
+    floris.optimization.load_optimization.load_optimization
+
+      <ul>
+        <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#module-floris.optimization.load_optimization.load_optimization">module</a>
 </li>
       </ul></li>
       <li>
@@ -1598,7 +2131,11 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.optimization.yaw_optimization.yaw_optimizer_geometric.html#floris.optimization.yaw_optimization.yaw_optimizer_geometric.geometric_yaw">geometric_yaw() (in module floris.optimization.yaw_optimization.yaw_optimizer_geometric)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine.get_ct">get_ct() (floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine static method)</a>
+</li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.TurbineCubatureGrid.get_cubature_coefficients">get_cubature_coefficients() (floris.core.grid.TurbineCubatureGrid class method)</a>
+</li>
+      <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_defaults">get_defaults() (floris.floris_model.FlorisModel static method)</a>
 </li>
       <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_expected_farm_power">get_expected_farm_power() (floris.floris_model.FlorisModel method)</a>
 
@@ -1640,10 +2177,10 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.UncertainFlorisModel.get_farm_power">(floris.uncertain_floris_model.UncertainFlorisModel method)</a>
 </li>
       </ul></li>
-      <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRoseWRG.get_heterogeneous_wind_rose">get_heterogeneous_wind_rose() (floris.wind_data.WindRoseWRG method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRoseWRG.get_heterogeneous_wind_rose">get_heterogeneous_wind_rose() (floris.wind_data.WindRoseWRG method)</a>
+</li>
       <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_operation_model">get_operation_model() (floris.floris_model.FlorisModel method)</a>
 
       <ul>
@@ -1702,16 +2239,18 @@ window.addEventListener("load", () => mermaid.run());
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.Heck">Heck (class in floris.core.turbine.unified_momentum_model)</a>
+</li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.het_map">het_map (floris.core.flow_field.FlowField attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.het_map_validator">het_map_validator() (floris.core.flow_field.FlowField method)</a>
 </li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.heterogeneous_config_validator">heterogeneous_config_validator() (floris.core.flow_field.FlowField method)</a>
 </li>
-      <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.heterogeneous_inflow_config">heterogeneous_inflow_config (floris.core.flow_field.FlowField attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.heterogeneous_inflow_config">heterogeneous_inflow_config (floris.core.flow_field.FlowField attribute)</a>
+</li>
       <li><a href="_autosummary/floris.core.wake_deflection.empirical_gauss.html#floris.core.wake_deflection.empirical_gauss.EmpiricalGaussVelocityDeflection.horizontal_deflection_gain_D">horizontal_deflection_gain_D (floris.core.wake_deflection.empirical_gauss.EmpiricalGaussVelocityDeflection attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.Turbine.hub_height">hub_height (floris.core.turbine.turbine.Turbine attribute)</a>
@@ -1734,6 +2273,12 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.core.wake_turbulence.crespo_hernandez.html#floris.core.wake_turbulence.crespo_hernandez.CrespoHernandez.initial">initial (floris.core.wake_turbulence.crespo_hernandez.CrespoHernandez attribute)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationCompatible.initial_guess">initial_guess() (floris.core.turbine.unified_momentum_model.FixedPointIterationCompatible method)</a>
+
+      <ul>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.Heck.initial_guess">(floris.core.turbine.unified_momentum_model.Heck method)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.initialize">initialize() (floris.core.farm.Farm method)</a>
 </li>
       <li><a href="_autosummary/floris.core.core.html#floris.core.core.Core.initialize_domain">initialize_domain() (floris.core.core.Core method)</a>
@@ -1751,6 +2296,8 @@ window.addEventListener("load", () => mermaid.run());
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.interpolate_multiplier_xyz">interpolate_multiplier_xyz() (floris.core.flow_field.FlowField static method)</a>
 </li>
       <li><a href="_autosummary/floris.cut_plane.html#floris.cut_plane.interpolate_onto_array">interpolate_onto_array() (in module floris.cut_plane)</a>
+</li>
+      <li><a href="_autosummary/floris.utilities.html#floris.utilities.is_all_scalar_dict">is_all_scalar_dict() (in module floris.utilities)</a>
 </li>
       <li><a href="_autosummary/floris.type_dec.html#floris.type_dec.iter_validator">iter_validator() (in module floris.type_dec)</a>
 </li>
@@ -1838,6 +2385,8 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_scipy.html#floris.optimization.layout_optimization.layout_optimization_scipy.LayoutOptimizationScipy">LayoutOptimizationScipy (class in floris.optimization.layout_optimization.layout_optimization_scipy)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.LimitedHeck">LimitedHeck (class in floris.core.turbine.unified_momentum_model)</a>
+</li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.line_contour_cut_plane">line_contour_cut_plane() (in module floris.flow_visualization)</a>
 </li>
       <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_base.html#floris.optimization.layout_optimization.layout_optimization_base.list_depth">list_depth() (in module floris.optimization.layout_optimization.layout_optimization_base)</a>
@@ -1870,11 +2419,15 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.map_turbine_powers_uncertain">map_turbine_powers_uncertain() (in module floris.uncertain_floris_model)</a>
 </li>
+      <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.map_turbine_values_uncertain">map_turbine_values_uncertain() (in module floris.uncertain_floris_model)</a>
+</li>
       <li><a href="_autosummary/floris.core.wake_velocity.gauss.html#floris.core.wake_velocity.gauss.mask_upstream_wake">mask_upstream_wake() (in module floris.core.wake_velocity.gauss)</a>
 </li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.VelocityProfilesFigure.match_profile_to_axes">match_profile_to_axes() (floris.flow_visualization.VelocityProfilesFigure method)</a>
 </li>
       <li><a href="_autosummary/floris.core.wake_combination.max.html#floris.core.wake_combination.max.MAX">MAX (class in floris.core.wake_combination.max)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationResult.max_resid">max_resid (floris.core.turbine.unified_momentum_model.FixedPointIterationResult attribute)</a>
 </li>
       <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.html#floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.LayoutOptimizationPyOptSparse.mean_distance">mean_distance() (floris.optimization.layout_optimization.layout_optimization_pyoptsparse_spread.LayoutOptimizationPyOptSparse method)</a>
 </li>
@@ -1914,9 +2467,13 @@ window.addEventListener("load", () => mermaid.run());
 </li>
         <li><a href="_autosummary/floris.core.turbine.html#module-floris.core.turbine">floris.core.turbine</a>
 </li>
+        <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#module-floris.core.turbine.controller_dependent_operation_model">floris.core.turbine.controller_dependent_operation_model</a>
+</li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#module-floris.core.turbine.operation_models">floris.core.turbine.operation_models</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.turbine.html#module-floris.core.turbine.turbine">floris.core.turbine.turbine</a>
+</li>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#module-floris.core.turbine.unified_momentum_model">floris.core.turbine.unified_momentum_model</a>
 </li>
         <li><a href="_autosummary/floris.core.wake.html#module-floris.core.wake">floris.core.wake</a>
 </li>
@@ -1990,6 +2547,10 @@ window.addEventListener("load", () => mermaid.run());
 </li>
         <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_scipy.html#module-floris.optimization.layout_optimization.layout_optimization_scipy">floris.optimization.layout_optimization.layout_optimization_scipy</a>
 </li>
+        <li><a href="_autosummary/floris.optimization.load_optimization.html#module-floris.optimization.load_optimization">floris.optimization.load_optimization</a>
+</li>
+        <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#module-floris.optimization.load_optimization.load_optimization">floris.optimization.load_optimization.load_optimization</a>
+</li>
         <li><a href="_autosummary/floris.optimization.other.html#module-floris.optimization.other">floris.optimization.other</a>
 </li>
         <li><a href="_autosummary/floris.optimization.other.boundary_grid.html#module-floris.optimization.other.boundary_grid">floris.optimization.other.boundary_grid</a>
@@ -2025,6 +2586,8 @@ window.addEventListener("load", () => mermaid.run());
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution">MomentumSolution (class in floris.core.turbine.unified_momentum_model)</a>
+</li>
       <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.Turbine.multi_dimensional_cp_ct">multi_dimensional_cp_ct (floris.core.turbine.turbine.Turbine attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.multidim_conditions">multidim_conditions (floris.core.flow_field.FlowField attribute)</a>
@@ -2071,6 +2634,12 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.utilities.html#floris.utilities.nested_set">nested_set() (in module floris.utilities)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationResult.niter">niter (floris.core.turbine.unified_momentum_model.FixedPointIterationResult attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.niter">(floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/floris.core.wake_velocity.none.html#floris.core.wake_velocity.none.NoneVelocityDeficit">NoneVelocityDeficit (class in floris.core.wake_velocity.none)</a>
 </li>
       <li><a href="_autosummary/floris.core.wake_deflection.none.html#floris.core.wake_deflection.none.NoneVelocityDeflection">NoneVelocityDeflection (class in floris.core.wake_deflection.none)</a>
@@ -2111,6 +2680,8 @@ window.addEventListener("load", () => mermaid.run());
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.optimization.load_optimization.load_optimization.html#floris.optimization.load_optimization.load_optimization.optimize_power_setpoints">optimize_power_setpoints() (in module floris.optimization.load_optimization.load_optimization)</a>
+</li>
       <li><a href="_autosummary/floris.parallel_floris_model.html#floris.parallel_floris_model.ParallelFlorisModel.optimize_yaw_angles">optimize_yaw_angles() (floris.parallel_floris_model.ParallelFlorisModel method)</a>
 </li>
       <li><a href="_autosummary/floris.core.wake_velocity.turbopark.html#floris.core.wake_velocity.turbopark.TurbOParkVelocityDeficit.overlap_gauss_interp">overlap_gauss_interp (floris.core.wake_velocity.turbopark.TurbOParkVelocityDeficit attribute)</a>
@@ -2209,11 +2780,15 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.PointsGrid">PointsGrid (class in floris.core.grid)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.Heck.post_process">post_process() (floris.core.turbine.unified_momentum_model.Heck method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.power">power() (floris.core.turbine.operation_models.AWCTurbine method)</a>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine.power">power() (floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine static method)</a>
 
       <ul>
+        <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.power">(floris.core.turbine.operation_models.AWCTurbine method)</a>
+</li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.power">(floris.core.turbine.operation_models.BaseOperationModel static method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.CosineLossTurbine.power">(floris.core.turbine.operation_models.CosineLossTurbine method)</a>
@@ -2225,6 +2800,8 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.SimpleDeratingTurbine.power">(floris.core.turbine.operation_models.SimpleDeratingTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.SimpleTurbine.power">(floris.core.turbine.operation_models.SimpleTurbine method)</a>
+</li>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.UnifiedMomentumModelTurbine.power">(floris.core.turbine.unified_momentum_model.UnifiedMomentumModelTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.power">(in module floris.core.turbine.turbine)</a>
 </li>
@@ -2335,6 +2912,8 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.optimization.other.boundary_grid.html#floris.optimization.other.boundary_grid.BoundaryGrid.reinitialize_xy">(floris.optimization.other.boundary_grid.BoundaryGrid method)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationResult.relax">relax (floris.core.turbine.unified_momentum_model.FixedPointIterationResult attribute)</a>
+</li>
       <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRose.resample_by_interpolation">resample_by_interpolation() (floris.wind_data.WindRose method)</a>
 
       <ul>
@@ -2351,12 +2930,18 @@ window.addEventListener("load", () => mermaid.run());
       </ul></li>
       <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.Turbine.reset_rotor_area">reset_rotor_area() (floris.core.turbine.turbine.Turbine method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.Turbine.reset_rotor_diameter_dependencies">reset_rotor_diameter_dependencies() (floris.core.turbine.turbine.Turbine method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.Turbine.reset_rotor_radius">reset_rotor_radius() (floris.core.turbine.turbine.Turbine method)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationCompatible.residual">residual() (floris.core.turbine.unified_momentum_model.FixedPointIterationCompatible method)</a>
+
+      <ul>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.Heck.residual">(floris.core.turbine.unified_momentum_model.Heck method)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.reverse_cut_plane_x_axis_in_plot">reverse_cut_plane_x_axis_in_plot() (in module floris.flow_visualization)</a>
 </li>
       <li><a href="_autosummary/floris.utilities.html#floris.utilities.reverse_rotate_coordinates_rel_west">reverse_rotate_coordinates_rel_west() (in module floris.utilities)</a>
@@ -2411,10 +2996,18 @@ window.addEventListener("load", () => mermaid.run());
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.sample_flow_at_points">sample_flow_at_points() (floris.floris_model.FlorisModel method)</a>
 </li>
+      <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.sample_ti_at_points">sample_ti_at_points() (floris.floris_model.FlorisModel method)</a>
+</li>
       <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.sample_velocity_deficit_profiles">sample_velocity_deficit_profiles() (floris.floris_model.FlorisModel method)</a>
 </li>
-      <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.select_multidim_condition">select_multidim_condition() (in module floris.core.turbine.turbine)</a>
+      <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.secondary_init_kwargs">secondary_init_kwargs (floris.floris_model.FlorisModel property)</a>
+
+      <ul>
+        <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.ApproxFlorisModel.secondary_init_kwargs">(floris.uncertain_floris_model.ApproxFlorisModel property)</a>
 </li>
+        <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.UncertainFlorisModel.secondary_init_kwargs">(floris.uncertain_floris_model.UncertainFlorisModel property)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/floris.core.solver.html#floris.core.solver.sequential_solver">sequential_solver() (in module floris.core.solver)</a>
 </li>
       <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set">set() (floris.floris_model.FlorisModel method)</a>
@@ -2483,10 +3076,10 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_power_setpoints_to_ref_power">set_power_setpoints_to_ref_power() (floris.core.farm.Farm method)</a>
 </li>
-      <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRoseWRG.set_ti_table">set_ti_table() (floris.wind_data.WindRoseWRG method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRoseWRG.set_ti_table">set_ti_table() (floris.wind_data.WindRoseWRG method)</a>
+</li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_tilt_to_ref_tilt">set_tilt_to_ref_tilt() (floris.core.farm.Farm method)</a>
 </li>
       <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRoseWRG.set_wd_step">set_wd_step() (floris.wind_data.WindRoseWRG method)</a>
@@ -2502,6 +3095,8 @@ window.addEventListener("load", () => mermaid.run());
       <li><a href="_autosummary/floris.layout_visualization.html#floris.layout_visualization.shade_region">shade_region() (in module floris.layout_visualization)</a>
 </li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.show">show() (in module floris.flow_visualization)</a>
+</li>
+      <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.show_config">show_config() (floris.floris_model.FlorisModel method)</a>
 </li>
       <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit.sigma_0_D">sigma_0_D (floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit attribute)</a>
 </li>
@@ -2571,9 +3166,11 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.optimization.layout_optimization.layout_optimization_random_search.html#floris.optimization.layout_optimization.layout_optimization_random_search.test_point_in_bounds">test_point_in_bounds() (in module floris.optimization.layout_optimization.layout_optimization_random_search)</a>
 </li>
-      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient">thrust_coefficient() (floris.core.turbine.operation_models.AWCTurbine method)</a>
+      <li><a href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html#floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine.thrust_coefficient">thrust_coefficient() (floris.core.turbine.controller_dependent_operation_model.ControllerDependentTurbine static method)</a>
 
       <ul>
+        <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient">(floris.core.turbine.operation_models.AWCTurbine method)</a>
+</li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.thrust_coefficient">(floris.core.turbine.operation_models.BaseOperationModel static method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.CosineLossTurbine.thrust_coefficient">(floris.core.turbine.operation_models.CosineLossTurbine method)</a>
@@ -2585,6 +3182,8 @@ window.addEventListener("load", () => mermaid.run());
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.SimpleDeratingTurbine.thrust_coefficient">(floris.core.turbine.operation_models.SimpleDeratingTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.SimpleTurbine.thrust_coefficient">(floris.core.turbine.operation_models.SimpleTurbine method)</a>
+</li>
+        <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.UnifiedMomentumModelTurbine.thrust_coefficient">(floris.core.turbine.unified_momentum_model.UnifiedMomentumModelTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.turbine.html#floris.core.turbine.turbine.thrust_coefficient">(in module floris.core.turbine.turbine)</a>
 </li>
@@ -2624,13 +3223,17 @@ window.addEventListener("load", () => mermaid.run());
       <li><a href="_autosummary/floris.turbine_library.turbine_previewer.html#floris.turbine_library.turbine_previewer.TurbineInterface.turbine">turbine (floris.turbine_library.turbine_previewer.TurbineInterface attribute)</a>
 </li>
       <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.turbine_average_velocities">turbine_average_velocities (floris.floris_model.FlorisModel property)</a>
+
+      <ul>
+        <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.UncertainFlorisModel.turbine_average_velocities">(floris.uncertain_floris_model.UncertainFlorisModel property)</a>
 </li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.turbine_axial_induction_functions">turbine_axial_induction_functions (floris.core.farm.Farm attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.Grid.turbine_coordinates">turbine_coordinates (floris.core.grid.Grid attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.turbine_definitions">turbine_definitions (floris.core.farm.Farm attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.Grid.turbine_diameters">turbine_diameters (floris.core.grid.Grid attribute)</a>
@@ -2709,11 +3312,19 @@ window.addEventListener("load", () => mermaid.run());
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.u">u (floris.core.flow_field.FlowField attribute)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.u4">u4 (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
+</li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.u_initial_sorted">u_initial_sorted (floris.core.flow_field.FlowField attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.u_sorted">u_sorted (floris.core.flow_field.FlowField attribute)</a>
 </li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.UMM_rotor_axial_induction">UMM_rotor_axial_induction() (in module floris.core.turbine.unified_momentum_model)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.UMM_rotor_velocity_yaw_correction">UMM_rotor_velocity_yaw_correction() (in module floris.core.turbine.unified_momentum_model)</a>
+</li>
       <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.UncertainFlorisModel">UncertainFlorisModel (class in floris.uncertain_floris_model)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.UnifiedMomentumModelTurbine">UnifiedMomentumModelTurbine (class in floris.core.turbine.unified_momentum_model)</a>
 </li>
       <li><a href="_autosummary/floris.core.base.html#floris.core.base.State.UNINITIALIZED">UNINITIALIZED (floris.core.base.State attribute)</a>
 </li>
@@ -2735,6 +3346,14 @@ window.addEventListener("load", () => mermaid.run());
 </li>
       <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.unpack_freq">unpack_freq() (floris.wind_data.WindDataBase method)</a>
 </li>
+      <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.unpack_multidim_conditions">unpack_multidim_conditions() (floris.wind_data.WindDataBase method)</a>
+
+      <ul>
+        <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRose.unpack_multidim_conditions">(floris.wind_data.WindRose method)</a>
+</li>
+        <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindTIRose.unpack_multidim_conditions">(floris.wind_data.WindTIRose method)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.unpack_value">unpack_value() (floris.wind_data.WindDataBase method)</a>
 </li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.FlowFieldPlanarGrid.unsorted_indices">unsorted_indices (floris.core.grid.FlowFieldPlanarGrid attribute)</a>
@@ -2762,6 +3381,8 @@ window.addEventListener("load", () => mermaid.run());
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.v">v (floris.core.flow_field.FlowField attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.v4">v4 (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.v_initial_sorted">v_initial_sorted (floris.core.flow_field.FlowField attribute)</a>
 </li>
@@ -2877,6 +3498,10 @@ window.addEventListener("load", () => mermaid.run());
 <h2 id="X">X</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.FixedPointIterationResult.x">x (floris.core.turbine.unified_momentum_model.FixedPointIterationResult attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.x0">x0 (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
+</li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.FlowFieldPlanarGrid.x1_bounds">x1_bounds (floris.core.grid.FlowFieldPlanarGrid attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.FlowFieldPlanarGrid.x2_bounds">x2_bounds (floris.core.grid.FlowFieldPlanarGrid attribute)</a>
@@ -2922,6 +3547,8 @@ window.addEventListener("load", () => mermaid.run());
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.Grid.y_sorted_inertial_frame">y_sorted_inertial_frame (floris.core.grid.Grid attribute)</a>
 </li>
       <li><a href="_autosummary/floris.utilities.html#floris.utilities.Loader.yaml_constructors">yaml_constructors (floris.utilities.Loader attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.unified_momentum_model.html#floris.core.turbine.unified_momentum_model.MomentumSolution.yaw">yaw (floris.core.turbine.unified_momentum_model.MomentumSolution attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -2986,7 +3613,7 @@ window.addEventListener("load", () => mermaid.run());
   <div class="footer-item">
     
 <p class="component-author">
-By National Renewable Energy Laboratory
+By National Laboratory of the Rockies
 </p>
 
   </div>
@@ -2996,7 +3623,7 @@ By National Renewable Energy Laboratory
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>

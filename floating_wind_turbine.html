@@ -30,11 +30,11 @@
   <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -49,11 +49,11 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
@@ -76,8 +76,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'floating_wind_turbine';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Turbine Library Interface" href="turbine_interaction.html" />
-    <link rel="prev" title="Heterogeneous Map" href="heterogeneous_map.html" />
+    <link rel="next" title="Multidimensional Wind Turbine" href="multidimensional_wind_turbine.html" />
+    <link rel="prev" title="Turbine Operation Models" href="operation_models_user.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="python"/>
   <meta name="docsearch:version" content="" />
@@ -192,14 +192,18 @@
 <li class="toctree-l1"><a class="reference internal" href="wind_data_user.html">Wind Data Objects</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="floris_models.html">FLORIS Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="turbine_models.html">Wind turbine models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Floating Wind Turbine Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multidimensional_wind_turbine.html">Multidimensional Wind Turbine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbine_library.html">Turbine Library</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heterogeneous_map.html">Heterogeneous Map</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Floating Wind Turbine Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="turbine_interaction.html">Turbine Library Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layout_optimization.html">Layout Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -236,6 +240,10 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.layout_optimization.layout_optimization_scipy.html">floris.optimization.layout_optimization.layout_optimization_scipy</a></li>
 </ul>
 </details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.optimization.load_optimization.html">floris.optimization.load_optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.load_optimization.load_optimization.html">floris.optimization.load_optimization.load_optimization</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.optimization.other.html">floris.optimization.other</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.optimization.other.boundary_grid.html">floris.optimization.other.boundary_grid</a></li>
 </ul>
@@ -261,8 +269,10 @@
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.rotor_velocity.html">floris.core.rotor_velocity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.solver.html">floris.core.solver</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/floris.core.turbine.html">floris.core.turbine</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.controller_dependent_operation_model.html">floris.core.turbine.controller_dependent_operation_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.operation_models.html">floris.core.turbine.operation_models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.turbine.html">floris.core.turbine.turbine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/floris.core.turbine.unified_momentum_model.html">floris.core.turbine.unified_momentum_model</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/floris.core.wake.html">floris.core.wake</a></li>
@@ -352,7 +362,8 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/001_extract_wind_speed_at_turbines.html">Example: Extract wind speed at turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/002_extract_wind_speed_at_points.html">Example: Extract wind speed at points</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/003_plot_velocity_deficit_profiles.html">Example: Plot velocity deficit profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/003_extract_turbulence_intensity_at_points.html">Example: Extract turbulence intensity at points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_get_flow/004_plot_velocity_deficit_profiles.html">Example: Plot velocity deficit profiles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Heterogeneous</span></p>
 <ul class="nav bd-sidenav">
@@ -369,14 +380,24 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/004_generate_gridded_layout.html">Example: Gridded layout design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/005_layout_optimization_complex_boundary.html">Example: Separated boundaries layout optimization</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Load optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_load_optimization/001_lti_and_voc.html">Example: LTI and VOC Behavior with Changing Wind Direction and Power Setpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_load_optimization/002_row_opt_example.html">Example: Optimize a row of turbines</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/001_multi_dimensional_cp_ct.html">Example: Multi-dimensional Cp/Ct data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/002_multi_dimensional_cp_ct_2Hs.html">Example: Multi-dimensional Cp/Ct with 2 Hs values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/001_multi_dimensional_cp_ct.html">Example: Multi-dimensional power/thrust coefficient data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/002_multi_dimensional_cp_ct_2Hs.html">Example: Multi-dimensional power/thrust coefficient with 2 Hs values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_multidim/003_multi_dimensional_cp_ct_TI.html">Example: Multi-dimensional power/thrust coefficients with turbulence intensity</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Operation models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_operation_models/001_compare_yaw_loss.html">Example: Compare yaw loss under different operation models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Turbine</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/001_check_turbine.html">Example: Check turbine power curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/001_reference_turbines.html">Example: Reference turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/002_multiple_turbine_types.html">Example: Multiple turbine types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_turbine/003_specify_turbine_power_curve.html">Example: Specify turbine power curve</a></li>
 </ul>
@@ -469,7 +490,7 @@
       
       
       
-      <li><a href="https://github.com/NREL/floris" target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -486,7 +507,7 @@
       
       
       
-      <li><a href="https://github.com/NREL/floris/edit/main/docs/floating_wind_turbine.md" target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris/edit/main/docs/floating_wind_turbine.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -503,7 +524,7 @@
       
       
       
-      <li><a href="https://github.com/NREL/floris/issues/new?title=Issue%20on%20page%20%2Ffloating_wind_turbine.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/NatLabRockies/floris/issues/new?title=Issue%20on%20page%20%2Ffloating_wind_turbine.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -572,7 +593,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -625,24 +646,15 @@
 <h1>Floating Wind Turbine Modeling<a class="headerlink" href="#floating-wind-turbine-modeling" title="Link to this heading">#</a></h1>
 <p>The FLORIS wind turbine description includes a definition of the performance curves
 (<code class="docutils literal notranslate"><span class="pre">power</span></code> and <code class="docutils literal notranslate"><span class="pre">thrust_coefficient</span></code>) as a function of wind speed, and this lookup table is used
-directly in
-the calculation of power production for a steady-state atmospheric condition
+directly in the calculation of power production for a steady-state atmospheric condition
 (wind speed and wind direction). The power curve definition typically assumes a
-fixed-bottom wind turbine with no active or controllable tilt. However, floating
-wind turbines have additional rotational degrees of freedom including pitch which
+fixed-bottom wind turbine with a fixed shaft tilt. However, floating
+wind turbines have an additional rotational degrees of freedom in the platform pitch, which
 adds a tilt angle to the rotor. As the turbine tilts, its performance is affected
-similar to a yawed condition. The turbine is no longer operating on its defined
-performance curve, and corrections must be included to accurately predict the power
-production.</p>
-<p>Support for modeling this impact on a floating wind turbine were added in
-<a class="reference external" href="https://github.com/NREL/floris/pull/518/files">PR#518</a> and allow for correcting the
-user-supplied performance curve for the average tilt. This is accomplished by including
-an additional input, <code class="docutils literal notranslate"><span class="pre">floating_tilt_table</span></code>, in the turbine definition which sets the
-steady tilt angle of the turbine based on wind speed. An interpolation is created and
-the tilt angle is computed for each turbine based on effective velocity. Taking into
-account the turbine rotor's built-in tilt, the absolute tilt change can then be used
-to correct the power and thrust coefficient.
-This tilt angle is then used directly in the selected wake models.</p>
+because the turbine is no longer operating on its defined performance curve.</p>
+<p>FLORIS allows the user to correct for the tilt angle of the turbine as a function of wind speed.
+This is accomplished by including an additional input, <code class="docutils literal notranslate"><span class="pre">floating_tilt_table</span></code>, in the turbine definition that sets the steady tilt angle of the turbine based on wind speed. An interpolation is created and the tilt angle is computed for each turbine based on its rotor effective velocity. Taking into account the turbine rotor's built-in tilt, the absolute tilt is used to compute the power and thrust coefficient. To enable the use of the <code class="docutils literal notranslate"><span class="pre">floating_tilt_table</span></code>, the <code class="docutils literal notranslate"><span class="pre">correct_cp_ct_for_tilt</span></code> input on the turbine definition should be set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>The tilt angle is then used directly in the selected wake models to compute wake effects of tilted turbines.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -676,20 +688,20 @@ This tilt angle is then used directly in the selected wake models.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="heterogeneous_map.html"
+       href="operation_models_user.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Heterogeneous Map</p>
+        <p class="prev-next-title">Turbine Operation Models</p>
       </div>
     </a>
     <a class="right-next"
-       href="turbine_interaction.html"
+       href="multidimensional_wind_turbine.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Turbine Library Interface</p>
+        <p class="prev-next-title">Multidimensional Wind Turbine</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -709,7 +721,7 @@ This tilt angle is then used directly in the selected wake models.</p>
   <div class="footer-item">
     
 <p class="component-author">
-By National Renewable Energy Laboratory
+By National Laboratory of the Rockies
 </p>
 
   </div>
@@ -719,7 +731,7 @@ By National Renewable Energy Laboratory
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>
